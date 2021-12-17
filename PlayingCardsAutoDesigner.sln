@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31829.152
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayingCardsAutoDesigner", "PlayingCardsAutoDesigner\PlayingCardsAutoDesigner.csproj", "{EA70DBF2-295C-40E7-8D02-601EE3E16BAA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EA70DBF2-295C-40E7-8D02-601EE3E16BAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA70DBF2-295C-40E7-8D02-601EE3E16BAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA70DBF2-295C-40E7-8D02-601EE3E16BAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA70DBF2-295C-40E7-8D02-601EE3E16BAA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6003102D-F37B-4FDE-9A50-59416A29C655}
+	EndGlobalSection
+EndGlobal
