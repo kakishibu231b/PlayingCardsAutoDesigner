@@ -13,11 +13,18 @@ namespace PlayingCardsAutoDesigner
 {
     public partial class Form1 : Form
     {
+       Brush m_fontBrush;
+
         public Form1()
         {
             InitializeComponent();
 
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            m_fontBrush = Brushes.Black;
         }
 
         private string getMarkFileName()
@@ -134,7 +141,8 @@ namespace PlayingCardsAutoDesigner
                 string strCardNumber = getCardNumber();
                 if (!string.IsNullOrEmpty(strCardNumber))
                 {
-                    fnt = new Font("MS UI Gothic", intFontSize / intModeScale);
+                    string strFontName = textBox2.Text;
+                    fnt = new Font(strFontName, intFontSize / intModeScale);
                 }
 
                 // キャンバス作成
@@ -223,13 +231,13 @@ namespace PlayingCardsAutoDesigner
                             case "7":
                             case "8":
                             case "9":
-                                graphics.DrawString(strCardNumber, fnt, Brushes.Black, intCardNumberOffsetX1 / intModeScale, intCardNumberOffsetY / intModeScale);
+                                graphics.DrawString(strCardNumber, fnt, m_fontBrush, intCardNumberOffsetX1 / intModeScale, intCardNumberOffsetY / intModeScale);
                                 break;
                             case "10":
-                                graphics.DrawString(strCardNumber, fnt, Brushes.Black, intCardNumberOffsetX2 / intModeScale, intCardNumberOffsetY / intModeScale);
+                                graphics.DrawString(strCardNumber, fnt, m_fontBrush, intCardNumberOffsetX2 / intModeScale, intCardNumberOffsetY / intModeScale);
                                 break;
                             default:
-                                graphics.DrawString(strCardNumber, fnt, Brushes.Black, intCardNumberOffsetX3 / intModeScale, intCardNumberOffsetY / intModeScale);
+                                graphics.DrawString(strCardNumber, fnt, m_fontBrush, intCardNumberOffsetX3 / intModeScale, intCardNumberOffsetY / intModeScale);
                                 break;
                         }
                     }
@@ -436,9 +444,47 @@ namespace PlayingCardsAutoDesigner
             pictureBox1.Refresh();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void button3_Click(object sender, EventArgs e)
         {
+            DialogResult result = fontDialog1.ShowDialog();
+            switch (result)
+            {
+                case DialogResult.OK:
+                    textBox2.Text = fontDialog1.Font.Name;
+                    radioButtonMark_CheckedChanged(sender, e);
+                    break;
+                default:
+                    break;
+            }
+        }
 
+        private void button4_Click(object sender, EventArgs e)
+        {
+            DialogResult result = colorDialog1.ShowDialog();
+            switch (result)
+            {
+                case DialogResult.OK:
+                    numericUpDown12.Value = colorDialog1.Color.R;
+                    numericUpDown13.Value = colorDialog1.Color.G;
+                    numericUpDown14.Value = colorDialog1.Color.B;
+
+                    m_fontBrush.Dispose();
+                    m_fontBrush = new SolidBrush(colorDialog1.Color);
+
+                    radioButtonMark_CheckedChanged(sender, e);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void numericUpDown12_ValueChanged(object sender, EventArgs e)
+        {
+            Color color = Color.FromArgb((int)numericUpDown12.Value, (int)numericUpDown13.Value, (int)numericUpDown14.Value);
+            m_fontBrush.Dispose();
+            m_fontBrush = new SolidBrush(color);
+
+            radioButtonMark_CheckedChanged(sender, e);
         }
     }
 }
