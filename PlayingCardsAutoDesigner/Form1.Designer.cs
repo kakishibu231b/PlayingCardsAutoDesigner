@@ -184,9 +184,14 @@ namespace PlayingCardsAutoDesigner
             // 
             // numericUpDown4
             // 
+            this.numericUpDown4.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
             this.numericUpDown4.Location = new System.Drawing.Point(99, 125);
             this.numericUpDown4.Maximum = new decimal(new int[] {
-            1000,
+            3000,
             0,
             0,
             0});
@@ -194,7 +199,7 @@ namespace PlayingCardsAutoDesigner
             this.numericUpDown4.Size = new System.Drawing.Size(120, 23);
             this.numericUpDown4.TabIndex = 11;
             this.numericUpDown4.Value = new decimal(new int[] {
-            1000,
+            1500,
             0,
             0,
             0});
@@ -211,6 +216,11 @@ namespace PlayingCardsAutoDesigner
             // 
             // numericUpDown3
             // 
+            this.numericUpDown3.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
             this.numericUpDown3.Location = new System.Drawing.Point(99, 81);
             this.numericUpDown3.Maximum = new decimal(new int[] {
             1000,
@@ -255,7 +265,7 @@ namespace PlayingCardsAutoDesigner
             65536});
             this.numericUpDown1.Location = new System.Drawing.Point(99, 37);
             this.numericUpDown1.Maximum = new decimal(new int[] {
-            6,
+            10,
             0,
             0,
             0});
@@ -268,7 +278,7 @@ namespace PlayingCardsAutoDesigner
             this.numericUpDown1.Size = new System.Drawing.Size(120, 23);
             this.numericUpDown1.TabIndex = 6;
             this.numericUpDown1.Value = new decimal(new int[] {
-            3,
+            6,
             0,
             0,
             0});
@@ -504,6 +514,11 @@ namespace PlayingCardsAutoDesigner
             // 
             // numericUpDown8
             // 
+            this.numericUpDown8.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
             this.numericUpDown8.Location = new System.Drawing.Point(99, 214);
             this.numericUpDown8.Maximum = new decimal(new int[] {
             500,
@@ -531,6 +546,11 @@ namespace PlayingCardsAutoDesigner
             // 
             // numericUpDown7
             // 
+            this.numericUpDown7.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
             this.numericUpDown7.Location = new System.Drawing.Point(99, 169);
             this.numericUpDown7.Maximum = new decimal(new int[] {
             500,
@@ -558,6 +578,11 @@ namespace PlayingCardsAutoDesigner
             // 
             // numericUpDown6
             // 
+            this.numericUpDown6.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
             this.numericUpDown6.Location = new System.Drawing.Point(99, 125);
             this.numericUpDown6.Maximum = new decimal(new int[] {
             500,
@@ -585,6 +610,11 @@ namespace PlayingCardsAutoDesigner
             // 
             // numericUpDown5
             // 
+            this.numericUpDown5.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
             this.numericUpDown5.Location = new System.Drawing.Point(99, 81);
             this.numericUpDown5.Maximum = new decimal(new int[] {
             500,
@@ -612,6 +642,11 @@ namespace PlayingCardsAutoDesigner
             // 
             // numericUpDown2
             // 
+            this.numericUpDown2.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
             this.numericUpDown2.Location = new System.Drawing.Point(99, 37);
             this.numericUpDown2.Maximum = new decimal(new int[] {
             1000,
@@ -627,7 +662,7 @@ namespace PlayingCardsAutoDesigner
             this.numericUpDown2.Size = new System.Drawing.Size(120, 23);
             this.numericUpDown2.TabIndex = 15;
             this.numericUpDown2.Value = new decimal(new int[] {
-            500,
+            880,
             0,
             0,
             0});
@@ -977,7 +1012,9 @@ namespace PlayingCardsAutoDesigner
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox1);
+            this.MaximizeBox = false;
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Playing Cards Auto Designer";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
