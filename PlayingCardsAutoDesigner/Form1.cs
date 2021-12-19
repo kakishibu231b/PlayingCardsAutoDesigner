@@ -113,6 +113,7 @@ namespace PlayingCardsAutoDesigner
             Bitmap newImage = null;
             Bitmap logoImage1 = null;
             Bitmap logoImage2 = null;
+            Bitmap logoImage3 = null;
             Graphics graphics = null;
             Font fnt = null;
 
@@ -128,7 +129,10 @@ namespace PlayingCardsAutoDesigner
 
                 // ロゴ取得
                 string strLogoImagePath = textBox1.Text;
-                logoImage1 = new Bitmap(strLogoImagePath);
+                if (!string.IsNullOrEmpty(strLogoImagePath))
+                {
+                    logoImage1 = new Bitmap(strLogoImagePath);
+                }
 
                 // マーク取得
                 string strMarkFileName = getMarkFileName();
@@ -162,11 +166,31 @@ namespace PlayingCardsAutoDesigner
                 graphics.FillRectangle(Brushes.White, graphics.VisibleClipBounds);
                 graphics.DrawRectangle(Pens.Black, 0, 0, intCardWidth, intCardHeight);
 
+                // 背景取得
+                string strBackGroundImagePath = textBox3.Text;
+                if (!string.IsNullOrEmpty(strBackGroundImagePath))
+                {
+                    logoImage3 = new Bitmap(strBackGroundImagePath);
+                    // 背景描画
+                    if (logoImage3 != null)
+                    {
+                        int intBackGroundWidth = logoImage3.Width / intModeScale;
+                        int intBackGroundHeight = logoImage3.Height / intModeScale;
+                        graphics.DrawImage(logoImage3, 0, 0, intCardWidth, intCardHeight);
+                    }
+                }
+
+                // ロゴ描画
                 double intMarkScale = (double)numericUpDown1.Value;
                 intMarkScale = intMarkScale / intModeScale;
- 
-                int intMarkWidth = (int)(logoImage1.Width * intMarkScale);
-                int intMarkHeight = (int)(logoImage1.Height * intMarkScale);
+
+                int intMarkWidth = 0;
+                int intMarkHeight = 0;
+                if (logoImage2 != null)
+                {
+                    intMarkWidth = (int)(logoImage2.Width * intMarkScale);
+                    intMarkHeight = (int)(logoImage2.Height * intMarkScale);
+                }
 
                 double intLogoScale = 0;
                 switch (strCardNumber)
@@ -201,10 +225,15 @@ namespace PlayingCardsAutoDesigner
                 {
                     intLogoScale = intLogoScale / intModeScale;
                 }
-                int intLogoWidth = (int)(logoImage1.Width * intLogoScale);
-                int intLogoHeight = (int)(logoImage1.Height * intLogoScale);
+                int intLogoWidth = 0;
+                int intLogoHeight = 0;
+                if (logoImage1 != null)
+                {
+                    intLogoWidth = (int)(logoImage1.Width * intLogoScale);
+                    intLogoHeight = (int)(logoImage1.Height * intLogoScale);
+                }
 
-                for ( int ii = 0; ii < 2; ++ii )
+                for (int ii = 0; ii < 2; ++ii)
                 {
                     // カードマーク描画
                     if (!string.IsNullOrEmpty(strMarkFileName))
@@ -222,10 +251,11 @@ namespace PlayingCardsAutoDesigner
                         int intCardNumberOffsetX3 = (int)numericUpDown7.Value;
                         int intCardNumberOffsetY = (int)numericUpDown8.Value;
 
-                        switch (strCardNumber) {
+                        switch (strCardNumber)
+                        {
                             case "2":
-                            case "3": 
-                            case "4": 
+                            case "3":
+                            case "4":
                             case "5":
                             case "6":
                             case "7":
@@ -243,124 +273,73 @@ namespace PlayingCardsAutoDesigner
                     }
 
                     // ロゴ描画
-                    int image1_w = 0;
-                    int image1_h = 0;
-                    int image2_w = 0;
-                    int image2_h = 0;
-
-                    // 左上座標
-                    image1_w = newImage.Width / 5;
-                    image1_h = newImage.Height / 6;
-
-                    // 右上座標
-                    image2_w = newImage.Width - image1_w - intLogoWidth;
-                    image2_h = newImage.Height / 6;
-
-                    // 左右中央上部
-                    switch (strCardNumber)
+                    if (!string.IsNullOrEmpty(strLogoImagePath))
                     {
-                        case "2":
-                        case "3":
-                            graphics.DrawImage(logoImage1, newImage.Width / 2 - intLogoWidth / 2, image1_h, intLogoWidth, intLogoHeight);
-                            break;
+                        int image1_w = 0;
+                        int image1_h = 0;
+                        int image2_w = 0;
+                        int image2_h = 0;
 
-                        default:
-                            break;
-                    }
+                        // 左上座標
+                        image1_w = newImage.Width / 5;
+                        image1_h = newImage.Height / 6;
 
-                    // 左右上部
-                    switch (strCardNumber)
-                    {
-                        case "4":
-                        case "5":
-                        case "6":
-                        case "7":
-                        case "8":
-                            // 左上部
-                            graphics.DrawImage(logoImage1, image1_w, image1_h, intLogoWidth, intLogoHeight);
-                            // 右上部
-                            graphics.DrawImage(logoImage1, image2_w, image2_h, intLogoWidth, intLogoHeight);
-                            break;
+                        // 右上座標
+                        image2_w = newImage.Width - image1_w - intLogoWidth;
+                        image2_h = newImage.Height / 6;
 
-                        default:
-                            break;
-                    }
-
-                    // 中央上部
-                    switch (strCardNumber)
-                    {
-                        case "8":
-                            graphics.DrawImage(logoImage1, newImage.Width / 2 - intLogoWidth / 2, image2_h + image2_h / 2, intLogoWidth, intLogoHeight);
-                            break;
-
-                        default:
-                            break;
-                    }
-
-                    // 左右上部2連
-                    switch (strCardNumber)
-                    {
-                        case "9":
-                        case "10":
-                            graphics.DrawImage(logoImage1, image1_w, image1_h, intLogoWidth, intLogoHeight);
-                            graphics.DrawImage(logoImage1, image2_w, image2_h, intLogoWidth, intLogoHeight);
-                            graphics.DrawImage(logoImage1, image1_w, image1_h + image1_h, intLogoWidth, intLogoHeight);
-                            graphics.DrawImage(logoImage1, image2_w, image2_h + image2_h, intLogoWidth, intLogoHeight);
-                            break;
-
-                        default:
-                            break;
-                    }
-
-                    // 左右中央やや上部
-                    switch (strCardNumber)
-                    {
-                        case "10":
-                            graphics.DrawImage(logoImage1, newImage.Width / 2 - intLogoWidth / 2, image2_h + intLogoHeight / 2, intLogoWidth, intLogoHeight);
-                            break;
-
-                        default:
-                            break;
-                    }
-
-                    if ( ii == 0 )
-                    {
-                        newImage.RotateFlip(RotateFlipType.Rotate180FlipY);
-                        newImage.RotateFlip(RotateFlipType.Rotate180FlipX);
-                    }
-                    else
-                    {
-                        // 上下左右中央
+                        // 左右中央上部
                         switch (strCardNumber)
                         {
-                            case "A":
-                                graphics.DrawImage(logoImage1, newImage.Width / 2 - intLogoWidth / 2, newImage.Height / 2 - intLogoHeight / 2, intLogoWidth, intLogoHeight);
-                                break;
-
-                            case "J":
-                            case "Q":
-                            case "K":
-                                graphics.DrawImage(logoImage1, newImage.Width / 2 - intLogoWidth / 2, newImage.Height / 2 - intLogoHeight / 2, intLogoWidth, intLogoHeight);
-                                break;
-
+                            case "2":
                             case "3":
-                            case "5":
-                            case "9":
-                                graphics.DrawImage(logoImage1, newImage.Width / 2 - intLogoWidth / 2, newImage.Height / 2 - intLogoHeight / 2, intLogoWidth, intLogoHeight);
+                                graphics.DrawImage(logoImage1, newImage.Width / 2 - intLogoWidth / 2, image1_h, intLogoWidth, intLogoHeight);
                                 break;
+
                             default:
                                 break;
                         }
 
-                        // 上下中央左右配置
+                        // 左右上部
                         switch (strCardNumber)
                         {
+                            case "4":
+                            case "5":
                             case "6":
                             case "7":
                             case "8":
-                                graphics.DrawImage(logoImage1, image1_w, newImage.Height / 2 - intLogoHeight / 2, intLogoWidth, intLogoHeight);
-                                graphics.DrawImage(logoImage1, image2_w, newImage.Height / 2 - intLogoHeight / 2, intLogoWidth, intLogoHeight);
+                                // 左上部
+                                graphics.DrawImage(logoImage1, image1_w, image1_h, intLogoWidth, intLogoHeight);
+                                // 右上部
+                                graphics.DrawImage(logoImage1, image2_w, image2_h, intLogoWidth, intLogoHeight);
                                 break;
+
+                            default:
+                                break;
+                        }
+
+                        // 中央上部
+                        switch (strCardNumber)
+                        {
+                            case "8":
+                                graphics.DrawImage(logoImage1, newImage.Width / 2 - intLogoWidth / 2, image2_h + image2_h / 2, intLogoWidth, intLogoHeight);
+                                break;
+
+                            default:
+                                break;
+                        }
+
+                        // 左右上部2連
+                        switch (strCardNumber)
+                        {
+                            case "9":
+                            case "10":
+                                graphics.DrawImage(logoImage1, image1_w, image1_h, intLogoWidth, intLogoHeight);
+                                graphics.DrawImage(logoImage1, image2_w, image2_h, intLogoWidth, intLogoHeight);
+                                graphics.DrawImage(logoImage1, image1_w, image1_h + image1_h, intLogoWidth, intLogoHeight);
+                                graphics.DrawImage(logoImage1, image2_w, image2_h + image2_h, intLogoWidth, intLogoHeight);
+                                break;
+
                             default:
                                 break;
                         }
@@ -368,12 +347,66 @@ namespace PlayingCardsAutoDesigner
                         // 左右中央やや上部
                         switch (strCardNumber)
                         {
-                            case "7":
-                                graphics.DrawImage(logoImage1, newImage.Width / 2 - intLogoWidth / 2, image2_h + image2_h / 2, intLogoWidth, intLogoHeight);
+                            case "10":
+                                graphics.DrawImage(logoImage1, newImage.Width / 2 - intLogoWidth / 2, image2_h + intLogoHeight / 2, intLogoWidth, intLogoHeight);
                                 break;
 
                             default:
                                 break;
+                        }
+
+                        if (ii == 0)
+                        {
+                            newImage.RotateFlip(RotateFlipType.Rotate180FlipY);
+                            newImage.RotateFlip(RotateFlipType.Rotate180FlipX);
+                        }
+                        else
+                        {
+                            // 上下左右中央
+                            switch (strCardNumber)
+                            {
+                                case "A":
+                                    graphics.DrawImage(logoImage1, newImage.Width / 2 - intLogoWidth / 2, newImage.Height / 2 - intLogoHeight / 2, intLogoWidth, intLogoHeight);
+                                    break;
+
+                                case "J":
+                                case "Q":
+                                case "K":
+                                    graphics.DrawImage(logoImage1, newImage.Width / 2 - intLogoWidth / 2, newImage.Height / 2 - intLogoHeight / 2, intLogoWidth, intLogoHeight);
+                                    break;
+
+                                case "3":
+                                case "5":
+                                case "9":
+                                    graphics.DrawImage(logoImage1, newImage.Width / 2 - intLogoWidth / 2, newImage.Height / 2 - intLogoHeight / 2, intLogoWidth, intLogoHeight);
+                                    break;
+                                default:
+                                    break;
+                            }
+
+                            // 上下中央左右配置
+                            switch (strCardNumber)
+                            {
+                                case "6":
+                                case "7":
+                                case "8":
+                                    graphics.DrawImage(logoImage1, image1_w, newImage.Height / 2 - intLogoHeight / 2, intLogoWidth, intLogoHeight);
+                                    graphics.DrawImage(logoImage1, image2_w, newImage.Height / 2 - intLogoHeight / 2, intLogoWidth, intLogoHeight);
+                                    break;
+                                default:
+                                    break;
+                            }
+
+                            // 左右中央やや上部
+                            switch (strCardNumber)
+                            {
+                                case "7":
+                                    graphics.DrawImage(logoImage1, newImage.Width / 2 - intLogoWidth / 2, image2_h + image2_h / 2, intLogoWidth, intLogoHeight);
+                                    break;
+
+                                default:
+                                    break;
+                            }
                         }
                     }
                 }
@@ -396,6 +429,10 @@ namespace PlayingCardsAutoDesigner
                 {
                     logoImage2.Dispose();
                 }
+                if (logoImage3 != null)
+                {
+                    logoImage3.Dispose();
+                }
                 if (graphics != null)
                 {
                     graphics.Dispose();
@@ -407,12 +444,28 @@ namespace PlayingCardsAutoDesigner
         private void button1_Click(object sender, EventArgs e)
         {
             DialogResult result = openFileDialog1.ShowDialog();
-
             switch (result)
             {
                 case DialogResult.OK:
                     string strFilePath = openFileDialog1.FileName;
                     textBox1.Text = strFilePath;
+                    pictureBox1.Image = getImage(0);
+                    pictureBox1.Refresh();
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            DialogResult result = openFileDialog1.ShowDialog();
+            switch (result)
+            {
+                case DialogResult.OK:
+                    string strFilePath = openFileDialog1.FileName;
+                    textBox3.Text = strFilePath;
                     pictureBox1.Image = getImage(0);
                     pictureBox1.Refresh();
                     break;
@@ -433,7 +486,7 @@ namespace PlayingCardsAutoDesigner
                 newImage.Dispose();
             }
         }
-
+ 
         private void radioButtonMark_CheckedChanged(object sender, EventArgs e)
         {
             if (pictureBox1.Image != null)
@@ -446,6 +499,9 @@ namespace PlayingCardsAutoDesigner
 
         private void button3_Click(object sender, EventArgs e)
         {
+            fontDialog1.Font = new Font(textBox2.Text, (int)numericUpDown2.Value);
+            fontDialog1.MaxSize = 1000;
+
             DialogResult result = fontDialog1.ShowDialog();
             switch (result)
             {
