@@ -118,7 +118,7 @@ namespace PlayingCardsAutoDesigner
             Font fnt = null;
 
             int intModeScale = 1;
-            int intFontSize = (int)numericUpDown2.Value;
+            int intFontSize = (int)numericUpDown2.Value * 10;
 
             try
             {
@@ -238,18 +238,18 @@ namespace PlayingCardsAutoDesigner
                     // カードマーク描画
                     if (!string.IsNullOrEmpty(strMarkFileName))
                     {
-                        int intMarkOffsetX = (int)numericUpDown3.Value;
-                        int intMarkOffsetY = (int)numericUpDown4.Value;
+                        int intMarkOffsetX = (int)numericUpDown3.Value * 10;
+                        int intMarkOffsetY = (int)numericUpDown4.Value * 10;
                         graphics.DrawImage(logoImage2, intMarkOffsetX / intModeScale, intMarkOffsetY / intModeScale, intMarkWidth, intMarkHeight);
                     }
 
                     // カード番号描画
                     if (!string.IsNullOrEmpty(strCardNumber))
                     {
-                        int intCardNumberOffsetX1 = (int)numericUpDown5.Value;
-                        int intCardNumberOffsetX2 = (int)numericUpDown6.Value;
-                        int intCardNumberOffsetX3 = (int)numericUpDown7.Value;
-                        int intCardNumberOffsetY = (int)numericUpDown8.Value;
+                        int intCardNumberOffsetX1 = (int)numericUpDown5.Value * 10;
+                        int intCardNumberOffsetX2 = (int)numericUpDown6.Value * 10;
+                        int intCardNumberOffsetX3 = (int)numericUpDown7.Value * 10;
+                        int intCardNumberOffsetY = (int)numericUpDown8.Value * 10;
 
                         switch (strCardNumber)
                         {
@@ -275,6 +275,16 @@ namespace PlayingCardsAutoDesigner
                     // ロゴ描画
                     if (!string.IsNullOrEmpty(strLogoImagePath))
                     {
+                        int intMarkOffsetX1 = (int)numericUpDown15.Value * 10;
+                        int intMarkOffsetX2 = (int)numericUpDown17.Value * 10;
+                        int intMarkOffsetY = (int)numericUpDown16.Value * 10;
+                        if (mode == 0)
+                        {
+                            intMarkOffsetX1 = intMarkOffsetX1 / intModeScale;
+                            intMarkOffsetX2 = intMarkOffsetX2 / intModeScale;
+                            intMarkOffsetY = intMarkOffsetY / intModeScale;
+                        }
+
                         int image1_w = 0;
                         int image1_h = 0;
                         int image2_w = 0;
@@ -293,7 +303,11 @@ namespace PlayingCardsAutoDesigner
                         {
                             case "2":
                             case "3":
-                                graphics.DrawImage(logoImage1, newImage.Width / 2 - intLogoWidth / 2, image1_h, intLogoWidth, intLogoHeight);
+                                graphics.DrawImage(logoImage1,
+                                    newImage.Width / 2 - intLogoWidth / 2 + intMarkOffsetX1,
+                                    image1_h + intMarkOffsetY,
+                                    intLogoWidth,
+                                    intLogoHeight);
                                 break;
 
                             default:
@@ -309,9 +323,17 @@ namespace PlayingCardsAutoDesigner
                             case "7":
                             case "8":
                                 // 左上部
-                                graphics.DrawImage(logoImage1, image1_w, image1_h, intLogoWidth, intLogoHeight);
+                                graphics.DrawImage(logoImage1,
+                                    image1_w + intMarkOffsetX1 - intMarkOffsetX2,
+                                    image1_h + intMarkOffsetY,
+                                    intLogoWidth,
+                                    intLogoHeight);
                                 // 右上部
-                                graphics.DrawImage(logoImage1, image2_w, image2_h, intLogoWidth, intLogoHeight);
+                                graphics.DrawImage(logoImage1,
+                                    image2_w + intMarkOffsetX1 + intMarkOffsetX2,
+                                    image2_h + intMarkOffsetY,
+                                    intLogoWidth,
+                                    intLogoHeight);
                                 break;
 
                             default:
@@ -322,7 +344,11 @@ namespace PlayingCardsAutoDesigner
                         switch (strCardNumber)
                         {
                             case "8":
-                                graphics.DrawImage(logoImage1, newImage.Width / 2 - intLogoWidth / 2, image2_h + image2_h / 2, intLogoWidth, intLogoHeight);
+                                graphics.DrawImage(logoImage1,
+                                    newImage.Width / 2 - intLogoWidth / 2 + intMarkOffsetX1,
+                                    image2_h + image2_h / 2 + intMarkOffsetY,
+                                    intLogoWidth,
+                                    intLogoHeight);
                                 break;
 
                             default:
@@ -334,10 +360,26 @@ namespace PlayingCardsAutoDesigner
                         {
                             case "9":
                             case "10":
-                                graphics.DrawImage(logoImage1, image1_w, image1_h, intLogoWidth, intLogoHeight);
-                                graphics.DrawImage(logoImage1, image2_w, image2_h, intLogoWidth, intLogoHeight);
-                                graphics.DrawImage(logoImage1, image1_w, image1_h + image1_h, intLogoWidth, intLogoHeight);
-                                graphics.DrawImage(logoImage1, image2_w, image2_h + image2_h, intLogoWidth, intLogoHeight);
+                                graphics.DrawImage(logoImage1,
+                                    image1_w + intMarkOffsetX1 - intMarkOffsetX2,
+                                    image1_h + intMarkOffsetY,
+                                    intLogoWidth,
+                                    intLogoHeight);
+                                graphics.DrawImage(logoImage1,
+                                    image2_w + intMarkOffsetX1 + intMarkOffsetX2,
+                                    image2_h + intMarkOffsetY,
+                                    intLogoWidth,
+                                    intLogoHeight);
+                                graphics.DrawImage(logoImage1,
+                                    image1_w + intMarkOffsetX1 - intMarkOffsetX2,
+                                    image1_h + image1_h + intMarkOffsetY,
+                                    intLogoWidth,
+                                    intLogoHeight);
+                                graphics.DrawImage(logoImage1,
+                                    image2_w + intMarkOffsetX1 + intMarkOffsetX2,
+                                    image2_h + image2_h + intMarkOffsetY,
+                                    intLogoWidth,
+                                    intLogoHeight);
                                 break;
 
                             default:
@@ -348,7 +390,11 @@ namespace PlayingCardsAutoDesigner
                         switch (strCardNumber)
                         {
                             case "10":
-                                graphics.DrawImage(logoImage1, newImage.Width / 2 - intLogoWidth / 2, image2_h + intLogoHeight / 2, intLogoWidth, intLogoHeight);
+                                graphics.DrawImage(logoImage1,
+                                    newImage.Width / 2 - intLogoWidth / 2 + intMarkOffsetX1,
+                                    image2_h + intLogoHeight / 2 + intMarkOffsetY,
+                                    intLogoWidth,
+                                    intLogoHeight);
                                 break;
 
                             default:
@@ -357,28 +403,35 @@ namespace PlayingCardsAutoDesigner
 
                         if (ii == 0)
                         {
-                            newImage.RotateFlip(RotateFlipType.Rotate180FlipY);
-                            newImage.RotateFlip(RotateFlipType.Rotate180FlipX);
-                        }
-                        else
-                        {
                             // 上下左右中央
                             switch (strCardNumber)
                             {
                                 case "A":
-                                    graphics.DrawImage(logoImage1, newImage.Width / 2 - intLogoWidth / 2, newImage.Height / 2 - intLogoHeight / 2, intLogoWidth, intLogoHeight);
+                                    graphics.DrawImage(logoImage1,
+                                        newImage.Width / 2 - intLogoWidth / 2 + intMarkOffsetX1,
+                                        newImage.Height / 2 - intLogoHeight / 2 + intMarkOffsetY,
+                                        intLogoWidth,
+                                        intLogoHeight);
                                     break;
 
                                 case "J":
                                 case "Q":
                                 case "K":
-                                    graphics.DrawImage(logoImage1, newImage.Width / 2 - intLogoWidth / 2, newImage.Height / 2 - intLogoHeight / 2, intLogoWidth, intLogoHeight);
+                                    graphics.DrawImage(logoImage1,
+                                        newImage.Width / 2 - intLogoWidth / 2 + intMarkOffsetX1,
+                                        newImage.Height / 2 - intLogoHeight / 2 + intMarkOffsetY,
+                                        intLogoWidth,
+                                        intLogoHeight);
                                     break;
 
                                 case "3":
                                 case "5":
                                 case "9":
-                                    graphics.DrawImage(logoImage1, newImage.Width / 2 - intLogoWidth / 2, newImage.Height / 2 - intLogoHeight / 2, intLogoWidth, intLogoHeight);
+                                    graphics.DrawImage(logoImage1,
+                                        newImage.Width / 2 - intLogoWidth / 2 + intMarkOffsetX1,
+                                        newImage.Height / 2 - intLogoHeight / 2 + intMarkOffsetY,
+                                        intLogoWidth,
+                                        intLogoHeight);
                                     break;
                                 default:
                                     break;
@@ -390,8 +443,16 @@ namespace PlayingCardsAutoDesigner
                                 case "6":
                                 case "7":
                                 case "8":
-                                    graphics.DrawImage(logoImage1, image1_w, newImage.Height / 2 - intLogoHeight / 2, intLogoWidth, intLogoHeight);
-                                    graphics.DrawImage(logoImage1, image2_w, newImage.Height / 2 - intLogoHeight / 2, intLogoWidth, intLogoHeight);
+                                    graphics.DrawImage(logoImage1,
+                                        image1_w + intMarkOffsetX1 - intMarkOffsetX2,
+                                        newImage.Height / 2 - intLogoHeight / 2 + intMarkOffsetY, 
+                                        intLogoWidth, 
+                                        intLogoHeight);
+                                    graphics.DrawImage(logoImage1,
+                                        image2_w + intMarkOffsetX1 + intMarkOffsetX2,
+                                        newImage.Height / 2 - intLogoHeight / 2 + intMarkOffsetY, 
+                                        intLogoWidth,
+                                        intLogoHeight);
                                     break;
                                 default:
                                     break;
@@ -401,7 +462,11 @@ namespace PlayingCardsAutoDesigner
                             switch (strCardNumber)
                             {
                                 case "7":
-                                    graphics.DrawImage(logoImage1, newImage.Width / 2 - intLogoWidth / 2, image2_h + image2_h / 2, intLogoWidth, intLogoHeight);
+                                    graphics.DrawImage(logoImage1,
+                                        newImage.Width / 2 - intLogoWidth / 2 + intMarkOffsetX1,
+                                        image2_h + image2_h / 2 + intMarkOffsetY,
+                                        intLogoWidth,
+                                        intLogoHeight);
                                     break;
 
                                 default:
@@ -409,7 +474,11 @@ namespace PlayingCardsAutoDesigner
                             }
                         }
                     }
-                }
+
+                    newImage.RotateFlip(RotateFlipType.Rotate180FlipY);
+                    newImage.RotateFlip(RotateFlipType.Rotate180FlipX);
+
+                } // end of for
             }
             catch
             {
@@ -489,6 +558,15 @@ namespace PlayingCardsAutoDesigner
  
         private void radioButtonMark_CheckedChanged(object sender, EventArgs e)
         {
+            if ( sender.GetType() == typeof(RadioButton) )
+            {
+                RadioButton radioButton = (RadioButton)sender;
+                if ( radioButton.Checked == false )
+                {
+                    return;
+                }
+            }
+
             if (pictureBox1.Image != null)
             {
                 pictureBox1.Image.Dispose();

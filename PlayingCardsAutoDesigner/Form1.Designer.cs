@@ -85,6 +85,10 @@ namespace PlayingCardsAutoDesigner
             this.radioButton8 = new System.Windows.Forms.RadioButton();
             this.radioButton7 = new System.Windows.Forms.RadioButton();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.numericUpDown16 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown15 = new System.Windows.Forms.NumericUpDown();
+            this.label19 = new System.Windows.Forms.Label();
             this.numericUpDown11 = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown10 = new System.Windows.Forms.NumericUpDown();
             this.label11 = new System.Windows.Forms.Label();
@@ -97,6 +101,8 @@ namespace PlayingCardsAutoDesigner
             this.label17 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.numericUpDown17 = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).BeginInit();
@@ -112,9 +118,12 @@ namespace PlayingCardsAutoDesigner
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown16)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown15)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown17)).BeginInit();
             this.SuspendLayout();
             // 
             // textBox1
@@ -184,11 +193,6 @@ namespace PlayingCardsAutoDesigner
             // 
             // numericUpDown4
             // 
-            this.numericUpDown4.Increment = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
             this.numericUpDown4.Location = new System.Drawing.Point(99, 125);
             this.numericUpDown4.Maximum = new decimal(new int[] {
             3000,
@@ -199,7 +203,7 @@ namespace PlayingCardsAutoDesigner
             this.numericUpDown4.Size = new System.Drawing.Size(120, 23);
             this.numericUpDown4.TabIndex = 11;
             this.numericUpDown4.Value = new decimal(new int[] {
-            1500,
+            150,
             0,
             0,
             0});
@@ -216,11 +220,6 @@ namespace PlayingCardsAutoDesigner
             // 
             // numericUpDown3
             // 
-            this.numericUpDown3.Increment = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
             this.numericUpDown3.Location = new System.Drawing.Point(99, 81);
             this.numericUpDown3.Maximum = new decimal(new int[] {
             1000,
@@ -231,7 +230,7 @@ namespace PlayingCardsAutoDesigner
             this.numericUpDown3.Size = new System.Drawing.Size(120, 23);
             this.numericUpDown3.TabIndex = 9;
             this.numericUpDown3.Value = new decimal(new int[] {
-            500,
+            55,
             0,
             0,
             0});
@@ -514,11 +513,6 @@ namespace PlayingCardsAutoDesigner
             // 
             // numericUpDown8
             // 
-            this.numericUpDown8.Increment = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
             this.numericUpDown8.Location = new System.Drawing.Point(99, 214);
             this.numericUpDown8.Maximum = new decimal(new int[] {
             500,
@@ -529,7 +523,7 @@ namespace PlayingCardsAutoDesigner
             this.numericUpDown8.Size = new System.Drawing.Size(120, 23);
             this.numericUpDown8.TabIndex = 23;
             this.numericUpDown8.Value = new decimal(new int[] {
-            400,
+            40,
             0,
             0,
             0});
@@ -546,11 +540,6 @@ namespace PlayingCardsAutoDesigner
             // 
             // numericUpDown7
             // 
-            this.numericUpDown7.Increment = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
             this.numericUpDown7.Location = new System.Drawing.Point(99, 169);
             this.numericUpDown7.Maximum = new decimal(new int[] {
             500,
@@ -561,7 +550,7 @@ namespace PlayingCardsAutoDesigner
             this.numericUpDown7.Size = new System.Drawing.Size(120, 23);
             this.numericUpDown7.TabIndex = 21;
             this.numericUpDown7.Value = new decimal(new int[] {
-            400,
+            40,
             0,
             0,
             0});
@@ -578,11 +567,6 @@ namespace PlayingCardsAutoDesigner
             // 
             // numericUpDown6
             // 
-            this.numericUpDown6.Increment = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
             this.numericUpDown6.Location = new System.Drawing.Point(99, 125);
             this.numericUpDown6.Maximum = new decimal(new int[] {
             500,
@@ -593,7 +577,7 @@ namespace PlayingCardsAutoDesigner
             this.numericUpDown6.Size = new System.Drawing.Size(120, 23);
             this.numericUpDown6.TabIndex = 19;
             this.numericUpDown6.Value = new decimal(new int[] {
-            270,
+            15,
             0,
             0,
             0});
@@ -610,11 +594,6 @@ namespace PlayingCardsAutoDesigner
             // 
             // numericUpDown5
             // 
-            this.numericUpDown5.Increment = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
             this.numericUpDown5.Location = new System.Drawing.Point(99, 81);
             this.numericUpDown5.Maximum = new decimal(new int[] {
             500,
@@ -625,7 +604,7 @@ namespace PlayingCardsAutoDesigner
             this.numericUpDown5.Size = new System.Drawing.Size(120, 23);
             this.numericUpDown5.TabIndex = 17;
             this.numericUpDown5.Value = new decimal(new int[] {
-            450,
+            50,
             0,
             0,
             0});
@@ -642,11 +621,6 @@ namespace PlayingCardsAutoDesigner
             // 
             // numericUpDown2
             // 
-            this.numericUpDown2.Increment = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
             this.numericUpDown2.Location = new System.Drawing.Point(99, 37);
             this.numericUpDown2.Maximum = new decimal(new int[] {
             1000,
@@ -662,7 +636,7 @@ namespace PlayingCardsAutoDesigner
             this.numericUpDown2.Size = new System.Drawing.Size(120, 23);
             this.numericUpDown2.TabIndex = 15;
             this.numericUpDown2.Value = new decimal(new int[] {
-            880,
+            90,
             0,
             0,
             0});
@@ -848,6 +822,12 @@ namespace PlayingCardsAutoDesigner
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.label20);
+            this.groupBox3.Controls.Add(this.numericUpDown16);
+            this.groupBox3.Controls.Add(this.numericUpDown17);
+            this.groupBox3.Controls.Add(this.label21);
+            this.groupBox3.Controls.Add(this.numericUpDown15);
+            this.groupBox3.Controls.Add(this.label19);
             this.groupBox3.Controls.Add(this.numericUpDown11);
             this.groupBox3.Controls.Add(this.numericUpDown10);
             this.groupBox3.Controls.Add(this.label11);
@@ -860,6 +840,60 @@ namespace PlayingCardsAutoDesigner
             this.groupBox3.TabIndex = 6;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "メインビジュアル";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(118, 117);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(45, 15);
+            this.label20.TabIndex = 11;
+            this.label20.Text = "OffsetY";
+            // 
+            // numericUpDown16
+            // 
+            this.numericUpDown16.Location = new System.Drawing.Point(118, 135);
+            this.numericUpDown16.Maximum = new decimal(new int[] {
+            500,
+            0,
+            0,
+            0});
+            this.numericUpDown16.Minimum = new decimal(new int[] {
+            500,
+            0,
+            0,
+            -2147483648});
+            this.numericUpDown16.Name = "numericUpDown16";
+            this.numericUpDown16.Size = new System.Drawing.Size(100, 23);
+            this.numericUpDown16.TabIndex = 10;
+            this.numericUpDown16.ValueChanged += new System.EventHandler(this.radioButtonMark_CheckedChanged);
+            // 
+            // numericUpDown15
+            // 
+            this.numericUpDown15.Location = new System.Drawing.Point(118, 42);
+            this.numericUpDown15.Maximum = new decimal(new int[] {
+            500,
+            0,
+            0,
+            0});
+            this.numericUpDown15.Minimum = new decimal(new int[] {
+            500,
+            0,
+            0,
+            -2147483648});
+            this.numericUpDown15.Name = "numericUpDown15";
+            this.numericUpDown15.Size = new System.Drawing.Size(100, 23);
+            this.numericUpDown15.TabIndex = 10;
+            this.numericUpDown15.ValueChanged += new System.EventHandler(this.radioButtonMark_CheckedChanged);
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(118, 23);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(54, 15);
+            this.label19.TabIndex = 9;
+            this.label19.Text = "Offset X1";
             // 
             // numericUpDown11
             // 
@@ -876,7 +910,7 @@ namespace PlayingCardsAutoDesigner
             0,
             0});
             this.numericUpDown11.Name = "numericUpDown11";
-            this.numericUpDown11.Size = new System.Drawing.Size(120, 23);
+            this.numericUpDown11.Size = new System.Drawing.Size(100, 23);
             this.numericUpDown11.TabIndex = 8;
             this.numericUpDown11.Value = new decimal(new int[] {
             12,
@@ -900,7 +934,7 @@ namespace PlayingCardsAutoDesigner
             0,
             0});
             this.numericUpDown10.Name = "numericUpDown10";
-            this.numericUpDown10.Size = new System.Drawing.Size(120, 23);
+            this.numericUpDown10.Size = new System.Drawing.Size(100, 23);
             this.numericUpDown10.TabIndex = 3;
             this.numericUpDown10.Value = new decimal(new int[] {
             4,
@@ -942,7 +976,7 @@ namespace PlayingCardsAutoDesigner
             0,
             0});
             this.numericUpDown9.Name = "numericUpDown9";
-            this.numericUpDown9.Size = new System.Drawing.Size(120, 23);
+            this.numericUpDown9.Size = new System.Drawing.Size(100, 23);
             this.numericUpDown9.TabIndex = 1;
             this.numericUpDown9.Value = new decimal(new int[] {
             8,
@@ -996,6 +1030,33 @@ namespace PlayingCardsAutoDesigner
             this.textBox3.Size = new System.Drawing.Size(239, 23);
             this.textBox3.TabIndex = 10;
             // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(118, 71);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(54, 15);
+            this.label21.TabIndex = 9;
+            this.label21.Text = "Offset X2";
+            // 
+            // numericUpDown17
+            // 
+            this.numericUpDown17.Location = new System.Drawing.Point(118, 90);
+            this.numericUpDown17.Maximum = new decimal(new int[] {
+            500,
+            0,
+            0,
+            0});
+            this.numericUpDown17.Minimum = new decimal(new int[] {
+            500,
+            0,
+            0,
+            -2147483648});
+            this.numericUpDown17.Name = "numericUpDown17";
+            this.numericUpDown17.Size = new System.Drawing.Size(100, 23);
+            this.numericUpDown17.TabIndex = 10;
+            this.numericUpDown17.ValueChanged += new System.EventHandler(this.radioButtonMark_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -1035,9 +1096,12 @@ namespace PlayingCardsAutoDesigner
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown16)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown15)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown17)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1113,6 +1177,12 @@ namespace PlayingCardsAutoDesigner
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.NumericUpDown numericUpDown15;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.NumericUpDown numericUpDown16;
+        private System.Windows.Forms.NumericUpDown numericUpDown17;
+        private System.Windows.Forms.Label label21;
     }
 }
 
