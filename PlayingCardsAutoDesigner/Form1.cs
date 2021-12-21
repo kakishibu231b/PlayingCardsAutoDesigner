@@ -11,102 +11,466 @@ using System.Configuration;
 
 namespace PlayingCardsAutoDesigner
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public partial class Form1 : Form
     {
-       Brush m_fontBrush;
+        /// <summary>
+        /// 絵柄ファイルフルパス
+        /// </summary>
+        private string m_strPicturePath;
 
+        /// <summary>
+        /// 背景ファイルフルパス
+        /// </summary>
+        private string m_strBackgroundPath;
+
+        /// <summary>
+        /// 文字用ブラシ
+        /// </summary>
+        private Brush m_fontBrush;
+
+        /// <summary>
+        /// 絵柄サイズ(A)
+        /// </summary>
+        private Decimal decPicutureSizeA;
+
+        /// <summary>
+        /// 絵柄サイズ(2～10)
+        /// </summary>
+        private Decimal decPicutureSizeN;
+
+        /// <summary>
+        /// 絵柄サイズ(J,Q,K)
+        /// </summary>
+        private Decimal decPicutureSizeX;
+
+        /// <summary>
+        /// 絵柄位置調整(左右全体)
+        /// </summary>
+        private Decimal decPicutureOffsetX1;
+
+        /// <summary>
+        /// 絵柄位置調整(左右外側)
+        /// </summary>
+        private Decimal decPicutureOffsetX2;
+
+        /// <summary>
+        /// 絵柄位置調整(上下全体)
+        /// </summary>
+        private Decimal decPicutureOffsetY;
+
+        /// <summary>
+        /// マーク
+        /// </summary>
+        public class Suit
+        {
+            /// <summary>
+            /// マークコンストラクタ
+            /// </summary>
+            public Suit()
+            {
+                m_strSuitViewName = "";
+                m_intSuitType = 0;
+            }
+
+            /// <summary>
+            /// マークコンストラクタ(初期値あり)
+            /// </summary>
+            /// <param name="strSuitViewName">マーク表示名称</param>
+            /// <param name="strSuitFileName">マークファイル名</param>
+            /// <param name="intSuitType">マーク種類</param>
+            public Suit(string strSuitViewName, string strSuitFileName, Form1.ENUM_SUIT_TYPE intSuitType)
+            {
+                m_strSuitViewName = strSuitViewName;
+                m_strSuitFileName = strSuitFileName;
+                m_intSuitType = intSuitType;
+            }
+
+            /// <summary>
+            /// マーク表示名称
+            /// </summary>
+            private string m_strSuitViewName;
+
+            /// <summary>
+            /// マーク表示名称取得/設定
+            /// </summary>
+            public string ViewName
+            {
+                get { return m_strSuitViewName; }
+                set { m_strSuitViewName = value; }
+            }
+
+            /// <summary>
+            /// マークファイル名
+            /// </summary>
+            private string m_strSuitFileName;
+
+            /// <summary>
+            /// マーク表示名称取得/設定
+            /// </summary>
+            public string FileName
+            {
+                get { return m_strSuitFileName; }
+                set { m_strSuitFileName = value; }
+            }
+
+            /// <summary>
+            /// マーク種類
+            /// </summary>
+            private Form1.ENUM_SUIT_TYPE m_intSuitType;
+
+            /// <summary>
+            /// マーク表示名称取得/設定
+            /// </summary>
+            public Form1.ENUM_SUIT_TYPE Value
+            {
+                get { return m_intSuitType; }
+                set { m_intSuitType = value; }
+            }
+        }
+
+        /// <summary>
+        /// マーク種類
+        /// </summary>
+        private ENUM_SUIT_TYPE intSuitType;
+
+        public enum ENUM_SUIT_TYPE
+        {
+            ENUM_SUIT_TYPE_START = 0,
+            ENUM_SUIT_TYPE_CLUB,
+            ENUM_SUIT_TYPE_DIAMOND,
+            ENUM_SUIT_TYPE_HEART,
+            ENUM_SUIT_TYPE_SPADE,
+            ENUM_SUIT_TYPE_JOKER,
+            ENUM_SUIT_TYPE_END
+        }
+
+        /// <summary>
+        /// マークサイズ
+        /// </summary>
+        private Decimal decSuitSize;
+
+        /// <summary>
+        /// マーク左余白
+        /// </summary>
+        private Decimal decSuitLeftSpace;
+
+        /// <summary>
+        /// マーク上余白
+        /// </summary>
+        private Decimal decSuitTopSpace;
+
+        /// <summary>
+        /// 番号
+        /// </summary>
+        public class Rank
+        {
+            /// <summary>
+            /// 番号コンストラクタ
+            /// </summary>
+            public Rank()
+            {
+                m_strRankViewName = "";
+                m_intRankType = 0;
+            }
+
+            /// <summary>
+            /// 番号コンストラクタ(初期値あり)
+            /// </summary>
+            /// <param name="strRankViewName">番号表示名称</param>
+            /// <param name="intRankType">番号種類</param>
+            public Rank(string strRankViewName, Form1.ENUM_RANK_TYPE intRankType)
+            {
+                m_strRankViewName = strRankViewName;
+                m_intRankType = intRankType;
+            }
+
+            /// <summary>
+            /// 番号表示名称
+            /// </summary>
+            private string m_strRankViewName;
+
+            /// <summary>
+            /// 番号表示名称取得/設定
+            /// </summary>
+            public string Name
+            {
+                get { return m_strRankViewName; }
+                set { m_strRankViewName = value; }
+            }
+
+            /// <summary>
+            /// 番号種類
+            /// </summary>
+            private Form1.ENUM_RANK_TYPE m_intRankType;
+
+            /// <summary>
+            /// 番号表示名称取得/設定
+            /// </summary>
+            public Form1.ENUM_RANK_TYPE Value
+            {
+                get { return m_intRankType; }
+                set { m_intRankType = value; }
+            }
+        }
+
+        /// <summary>
+        /// カード番号
+        /// </summary>
+        private ENUM_RANK_TYPE intRankType;
+
+        public enum ENUM_RANK_TYPE
+        {
+            ENUM_RANK_TYPE_START = 0,
+            ENUM_RANK_TYPE_ACE,
+            ENUM_RANK_TYPE_R2,
+            ENUM_RANK_TYPE_R3,
+            ENUM_RANK_TYPE_R4,
+            ENUM_RANK_TYPE_R5,
+            ENUM_RANK_TYPE_R6,
+            ENUM_RANK_TYPE_R7,
+            ENUM_RANK_TYPE_R8,
+            ENUM_RANK_TYPE_R9,
+            ENUM_RANK_TYPE_R10,
+            ENUM_RANK_TYPE_JACK,
+            ENUM_RANK_TYPE_QUEEN,
+            ENUM_RANK_TYPE_KING,
+            ENUM_RANK_TYPE_JOKER,
+            ENUM_RANK_TYPE_END
+        }
+
+        /// <summary>
+        /// カード番号文字サイズ
+        /// </summary>
+        private Decimal decRankCharSize;
+
+        /// <summary>
+        /// カード番号左余白(数字1桁)
+        /// </summary>
+        private Decimal decRankLeftSpace1;
+
+        /// <summary>
+        /// カード番号左余白(数字2桁)
+        /// </summary>
+        private Decimal decRankLeftSpace2;
+
+        /// <summary>
+        /// カード番号左余白(文字)
+        /// </summary>
+        private Decimal decRankLeftSpace3;
+
+        /// <summary>
+        /// カード番号上余白(共通)
+        /// </summary>
+        private Decimal decRankTopSpace;
+
+        /// <summary>
+        /// カード番号フォント名
+        /// </summary>
+        private string strRankFontName;
+
+        /// <summary>
+        /// カード番号文字色赤
+        /// </summary>
+        private int intRankFontColorRed;
+
+        /// <summary>
+        /// カード番号文字色緑
+        /// </summary>
+        private int intRankFontColorGreen;
+
+        /// <summary>
+        /// カード番号文字色青
+        /// </summary>
+        private int intRankFontColorBlue;
+
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
         public Form1()
         {
             InitializeComponent();
 
+            //------------------------------
+            // ツールバー初期設定
+            //------------------------------
+            // マークコンボボックス初期設定処理
+            initSuitComboBox();
+            // 番号コンボボックス初期設定処理
+            initRankComboBox();
+
+            // 画像表示領域初期設定
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
         }
 
+        /// <summary>
+        /// メイン画面起動時処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Form1_Load(object sender, EventArgs e)
         {
             m_fontBrush = Brushes.Black;
+            pictureBox1.Image = getImage(0);
+            pictureBox1.Refresh();
         }
 
-        private string getMarkFileName()
+        /// <summary>
+        /// マークコンボボックス初期設定処理
+        /// </summary>
+        private void initSuitComboBox()
         {
-            string strMarkFileName = "";
-            if (radioButton1.Checked)
+            string strSuitKey1 = "";
+            string strSuitKey2 = "";
+            string strSuitViewName = "";
+            string strSuitFileName = "";
+            for (ENUM_SUIT_TYPE ii = ENUM_SUIT_TYPE.ENUM_SUIT_TYPE_START; ii < ENUM_SUIT_TYPE.ENUM_SUIT_TYPE_END; ++ii )
             {
-                strMarkFileName = ConfigurationManager.AppSettings["MarkC"];
+                switch (ii)
+                {
+                    case ENUM_SUIT_TYPE.ENUM_SUIT_TYPE_CLUB:
+                        strSuitKey1 = "SuitViewNameClub";
+                        strSuitKey2 = "SuitFileNameClub";
+                        break;
+                    case ENUM_SUIT_TYPE.ENUM_SUIT_TYPE_DIAMOND:
+                        strSuitKey1 = "SuitViewNameDiamond";
+                        strSuitKey2 = "SuitFileNameDiamond";
+                        break;
+                    case ENUM_SUIT_TYPE.ENUM_SUIT_TYPE_HEART:
+                        strSuitKey1 = "SuitViewNameHeart";
+                        strSuitKey2 = "SuitFileNameHeart";
+                        break;
+                    case ENUM_SUIT_TYPE.ENUM_SUIT_TYPE_SPADE:
+                        strSuitKey1 = "SuitViewNameSpade";
+                        strSuitKey2 = "SuitFileNameSpade";
+                        break;
+                    case ENUM_SUIT_TYPE.ENUM_SUIT_TYPE_JOKER:
+                        strSuitKey1 = "SuitViewNameJoker";
+                        strSuitKey2 = "";
+                        break;
+                    default:
+                        strSuitKey1 = "SuitViewNameNone";
+                        strSuitKey2 = "";
+                        break;
+                }
+                if (!string.IsNullOrEmpty (strSuitKey1))
+                {
+                    strSuitViewName = ConfigurationManager.AppSettings[strSuitKey1];
+                }
+                else
+                {
+                    strSuitViewName = "";
+                }
+
+                if (!string.IsNullOrEmpty(strSuitKey2))
+                {
+                    strSuitFileName = ConfigurationManager.AppSettings[strSuitKey2];
+                }
+                else
+                {
+                    strSuitFileName = "";
+                }
+
+                comboBoxSuite.Items.Add(new Suit(strSuitViewName, strSuitFileName, ii));
             }
-            else if (radioButton2.Checked)
-            {
-                strMarkFileName = ConfigurationManager.AppSettings["MarkD"];
-            }
-            else if (radioButton3.Checked)
-            {
-                strMarkFileName = ConfigurationManager.AppSettings["MarkH"];
-            }
-            else if (radioButton4.Checked)
-            {
-                strMarkFileName = ConfigurationManager.AppSettings["MarkS"];
-            }
-            return strMarkFileName;
+            comboBoxSuite.DisplayMember = "ViewName";
         }
 
-        private string getCardNumber()
+        /// <summary>
+        /// マークファイル名取得
+        /// </summary>
+        /// <returns>マークファイル名</returns>
+        private string getSuitFileName()
         {
-            string strCardNumber = "";
-            if (radioButton7.Checked)
+            Suit suit = (Suit)comboBoxSuite.SelectedItem;
+            if (suit == null)
             {
-                strCardNumber = "A";
+                return "";
             }
-            else if (radioButton8.Checked)
-            {
-                strCardNumber = "2";
-            }
-            else if (radioButton9.Checked)
-            {
-                strCardNumber = "3";
-            }
-            else if (radioButton10.Checked)
-            {
-                strCardNumber = "4";
-            }
-            else if (radioButton11.Checked)
-            {
-                strCardNumber = "5";
-            }
-            else if (radioButton12.Checked)
-            {
-                strCardNumber = "6";
-            }
-            else if (radioButton13.Checked)
-            {
-                strCardNumber = "7";
-            }
-            else if (radioButton14.Checked)
-            {
-                strCardNumber = "8";
-            }
-            else if (radioButton15.Checked)
-            {
-                strCardNumber = "9";
-            }
-            else if (radioButton16.Checked)
-            {
-                strCardNumber = "10";
-            }
-            else if (radioButton17.Checked)
-            {
-                strCardNumber = "J";
-            }
-            else if (radioButton18.Checked)
-            {
-                strCardNumber = "Q";
-            }
-            else if (radioButton19.Checked)
-            {
-                strCardNumber = "K";
-            }
-            return strCardNumber;
+            return suit.FileName;
         }
 
+        /// <summary>
+        /// 番号コンボボックス初期設定処理
+        /// </summary>
+        private void initRankComboBox()
+        {
+            string strRankKey = "";
+            string strRankName = "";
+            for (ENUM_RANK_TYPE ii = ENUM_RANK_TYPE.ENUM_RANK_TYPE_START; ii < ENUM_RANK_TYPE.ENUM_RANK_TYPE_END; ++ii)
+            {
+                switch (ii)
+                {
+                    case ENUM_RANK_TYPE.ENUM_RANK_TYPE_ACE:
+                        strRankKey = "RankNameAce";
+                        break;
+                    case ENUM_RANK_TYPE.ENUM_RANK_TYPE_R2:
+                        strRankKey = "RankNameR2";
+                        break;
+                    case ENUM_RANK_TYPE.ENUM_RANK_TYPE_R3:
+                        strRankKey = "RankNameR3";
+                        break;
+                    case ENUM_RANK_TYPE.ENUM_RANK_TYPE_R4:
+                        strRankKey = "RankNameR4";
+                        break;
+                    case ENUM_RANK_TYPE.ENUM_RANK_TYPE_R5:
+                        strRankKey = "RankNameR5";
+                        break;
+                    case ENUM_RANK_TYPE.ENUM_RANK_TYPE_R6:
+                        strRankKey = "RankNameR6";
+                        break;
+                    case ENUM_RANK_TYPE.ENUM_RANK_TYPE_R7:
+                        strRankKey = "RankNameR7";
+                        break;
+                    case ENUM_RANK_TYPE.ENUM_RANK_TYPE_R8:
+                        strRankKey = "RankNameR8";
+                        break;
+                    case ENUM_RANK_TYPE.ENUM_RANK_TYPE_R9:
+                        strRankKey = "RankNameR9";
+                        break;
+                    case ENUM_RANK_TYPE.ENUM_RANK_TYPE_R10:
+                        strRankKey = "RankNameR10";
+                        break;
+                    case ENUM_RANK_TYPE.ENUM_RANK_TYPE_JACK:
+                        strRankKey = "RankNameJack";
+                        break;
+                    case ENUM_RANK_TYPE.ENUM_RANK_TYPE_QUEEN:
+                        strRankKey = "RankNameQueen";
+                        break;
+                    case ENUM_RANK_TYPE.ENUM_RANK_TYPE_KING:
+                        strRankKey = "RankNameKing";
+                        break;
+                    case ENUM_RANK_TYPE.ENUM_RANK_TYPE_JOKER:
+                        strRankKey = "RankNameJoker";
+                        break;
+                    default:
+                        strRankKey = "RankNameNone";
+                        break;
+                }
+                if (!string.IsNullOrEmpty(strRankKey))
+                {
+                    strRankName = ConfigurationManager.AppSettings[strRankKey];
+                }
+                comboBoxRank.Items.Add(new Rank(strRankName, ii));
+            }
+            comboBoxRank.DisplayMember = "Name";
+        }
+
+        /// <summary>
+        /// カード番号取得
+        /// </summary>
+        /// <returns>カード番号</returns>
+        private string getCardRank()
+        {
+            Rank rank = (Rank)comboBoxRank.SelectedItem;
+            if (rank == null)
+            {
+                return "";
+            }
+            return rank.Name;
+        }
 
         private Bitmap getImage(int mode)
         {
@@ -128,21 +492,21 @@ namespace PlayingCardsAutoDesigner
                 }
 
                 // ロゴ取得
-                string strLogoImagePath = textBox1.Text;
+                string strLogoImagePath = m_strPicturePath;
                 if (!string.IsNullOrEmpty(strLogoImagePath))
                 {
                     logoImage1 = new Bitmap(strLogoImagePath);
                 }
 
                 // マーク取得
-                string strMarkFileName = getMarkFileName();
+                string strMarkFileName = getSuitFileName();
                 if (!string.IsNullOrEmpty(strMarkFileName))
                 {
                     logoImage2 = new Bitmap(strMarkFileName);
                 }
 
                 // カード番号取得
-                string strCardNumber = getCardNumber();
+                string strCardNumber = getCardRank();
                 if (!string.IsNullOrEmpty(strCardNumber))
                 {
                     string strFontName = textBox2.Text;
@@ -164,10 +528,10 @@ namespace PlayingCardsAutoDesigner
 
                 graphics = Graphics.FromImage(newImage);
                 graphics.FillRectangle(Brushes.White, graphics.VisibleClipBounds);
-                graphics.DrawRectangle(Pens.Black, 0, 0, intCardWidth, intCardHeight);
+                graphics.DrawRectangle(Pens.Black, 0, 0, intCardWidth-1, intCardHeight-1);
 
                 // 背景取得
-                string strBackGroundImagePath = textBox3.Text;
+                string strBackGroundImagePath = m_strBackgroundPath;
                 if (!string.IsNullOrEmpty(strBackGroundImagePath))
                 {
                     logoImage3 = new Bitmap(strBackGroundImagePath);
@@ -517,7 +881,11 @@ namespace PlayingCardsAutoDesigner
             {
                 case DialogResult.OK:
                     string strFilePath = openFileDialog1.FileName;
-                    textBox1.Text = strFilePath;
+                    m_strPicturePath = strFilePath;
+                    if (pictureBox1.Image != null)
+                    {
+                        pictureBox1.Image.Dispose();
+                    }
                     pictureBox1.Image = getImage(0);
                     pictureBox1.Refresh();
                     break;
@@ -534,7 +902,11 @@ namespace PlayingCardsAutoDesigner
             {
                 case DialogResult.OK:
                     string strFilePath = openFileDialog1.FileName;
-                    textBox3.Text = strFilePath;
+                    m_strBackgroundPath = strFilePath;
+                    if (pictureBox1.Image != null)
+                    {
+                        pictureBox1.Image.Dispose();
+                    }
                     pictureBox1.Image = getImage(0);
                     pictureBox1.Refresh();
                     break;
@@ -550,6 +922,10 @@ namespace PlayingCardsAutoDesigner
             if (result == DialogResult.OK)
             {
                 string strSavePath = saveFileDialog1.FileName;
+                if (pictureBox1.Image != null)
+                {
+                    pictureBox1.Image.Dispose();
+                }
                 Bitmap newImage = getImage(1);
                 newImage.Save(strSavePath, System.Drawing.Imaging.ImageFormat.Png);
                 newImage.Dispose();
@@ -619,6 +995,31 @@ namespace PlayingCardsAutoDesigner
             m_fontBrush = new SolidBrush(color);
 
             radioButtonMark_CheckedChanged(sender, e);
+        }
+
+        private void splitContainer1_Panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void toolStripComboBoxSuiteName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (pictureBox1.Image != null)
+            {
+                pictureBox1.Image.Dispose();
+            }
+            pictureBox1.Image = getImage(0);
+            pictureBox1.Refresh();
+        }
+
+        private void toolStripComboBoxRank_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (pictureBox1.Image != null)
+            {
+                pictureBox1.Image.Dispose();
+            }
+            pictureBox1.Image = getImage(0);
+            pictureBox1.Refresh();
         }
     }
 }
