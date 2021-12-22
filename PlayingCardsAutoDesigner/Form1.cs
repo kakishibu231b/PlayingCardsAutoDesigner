@@ -59,7 +59,12 @@ namespace PlayingCardsAutoDesigner
         /// <summary>
         /// 絵柄位置調整(上下全体)
         /// </summary>
-        private Decimal decPicutureOffsetY;
+        private Decimal decPicutureOffsetY1;
+
+        /// <summary>
+        /// 絵柄位置調整(上下外側)
+        /// </summary>
+        private Decimal decPicutureOffsetY2;
 
         /// <summary>
         /// マーク
@@ -298,23 +303,12 @@ namespace PlayingCardsAutoDesigner
             //------------------------------
             // マークコンボボックス初期設定処理
             initSuitComboBox();
+
             // 番号コンボボックス初期設定処理
             initRankComboBox();
 
             // 画像表示領域初期設定
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-        }
-
-        /// <summary>
-        /// メイン画面起動時処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            m_fontBrush = Brushes.Black;
-            pictureBox1.Image = getImage(0);
-            pictureBox1.Refresh();
         }
 
         /// <summary>
@@ -373,9 +367,9 @@ namespace PlayingCardsAutoDesigner
                     strSuitFileName = "";
                 }
 
-                comboBoxSuite.Items.Add(new Suit(strSuitViewName, strSuitFileName, ii));
+                comboBoxSuit.Items.Add(new Suit(strSuitViewName, strSuitFileName, ii));
             }
-            comboBoxSuite.DisplayMember = "ViewName";
+            comboBoxSuit.DisplayMember = "ViewName";
         }
 
         /// <summary>
@@ -384,7 +378,7 @@ namespace PlayingCardsAutoDesigner
         /// <returns>マークファイル名</returns>
         private string getSuitFileName()
         {
-            Suit suit = (Suit)comboBoxSuite.SelectedItem;
+            Suit suit = (Suit)comboBoxSuit.SelectedItem;
             if (suit == null)
             {
                 return "";
@@ -472,6 +466,23 @@ namespace PlayingCardsAutoDesigner
             return rank.Name;
         }
 
+        /// <summary>
+        /// メイン画面起動時処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            m_fontBrush = Brushes.Black;
+            pictureBox1.Image = getImage(0);
+            pictureBox1.Refresh();
+        }
+
+        /// <summary>
+        /// カード描画イメージ取得処理
+        /// </summary>
+        /// <param name="mode"></param>
+        /// <returns></returns>
         private Bitmap getImage(int mode)
         {
             Bitmap newImage = null;
@@ -482,7 +493,7 @@ namespace PlayingCardsAutoDesigner
             Font fnt = null;
 
             int intModeScale = 1;
-            int intFontSize = (int)numericUpDown2.Value * 10;
+            int intFontSize = (int)rankFontSize.Value * 10;
 
             try
             {
@@ -509,7 +520,7 @@ namespace PlayingCardsAutoDesigner
                 string strCardNumber = getCardRank();
                 if (!string.IsNullOrEmpty(strCardNumber))
                 {
-                    string strFontName = textBox2.Text;
+                    string strFontName = rankFontName.Text;
                     fnt = new Font(strFontName, intFontSize / intModeScale);
                 }
 
@@ -545,7 +556,7 @@ namespace PlayingCardsAutoDesigner
                 }
 
                 // ロゴ描画
-                double intMarkScale = (double)numericUpDown1.Value;
+                double intMarkScale = (double)suitSize.Value;
                 intMarkScale = intMarkScale / intModeScale;
 
                 int intMarkWidth = 0;
@@ -560,7 +571,7 @@ namespace PlayingCardsAutoDesigner
                 switch (strCardNumber)
                 {
                     case "A":
-                        intLogoScale = (double)numericUpDown9.Value;
+                        intLogoScale = (double)pictureSizeA.Value;
                         break;
 
                     case "2":
@@ -572,13 +583,13 @@ namespace PlayingCardsAutoDesigner
                     case "8":
                     case "9":
                     case "10":
-                        intLogoScale = (double)numericUpDown10.Value;
+                        intLogoScale = (double)pictureSizeN.Value;
                         break;
 
                     case "J":
                     case "Q":
                     case "K":
-                        intLogoScale = (double)numericUpDown11.Value;
+                        intLogoScale = (double)pictureSizeX.Value;
                         break;
 
                     default:
@@ -602,18 +613,18 @@ namespace PlayingCardsAutoDesigner
                     // カードマーク描画
                     if (!string.IsNullOrEmpty(strMarkFileName))
                     {
-                        int intMarkOffsetX = (int)numericUpDown3.Value * 10;
-                        int intMarkOffsetY = (int)numericUpDown4.Value * 10;
+                        int intMarkOffsetX = (int)suitLeftSpace.Value * 10;
+                        int intMarkOffsetY = (int)suitTopSpace.Value * 10;
                         graphics.DrawImage(logoImage2, intMarkOffsetX / intModeScale, intMarkOffsetY / intModeScale, intMarkWidth, intMarkHeight);
                     }
 
                     // カード番号描画
                     if (!string.IsNullOrEmpty(strCardNumber))
                     {
-                        int intCardNumberOffsetX1 = (int)numericUpDown5.Value * 10;
-                        int intCardNumberOffsetX2 = (int)numericUpDown6.Value * 10;
-                        int intCardNumberOffsetX3 = (int)numericUpDown7.Value * 10;
-                        int intCardNumberOffsetY = (int)numericUpDown8.Value * 10;
+                        int intCardNumberOffsetX1 = (int)rankLeftSpace1.Value * 10;
+                        int intCardNumberOffsetX2 = (int)rankLeftSpace2.Value * 10;
+                        int intCardNumberOffsetX3 = (int)rankLeftSpace3.Value * 10;
+                        int intCardNumberOffsetY = (int)rankTopSpace.Value * 10;
 
                         switch (strCardNumber)
                         {
@@ -639,9 +650,9 @@ namespace PlayingCardsAutoDesigner
                     // ロゴ描画
                     if (!string.IsNullOrEmpty(strLogoImagePath))
                     {
-                        int intMarkOffsetX1 = (int)numericUpDown15.Value * 10;
-                        int intMarkOffsetX2 = (int)numericUpDown17.Value * 10;
-                        int intMarkOffsetY = (int)numericUpDown16.Value * 10;
+                        int intMarkOffsetX1 = (int)PicutureOffsetX1.Value * 10;
+                        int intMarkOffsetX2 = (int)PicutureOffsetX2.Value * 10;
+                        int intMarkOffsetY = (int)PicutureOffsetY1.Value * 10;
                         if (mode == 0)
                         {
                             intMarkOffsetX1 = intMarkOffsetX1 / intModeScale;
@@ -874,7 +885,12 @@ namespace PlayingCardsAutoDesigner
             return newImage;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        /// <summary>
+        /// 絵柄選択ボタン押下時処理
+        /// </summary>
+        /// <param name="sender">絵柄選択ボタン</param>
+        /// <param name="e"></param>
+        private void selectPictureButton_Click(object sender, EventArgs e)
         {
             DialogResult result = openFileDialog1.ShowDialog();
             switch (result)
@@ -895,7 +911,12 @@ namespace PlayingCardsAutoDesigner
             }
         }
 
-        private void button5_Click(object sender, EventArgs e)
+        /// <summary>
+        /// 背景選択ボタン押下時処理
+        /// </summary>
+        /// <param name="sender">背景選択ボタン</param>
+        /// <param name="e"></param>
+        private void selectBackgroundImageButton_Click(object sender, EventArgs e)
         {
             DialogResult result = openFileDialog1.ShowDialog();
             switch (result)
@@ -916,7 +937,13 @@ namespace PlayingCardsAutoDesigner
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        
+        /// <summary>
+        /// カードイメージ保存ボタン押下時処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void saveCardImage_Click(object sender, EventArgs e)
         {
             DialogResult result = saveFileDialog1.ShowDialog();
             if (result == DialogResult.OK)
@@ -932,7 +959,12 @@ namespace PlayingCardsAutoDesigner
             }
         }
  
-        private void radioButtonMark_CheckedChanged(object sender, EventArgs e)
+        /// <summary>
+        /// カードイメージ再描画処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cardImageRedraw(object sender, EventArgs e)
         {
             if ( sender.GetType() == typeof(RadioButton) )
             {
@@ -951,75 +983,65 @@ namespace PlayingCardsAutoDesigner
             pictureBox1.Refresh();
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        /// <summary>
+        /// フォント選択ボタン押下時処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void selectFontButton_Click(object sender, EventArgs e)
         {
-            fontDialog1.Font = new Font(textBox2.Text, (int)numericUpDown2.Value);
+            fontDialog1.Font = new Font(rankFontName.Text, (int)rankFontSize.Value);
             fontDialog1.MaxSize = 1000;
 
             DialogResult result = fontDialog1.ShowDialog();
             switch (result)
             {
                 case DialogResult.OK:
-                    textBox2.Text = fontDialog1.Font.Name;
-                    radioButtonMark_CheckedChanged(sender, e);
+                    rankFontName.Text = fontDialog1.Font.Name;
+                    cardImageRedraw(sender, e);
                     break;
                 default:
                     break;
             }
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        /// <summary>
+        /// 文字色選択ボタン押下時処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void selectFontColorButton_Click(object sender, EventArgs e)
         {
             DialogResult result = colorDialog1.ShowDialog();
             switch (result)
             {
                 case DialogResult.OK:
-                    numericUpDown12.Value = colorDialog1.Color.R;
-                    numericUpDown13.Value = colorDialog1.Color.G;
-                    numericUpDown14.Value = colorDialog1.Color.B;
+                    rankFontColorR.Value = colorDialog1.Color.R;
+                    rankFontColorG.Value = colorDialog1.Color.G;
+                    rankFontColorB.Value = colorDialog1.Color.B;
 
                     m_fontBrush.Dispose();
                     m_fontBrush = new SolidBrush(colorDialog1.Color);
 
-                    radioButtonMark_CheckedChanged(sender, e);
+                    cardImageRedraw(sender, e);
                     break;
                 default:
                     break;
             }
         }
 
+        /// <summary>
+        /// 値変更時処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void numericUpDown12_ValueChanged(object sender, EventArgs e)
         {
-            Color color = Color.FromArgb((int)numericUpDown12.Value, (int)numericUpDown13.Value, (int)numericUpDown14.Value);
+            Color color = Color.FromArgb((int)rankFontColorR.Value, (int)rankFontColorG.Value, (int)rankFontColorB.Value);
             m_fontBrush.Dispose();
             m_fontBrush = new SolidBrush(color);
 
-            radioButtonMark_CheckedChanged(sender, e);
-        }
-
-        private void splitContainer1_Panel2_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void toolStripComboBoxSuiteName_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (pictureBox1.Image != null)
-            {
-                pictureBox1.Image.Dispose();
-            }
-            pictureBox1.Image = getImage(0);
-            pictureBox1.Refresh();
-        }
-
-        private void toolStripComboBoxRank_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (pictureBox1.Image != null)
-            {
-                pictureBox1.Image.Dispose();
-            }
-            pictureBox1.Image = getImage(0);
-            pictureBox1.Refresh();
+            cardImageRedraw(sender, e);
         }
     }
 }
