@@ -17,11 +17,6 @@ namespace PlayingCardsAutoDesigner
     public partial class Form1 : Form
     {
         /// <summary>
-        /// 絵柄ファイルフルパス
-        /// </summary>
-        private string m_strPicturePath;
-
-        /// <summary>
         /// 背景ファイルフルパス
         /// </summary>
         private string m_strBackgroundPath;
@@ -30,41 +25,6 @@ namespace PlayingCardsAutoDesigner
         /// 文字用ブラシ
         /// </summary>
         private Brush m_fontBrush;
-
-        /// <summary>
-        /// 絵柄サイズ(A)
-        /// </summary>
-        private Decimal decPicutureSizeA;
-
-        /// <summary>
-        /// 絵柄サイズ(2～10)
-        /// </summary>
-        private Decimal decPicutureSizeN;
-
-        /// <summary>
-        /// 絵柄サイズ(J,Q,K)
-        /// </summary>
-        private Decimal decPicutureSizeX;
-
-        /// <summary>
-        /// 絵柄位置調整(左右全体)
-        /// </summary>
-        private Decimal decPicutureOffsetX1;
-
-        /// <summary>
-        /// 絵柄位置調整(左右外側)
-        /// </summary>
-        private Decimal decPicutureOffsetX2;
-
-        /// <summary>
-        /// 絵柄位置調整(上下全体)
-        /// </summary>
-        private Decimal decPicutureOffsetY1;
-
-        /// <summary>
-        /// 絵柄位置調整(上下外側)
-        /// </summary>
-        private Decimal decPicutureOffsetY2;
 
         /// <summary>
         /// マーク
@@ -81,12 +41,26 @@ namespace PlayingCardsAutoDesigner
             }
 
             /// <summary>
+            /// マークタイプ
+            /// </summary>
+            public enum ENUM_SUIT_TYPE
+            {
+                ENUM_SUIT_TYPE_START = 0,
+                ENUM_SUIT_TYPE_CLUB,
+                ENUM_SUIT_TYPE_DIAMOND,
+                ENUM_SUIT_TYPE_HEART,
+                ENUM_SUIT_TYPE_SPADE,
+                ENUM_SUIT_TYPE_JOKER,
+                ENUM_SUIT_TYPE_END
+            }
+
+            /// <summary>
             /// マークコンストラクタ(初期値あり)
             /// </summary>
             /// <param name="strSuitViewName">マーク表示名称</param>
             /// <param name="strSuitFileName">マークファイル名</param>
             /// <param name="intSuitType">マーク種類</param>
-            public Suit(string strSuitViewName, string strSuitFileName, Form1.ENUM_SUIT_TYPE intSuitType)
+            public Suit(string strSuitViewName, string strSuitFileName, ENUM_SUIT_TYPE intSuitType)
             {
                 m_strSuitViewName = strSuitViewName;
                 m_strSuitFileName = strSuitFileName;
@@ -101,7 +75,7 @@ namespace PlayingCardsAutoDesigner
             /// <summary>
             /// マーク表示名称取得/設定
             /// </summary>
-            public string ViewName
+            public string SuitViewName
             {
                 get { return m_strSuitViewName; }
                 set { m_strSuitViewName = value; }
@@ -115,7 +89,7 @@ namespace PlayingCardsAutoDesigner
             /// <summary>
             /// マーク表示名称取得/設定
             /// </summary>
-            public string FileName
+            public string SuitFileName
             {
                 get { return m_strSuitFileName; }
                 set { m_strSuitFileName = value; }
@@ -124,48 +98,185 @@ namespace PlayingCardsAutoDesigner
             /// <summary>
             /// マーク種類
             /// </summary>
-            private Form1.ENUM_SUIT_TYPE m_intSuitType;
+            private ENUM_SUIT_TYPE m_intSuitType;
 
             /// <summary>
             /// マーク表示名称取得/設定
             /// </summary>
-            public Form1.ENUM_SUIT_TYPE Value
+            public ENUM_SUIT_TYPE SuitType
             {
                 get { return m_intSuitType; }
                 set { m_intSuitType = value; }
             }
+
+            /// <summary>
+            /// マークサイズ
+            /// </summary>
+            private Decimal m_decSuitSize;
+
+            /// <summary>
+            /// マークサイズ取得/設定
+            /// </summary>
+            public Decimal SuitSize
+            {
+                get { return m_decSuitSize; }
+                set { m_decSuitSize = value; }
+            }
+
+            /// <summary>
+            /// マーク左余白
+            /// </summary>
+            private Decimal m_decSuitLeftSpace;
+
+            /// <summary>
+            /// マーク左余白取得/設定
+            /// </summary>
+            public Decimal SuitLeftSpace
+            {
+                get { return m_decSuitLeftSpace; }
+                set { m_decSuitLeftSpace = value; }
+            }
+
+            /// <summary>
+            /// マーク上余白
+            /// </summary>
+            private Decimal m_decSuitTopSpace;
+
+            /// <summary>
+            /// マークサイズ取得/設定
+            /// </summary>
+            public Decimal SuitTopSpace
+            {
+                get { return m_decSuitTopSpace; }
+                set { m_decSuitTopSpace = value; }
+            }
         }
 
         /// <summary>
-        /// マーク種類
+        /// 絵柄
         /// </summary>
-        private ENUM_SUIT_TYPE intSuitType;
-
-        public enum ENUM_SUIT_TYPE
+        public class Picture
         {
-            ENUM_SUIT_TYPE_START = 0,
-            ENUM_SUIT_TYPE_CLUB,
-            ENUM_SUIT_TYPE_DIAMOND,
-            ENUM_SUIT_TYPE_HEART,
-            ENUM_SUIT_TYPE_SPADE,
-            ENUM_SUIT_TYPE_JOKER,
-            ENUM_SUIT_TYPE_END
+             /// <summary>
+             /// コンストラクタ
+             /// </summary>
+            public Picture()
+            {
+
+            }
+
+            /// <summary>
+            /// 絵柄ファイルフルパス
+            /// </summary>
+            private string m_strPicturePath;
+
+            /// <summary>
+            /// 絵柄ファイルフルパス取得/設定
+            /// </summary>
+            public string PicturePath
+            {
+                get { return m_strPicturePath; }
+                set { m_strPicturePath = value; }
+            }
+
+            /// <summary>
+            /// 絵柄サイズ(A)
+            /// </summary>
+            private Decimal m_decPictureSizeA;
+
+            /// <summary>
+            /// 絵柄サイズ(A)取得/設定
+            /// </summary>
+            public Decimal PictureSizeA
+            {
+                get { return m_decPictureSizeA; }
+                set { m_decPictureSizeA = value; }
+            }
+
+            /// <summary>
+            /// 絵柄サイズ(2～10)
+            /// </summary>
+            private Decimal m_decPictureSizeN;
+
+            /// <summary>
+            /// 絵柄サイズ(2～10)取得/設定
+            /// </summary>
+            public Decimal PictureSizeN
+            {
+                get { return m_decPictureSizeN; }
+                set { m_decPictureSizeN = value; }
+            }
+
+            /// <summary>
+            /// 絵柄サイズ(J,Q,K)
+            /// </summary>
+            private Decimal m_decPictureSizeX;
+
+            /// <summary>
+            /// 絵柄サイズ(J,Q,K)取得/設定
+            /// </summary>
+            public Decimal PictureSizeX
+            {
+                get { return m_decPictureSizeX; }
+                set { m_decPictureSizeX = value; }
+            }
+
+            /// <summary>
+            /// 絵柄位置調整(左右全体)
+            /// </summary>
+            private Decimal m_decPictureOffsetX1;
+
+            /// <summary>
+            /// 絵柄位置調整(左右全体)取得/設定
+            /// </summary>
+            public Decimal PictureOffsetX1
+            {
+                get { return m_decPictureOffsetX1; }
+                set { m_decPictureOffsetX1 = value; }
+            }
+
+            /// <summary>
+            /// 絵柄位置調整(左右外側)
+            /// </summary>
+            private Decimal m_decPictureOffsetX2;
+
+            /// <summary>
+            /// 絵柄位置調整(左右外側)取得/設定
+            /// </summary>
+            public Decimal PictureOffsetX2
+            {
+                get { return m_decPictureOffsetX2; }
+                set { m_decPictureOffsetX2 = value; }
+            }
+
+            /// <summary>
+            /// 絵柄位置調整(上下全体)
+            /// </summary>
+            private Decimal m_decPictureOffsetY1;
+
+            /// <summary>
+            /// 絵柄位置調整(上下全体)取得/設定
+            /// </summary>
+            public Decimal PictureOffsetY1
+            {
+                get { return m_decPictureOffsetY1; }
+                set { m_decPictureOffsetY1 = value; }
+            }
+
+            /// <summary>
+            /// 絵柄位置調整(上下外側)
+            /// </summary>
+            private Decimal m_decPictureOffsetY2;
+
+            /// <summary>
+            /// 絵柄位置調整(上下全体)取得/設定
+            /// </summary>
+            public Decimal PictureOffsetY2
+            {
+                get { return m_decPictureOffsetY2; }
+                set { m_decPictureOffsetY2 = value; }
+            }
         }
-
-        /// <summary>
-        /// マークサイズ
-        /// </summary>
-        private Decimal decSuitSize;
-
-        /// <summary>
-        /// マーク左余白
-        /// </summary>
-        private Decimal decSuitLeftSpace;
-
-        /// <summary>
-        /// マーク上余白
-        /// </summary>
-        private Decimal decSuitTopSpace;
 
         /// <summary>
         /// 番号
@@ -182,11 +293,34 @@ namespace PlayingCardsAutoDesigner
             }
 
             /// <summary>
+            /// ランクタイプ
+            /// </summary>
+            public enum ENUM_RANK_TYPE
+            {
+                ENUM_RANK_TYPE_START = 0,
+                ENUM_RANK_TYPE_ACE,
+                ENUM_RANK_TYPE_R2,
+                ENUM_RANK_TYPE_R3,
+                ENUM_RANK_TYPE_R4,
+                ENUM_RANK_TYPE_R5,
+                ENUM_RANK_TYPE_R6,
+                ENUM_RANK_TYPE_R7,
+                ENUM_RANK_TYPE_R8,
+                ENUM_RANK_TYPE_R9,
+                ENUM_RANK_TYPE_R10,
+                ENUM_RANK_TYPE_JACK,
+                ENUM_RANK_TYPE_QUEEN,
+                ENUM_RANK_TYPE_KING,
+                ENUM_RANK_TYPE_JOKER,
+                ENUM_RANK_TYPE_END
+            }
+
+            /// <summary>
             /// 番号コンストラクタ(初期値あり)
             /// </summary>
             /// <param name="strRankViewName">番号表示名称</param>
             /// <param name="intRankType">番号種類</param>
-            public Rank(string strRankViewName, Form1.ENUM_RANK_TYPE intRankType)
+            public Rank(string strRankViewName, ENUM_RANK_TYPE intRankType)
             {
                 m_strRankViewName = strRankViewName;
                 m_intRankType = intRankType;
@@ -200,7 +334,7 @@ namespace PlayingCardsAutoDesigner
             /// <summary>
             /// 番号表示名称取得/設定
             /// </summary>
-            public string Name
+            public string RankViewName
             {
                 get { return m_strRankViewName; }
                 set { m_strRankViewName = value; }
@@ -209,87 +343,158 @@ namespace PlayingCardsAutoDesigner
             /// <summary>
             /// 番号種類
             /// </summary>
-            private Form1.ENUM_RANK_TYPE m_intRankType;
+            private ENUM_RANK_TYPE m_intRankType;
 
             /// <summary>
             /// 番号表示名称取得/設定
             /// </summary>
-            public Form1.ENUM_RANK_TYPE Value
+            public ENUM_RANK_TYPE RankType
             {
                 get { return m_intRankType; }
                 set { m_intRankType = value; }
             }
+
+            /// <summary>
+            /// カード番号文字サイズ
+            /// </summary>
+            private Decimal decRankFontSize;
+
+            /// <summary>
+            /// カード番号文字サイズ取得/設定
+            /// </summary>
+            public Decimal RankFontSize
+            {
+                get { return decRankFontSize; }
+                set { decRankFontSize = value; }
+            }
+
+            /// <summary>
+            /// カード番号左余白(数字1桁)
+            /// </summary>
+            private Decimal decRankLeftSpace1;
+
+            /// <summary>
+            /// カード番号左余白(数字1桁)取得/設定
+            /// </summary>
+            public Decimal RankLeftSpace1
+            {
+                get { return decRankLeftSpace1; }
+                set { decRankLeftSpace1 = value; }
+            }
+
+            /// <summary>
+            /// カード番号左余白(数字2桁)
+            /// </summary>
+            private Decimal decRankLeftSpace2;
+
+            /// <summary>
+            /// カード番号左余白(数字2桁)取得/設定
+            /// </summary>
+            public Decimal RankLeftSpace2
+            {
+                get { return decRankLeftSpace2; }
+                set { decRankLeftSpace2 = value; }
+            }
+
+            /// <summary>
+            /// カード番号左余白(文字)
+            /// </summary>
+            private Decimal decRankLeftSpace3;
+
+            /// <summary>
+            /// カード番号左余白(文字)取得/設定
+            /// </summary>
+            public Decimal RankLeftSpace3
+            {
+                get { return decRankLeftSpace3; }
+                set { decRankLeftSpace3 = value; }
+            }
+
+            /// <summary>
+            /// カード番号上余白(共通)
+            /// </summary>
+            private Decimal decRankTopSpace;
+
+            /// <summary>
+            /// カード番号上余白(共通)取得/設定
+            /// </summary>
+            public Decimal RankTopSpace
+            {
+                get { return decRankTopSpace; }
+                set { decRankTopSpace = value; }
+            }
+
+            /// <summary>
+            /// カード番号フォント名
+            /// </summary>
+            private string strRankFontName;
+
+            /// <summary>
+            /// カード番号フォント名取得/設定
+            /// </summary>
+            public string RankFontName
+            {
+                get { return strRankFontName; }
+                set { strRankFontName = value; }
+            }
+
+            /// <summary>
+            /// カード番号文字色赤
+            /// </summary>
+            private int intRankFontColorRed;
+
+            /// <summary>
+            /// カード番号文字色赤取得/設定
+            /// </summary>
+            public int RankFontColorRed
+            {
+                get { return intRankFontColorRed; }
+                set { intRankFontColorRed = value; }
+            }
+
+            /// <summary>
+            /// カード番号文字色緑
+            /// </summary>
+            private int intRankFontColorGreen;
+
+            /// <summary>
+            /// カード番号文字色緑取得/設定
+            /// </summary>
+            public int RankFontColorGreen
+            {
+                get { return intRankFontColorGreen; }
+                set { intRankFontColorGreen = value; }
+            }
+
+            /// <summary>
+            /// カード番号文字色青
+            /// </summary>
+            private int intRankFontColorBlue;
+
+            /// <summary>
+            /// カード番号文字色青取得/設定
+            /// </summary>
+            public int RankFontColorBlue
+            {
+                get { return intRankFontColorBlue; }
+                set { intRankFontColorBlue = value; }
+            }
         }
 
         /// <summary>
-        /// カード番号
+        /// Suitクラスオブジェクト
         /// </summary>
-        private ENUM_RANK_TYPE intRankType;
-
-        public enum ENUM_RANK_TYPE
-        {
-            ENUM_RANK_TYPE_START = 0,
-            ENUM_RANK_TYPE_ACE,
-            ENUM_RANK_TYPE_R2,
-            ENUM_RANK_TYPE_R3,
-            ENUM_RANK_TYPE_R4,
-            ENUM_RANK_TYPE_R5,
-            ENUM_RANK_TYPE_R6,
-            ENUM_RANK_TYPE_R7,
-            ENUM_RANK_TYPE_R8,
-            ENUM_RANK_TYPE_R9,
-            ENUM_RANK_TYPE_R10,
-            ENUM_RANK_TYPE_JACK,
-            ENUM_RANK_TYPE_QUEEN,
-            ENUM_RANK_TYPE_KING,
-            ENUM_RANK_TYPE_JOKER,
-            ENUM_RANK_TYPE_END
-        }
+        Suit m_suit;
 
         /// <summary>
-        /// カード番号文字サイズ
+        /// Pictureクラスオブジェクト
         /// </summary>
-        private Decimal decRankCharSize;
+        Picture m_picture;
 
         /// <summary>
-        /// カード番号左余白(数字1桁)
+        /// Rankクラスオブジェクト
         /// </summary>
-        private Decimal decRankLeftSpace1;
-
-        /// <summary>
-        /// カード番号左余白(数字2桁)
-        /// </summary>
-        private Decimal decRankLeftSpace2;
-
-        /// <summary>
-        /// カード番号左余白(文字)
-        /// </summary>
-        private Decimal decRankLeftSpace3;
-
-        /// <summary>
-        /// カード番号上余白(共通)
-        /// </summary>
-        private Decimal decRankTopSpace;
-
-        /// <summary>
-        /// カード番号フォント名
-        /// </summary>
-        private string strRankFontName;
-
-        /// <summary>
-        /// カード番号文字色赤
-        /// </summary>
-        private int intRankFontColorRed;
-
-        /// <summary>
-        /// カード番号文字色緑
-        /// </summary>
-        private int intRankFontColorGreen;
-
-        /// <summary>
-        /// カード番号文字色青
-        /// </summary>
-        private int intRankFontColorBlue;
+        Rank m_rank;
 
         /// <summary>
         /// コンストラクタ
@@ -298,17 +503,33 @@ namespace PlayingCardsAutoDesigner
         {
             InitializeComponent();
 
-            //------------------------------
-            // ツールバー初期設定
-            //------------------------------
+            // 画像表示領域初期設定
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+
+            // マーク初期設定
+            initSuit();
+
+            // 絵柄初期設定
+            initPicture();
+
+            // ランク初期設定
+            initRank();
+
+        }
+
+        /// <summary>
+        /// マーク初期設定
+        /// </summary>
+        private void initSuit()
+        {
             // マークコンボボックス初期設定処理
             initSuitComboBox();
 
-            // 番号コンボボックス初期設定処理
-            initRankComboBox();
-
-            // 画像表示領域初期設定
-            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            // Suitクラスオブジェクト生成
+            m_suit = new Suit();
+            m_suit.SuitSize = suitSize.Value;
+            m_suit.SuitLeftSpace = suitLeftSpace.Value;
+            m_suit.SuitTopSpace = suitTopSpace.Value;
         }
 
         /// <summary>
@@ -320,27 +541,27 @@ namespace PlayingCardsAutoDesigner
             string strSuitKey2 = "";
             string strSuitViewName = "";
             string strSuitFileName = "";
-            for (ENUM_SUIT_TYPE ii = ENUM_SUIT_TYPE.ENUM_SUIT_TYPE_START; ii < ENUM_SUIT_TYPE.ENUM_SUIT_TYPE_END; ++ii )
+            for (Suit.ENUM_SUIT_TYPE ii = Suit.ENUM_SUIT_TYPE.ENUM_SUIT_TYPE_START; ii < Suit.ENUM_SUIT_TYPE.ENUM_SUIT_TYPE_END; ++ii )
             {
                 switch (ii)
                 {
-                    case ENUM_SUIT_TYPE.ENUM_SUIT_TYPE_CLUB:
+                    case Suit.ENUM_SUIT_TYPE.ENUM_SUIT_TYPE_CLUB:
                         strSuitKey1 = "SuitViewNameClub";
                         strSuitKey2 = "SuitFileNameClub";
                         break;
-                    case ENUM_SUIT_TYPE.ENUM_SUIT_TYPE_DIAMOND:
+                    case Suit.ENUM_SUIT_TYPE.ENUM_SUIT_TYPE_DIAMOND:
                         strSuitKey1 = "SuitViewNameDiamond";
                         strSuitKey2 = "SuitFileNameDiamond";
                         break;
-                    case ENUM_SUIT_TYPE.ENUM_SUIT_TYPE_HEART:
+                    case Suit.ENUM_SUIT_TYPE.ENUM_SUIT_TYPE_HEART:
                         strSuitKey1 = "SuitViewNameHeart";
                         strSuitKey2 = "SuitFileNameHeart";
                         break;
-                    case ENUM_SUIT_TYPE.ENUM_SUIT_TYPE_SPADE:
+                    case Suit.ENUM_SUIT_TYPE.ENUM_SUIT_TYPE_SPADE:
                         strSuitKey1 = "SuitViewNameSpade";
                         strSuitKey2 = "SuitFileNameSpade";
                         break;
-                    case ENUM_SUIT_TYPE.ENUM_SUIT_TYPE_JOKER:
+                    case Suit.ENUM_SUIT_TYPE.ENUM_SUIT_TYPE_JOKER:
                         strSuitKey1 = "SuitViewNameJoker";
                         strSuitKey2 = "";
                         break;
@@ -369,74 +590,97 @@ namespace PlayingCardsAutoDesigner
 
                 comboBoxSuit.Items.Add(new Suit(strSuitViewName, strSuitFileName, ii));
             }
-            comboBoxSuit.DisplayMember = "ViewName";
+            comboBoxSuit.DisplayMember = "SuitViewName";
         }
 
         /// <summary>
-        /// マークファイル名取得
+        /// 絵柄初期設定
         /// </summary>
-        /// <returns>マークファイル名</returns>
-        private string getSuitFileName()
+        public void initPicture()
         {
-            Suit suit = (Suit)comboBoxSuit.SelectedItem;
-            if (suit == null)
-            {
-                return "";
-            }
-            return suit.FileName;
+            // Pictureクラスオブジェクト生成
+            m_picture = new Picture();
+            m_picture.PictureSizeA = pictureSizeA.Value;
+            m_picture.PictureSizeN = pictureSizeN.Value;
+            m_picture.PictureSizeX = pictureSizeX.Value;
+            m_picture.PictureOffsetX1 = pictureOffsetX1.Value;
+            m_picture.PictureOffsetX2 = pictureOffsetX2.Value;
+            m_picture.PictureOffsetY1 = pictureOffsetX1.Value;
+            m_picture.PictureOffsetY2 = pictureOffsetX2.Value;
         }
 
         /// <summary>
-        /// 番号コンボボックス初期設定処理
+        /// ランク初期設定
+        /// </summary>
+        public void initRank()
+        {
+            // 番号コンボボックス初期設定処理
+            initRankComboBox();
+
+            // Rankクラスオブジェクト生成
+            m_rank = new Rank();
+            m_rank.RankFontSize = rankFontSize.Value;
+            m_rank.RankLeftSpace1 = rankLeftSpace1.Value;
+            m_rank.RankLeftSpace2 = rankLeftSpace2.Value;
+            m_rank.RankLeftSpace3 = rankLeftSpace3.Value;
+            m_rank.RankTopSpace = rankTopSpace.Value;
+            m_rank.RankFontName = rankFontName.Text;
+            m_rank.RankFontColorRed = (int)rankFontColorRed.Value;
+            m_rank.RankFontColorGreen = (int)rankFontColorGreen.Value;
+            m_rank.RankFontColorBlue = (int)rankFontColorBlue.Value;
+        }
+
+        /// <summary>
+        /// ランクコンボボックス初期設定処理
         /// </summary>
         private void initRankComboBox()
         {
             string strRankKey = "";
             string strRankName = "";
-            for (ENUM_RANK_TYPE ii = ENUM_RANK_TYPE.ENUM_RANK_TYPE_START; ii < ENUM_RANK_TYPE.ENUM_RANK_TYPE_END; ++ii)
+            for (Rank.ENUM_RANK_TYPE ii = Rank.ENUM_RANK_TYPE.ENUM_RANK_TYPE_START; ii < Rank.ENUM_RANK_TYPE.ENUM_RANK_TYPE_END; ++ii)
             {
                 switch (ii)
                 {
-                    case ENUM_RANK_TYPE.ENUM_RANK_TYPE_ACE:
+                    case Rank.ENUM_RANK_TYPE.ENUM_RANK_TYPE_ACE:
                         strRankKey = "RankNameAce";
                         break;
-                    case ENUM_RANK_TYPE.ENUM_RANK_TYPE_R2:
+                    case Rank.ENUM_RANK_TYPE.ENUM_RANK_TYPE_R2:
                         strRankKey = "RankNameR2";
                         break;
-                    case ENUM_RANK_TYPE.ENUM_RANK_TYPE_R3:
+                    case Rank.ENUM_RANK_TYPE.ENUM_RANK_TYPE_R3:
                         strRankKey = "RankNameR3";
                         break;
-                    case ENUM_RANK_TYPE.ENUM_RANK_TYPE_R4:
+                    case Rank.ENUM_RANK_TYPE.ENUM_RANK_TYPE_R4:
                         strRankKey = "RankNameR4";
                         break;
-                    case ENUM_RANK_TYPE.ENUM_RANK_TYPE_R5:
+                    case Rank.ENUM_RANK_TYPE.ENUM_RANK_TYPE_R5:
                         strRankKey = "RankNameR5";
                         break;
-                    case ENUM_RANK_TYPE.ENUM_RANK_TYPE_R6:
+                    case Rank.ENUM_RANK_TYPE.ENUM_RANK_TYPE_R6:
                         strRankKey = "RankNameR6";
                         break;
-                    case ENUM_RANK_TYPE.ENUM_RANK_TYPE_R7:
+                    case Rank.ENUM_RANK_TYPE.ENUM_RANK_TYPE_R7:
                         strRankKey = "RankNameR7";
                         break;
-                    case ENUM_RANK_TYPE.ENUM_RANK_TYPE_R8:
+                    case Rank.ENUM_RANK_TYPE.ENUM_RANK_TYPE_R8:
                         strRankKey = "RankNameR8";
                         break;
-                    case ENUM_RANK_TYPE.ENUM_RANK_TYPE_R9:
+                    case Rank.ENUM_RANK_TYPE.ENUM_RANK_TYPE_R9:
                         strRankKey = "RankNameR9";
                         break;
-                    case ENUM_RANK_TYPE.ENUM_RANK_TYPE_R10:
+                    case Rank.ENUM_RANK_TYPE.ENUM_RANK_TYPE_R10:
                         strRankKey = "RankNameR10";
                         break;
-                    case ENUM_RANK_TYPE.ENUM_RANK_TYPE_JACK:
+                    case Rank.ENUM_RANK_TYPE.ENUM_RANK_TYPE_JACK:
                         strRankKey = "RankNameJack";
                         break;
-                    case ENUM_RANK_TYPE.ENUM_RANK_TYPE_QUEEN:
+                    case Rank.ENUM_RANK_TYPE.ENUM_RANK_TYPE_QUEEN:
                         strRankKey = "RankNameQueen";
                         break;
-                    case ENUM_RANK_TYPE.ENUM_RANK_TYPE_KING:
+                    case Rank.ENUM_RANK_TYPE.ENUM_RANK_TYPE_KING:
                         strRankKey = "RankNameKing";
                         break;
-                    case ENUM_RANK_TYPE.ENUM_RANK_TYPE_JOKER:
+                    case Rank.ENUM_RANK_TYPE.ENUM_RANK_TYPE_JOKER:
                         strRankKey = "RankNameJoker";
                         break;
                     default:
@@ -449,21 +693,7 @@ namespace PlayingCardsAutoDesigner
                 }
                 comboBoxRank.Items.Add(new Rank(strRankName, ii));
             }
-            comboBoxRank.DisplayMember = "Name";
-        }
-
-        /// <summary>
-        /// カード番号取得
-        /// </summary>
-        /// <returns>カード番号</returns>
-        private string getCardRank()
-        {
-            Rank rank = (Rank)comboBoxRank.SelectedItem;
-            if (rank == null)
-            {
-                return "";
-            }
-            return rank.Name;
+            comboBoxRank.DisplayMember = "RankViewName";
         }
 
         /// <summary>
@@ -473,9 +703,26 @@ namespace PlayingCardsAutoDesigner
         /// <param name="e"></param>
         private void Form1_Load(object sender, EventArgs e)
         {
-            m_fontBrush = Brushes.Black;
+            makeSolidBrush();
             pictureBox1.Image = getImage(0);
             pictureBox1.Refresh();
+        }
+
+        /// <summary>
+        /// ランク描画用ブラシ生成
+        /// </summary>
+        private void makeSolidBrush()
+        {
+            if (m_fontBrush == null)
+            {
+                m_fontBrush = Brushes.Black;
+            }
+            else
+            {
+                m_fontBrush.Dispose();
+                Color colorSolidBrush = Color.FromArgb(m_rank.RankFontColorRed, m_rank.RankFontColorRed, m_rank.RankFontColorRed);
+                m_fontBrush = new SolidBrush(colorSolidBrush);
+            }
         }
 
         /// <summary>
@@ -493,7 +740,7 @@ namespace PlayingCardsAutoDesigner
             Font fnt = null;
 
             int intModeScale = 1;
-            int intFontSize = (int)rankFontSize.Value * 10;
+            int intFontSize = (int)m_rank.RankFontSize * 10;
 
             try
             {
@@ -503,24 +750,24 @@ namespace PlayingCardsAutoDesigner
                 }
 
                 // ロゴ取得
-                string strLogoImagePath = m_strPicturePath;
+                string strLogoImagePath = m_picture.PicturePath;
                 if (!string.IsNullOrEmpty(strLogoImagePath))
                 {
                     logoImage1 = new Bitmap(strLogoImagePath);
                 }
 
                 // マーク取得
-                string strMarkFileName = getSuitFileName();
+                string strMarkFileName = m_suit.SuitFileName;
                 if (!string.IsNullOrEmpty(strMarkFileName))
                 {
                     logoImage2 = new Bitmap(strMarkFileName);
                 }
 
                 // カード番号取得
-                string strCardNumber = getCardRank();
+                string strCardNumber = m_rank.RankViewName;
                 if (!string.IsNullOrEmpty(strCardNumber))
                 {
-                    string strFontName = rankFontName.Text;
+                    string strFontName = m_rank.RankFontName;
                     fnt = new Font(strFontName, intFontSize / intModeScale);
                 }
 
@@ -556,22 +803,22 @@ namespace PlayingCardsAutoDesigner
                 }
 
                 // ロゴ描画
-                double intMarkScale = (double)suitSize.Value;
-                intMarkScale = intMarkScale / intModeScale;
+                decimal decMarkScale = m_suit.SuitSize;
+                decMarkScale = decMarkScale / intModeScale;
 
                 int intMarkWidth = 0;
                 int intMarkHeight = 0;
                 if (logoImage2 != null)
                 {
-                    intMarkWidth = (int)(logoImage2.Width * intMarkScale);
-                    intMarkHeight = (int)(logoImage2.Height * intMarkScale);
+                    intMarkWidth = (int)(logoImage2.Width * decMarkScale);
+                    intMarkHeight = (int)(logoImage2.Height * decMarkScale);
                 }
 
                 double intLogoScale = 0;
                 switch (strCardNumber)
                 {
                     case "A":
-                        intLogoScale = (double)pictureSizeA.Value;
+                        intLogoScale = (double)m_picture.PictureSizeA;
                         break;
 
                     case "2":
@@ -583,13 +830,13 @@ namespace PlayingCardsAutoDesigner
                     case "8":
                     case "9":
                     case "10":
-                        intLogoScale = (double)pictureSizeN.Value;
+                        intLogoScale = (double)m_picture.PictureSizeN;
                         break;
 
                     case "J":
                     case "Q":
                     case "K":
-                        intLogoScale = (double)pictureSizeX.Value;
+                        intLogoScale = (double)m_picture.PictureSizeX;
                         break;
 
                     default:
@@ -613,18 +860,18 @@ namespace PlayingCardsAutoDesigner
                     // カードマーク描画
                     if (!string.IsNullOrEmpty(strMarkFileName))
                     {
-                        int intMarkOffsetX = (int)suitLeftSpace.Value * 10;
-                        int intMarkOffsetY = (int)suitTopSpace.Value * 10;
+                        int intMarkOffsetX = (int)m_suit.SuitLeftSpace * 10;
+                        int intMarkOffsetY = (int)m_suit.SuitTopSpace * 10;
                         graphics.DrawImage(logoImage2, intMarkOffsetX / intModeScale, intMarkOffsetY / intModeScale, intMarkWidth, intMarkHeight);
                     }
 
                     // カード番号描画
                     if (!string.IsNullOrEmpty(strCardNumber))
                     {
-                        int intCardNumberOffsetX1 = (int)rankLeftSpace1.Value * 10;
-                        int intCardNumberOffsetX2 = (int)rankLeftSpace2.Value * 10;
-                        int intCardNumberOffsetX3 = (int)rankLeftSpace3.Value * 10;
-                        int intCardNumberOffsetY = (int)rankTopSpace.Value * 10;
+                        int intCardNumberOffsetX1 = (int)m_rank.RankLeftSpace1 * 10;
+                        int intCardNumberOffsetX2 = (int)m_rank.RankLeftSpace2 * 10;
+                        int intCardNumberOffsetX3 = (int)m_rank.RankLeftSpace3 * 10;
+                        int intCardNumberOffsetY = (int)m_rank.RankTopSpace * 10;
 
                         switch (strCardNumber)
                         {
@@ -650,14 +897,17 @@ namespace PlayingCardsAutoDesigner
                     // ロゴ描画
                     if (!string.IsNullOrEmpty(strLogoImagePath))
                     {
-                        int intMarkOffsetX1 = (int)PicutureOffsetX1.Value * 10;
-                        int intMarkOffsetX2 = (int)PicutureOffsetX2.Value * 10;
-                        int intMarkOffsetY = (int)PicutureOffsetY1.Value * 10;
+                        int intMarkOffsetX1 = (int)m_picture.PictureOffsetX1 * 10;
+                        int intMarkOffsetX2 = (int)m_picture.PictureOffsetX2 * 10;
+                        int intMarkOffsetY1 = (int)m_picture.PictureOffsetY1 * 10;
+                        int intMarkOffsetY2 = (int)m_picture.PictureOffsetY2 * 10;
+
                         if (mode == 0)
                         {
                             intMarkOffsetX1 = intMarkOffsetX1 / intModeScale;
                             intMarkOffsetX2 = intMarkOffsetX2 / intModeScale;
-                            intMarkOffsetY = intMarkOffsetY / intModeScale;
+                            intMarkOffsetY1 = intMarkOffsetY1 / intModeScale;
+                            intMarkOffsetY2 = intMarkOffsetY2 / intModeScale;
                         }
 
                         int image1_w = 0;
@@ -680,7 +930,7 @@ namespace PlayingCardsAutoDesigner
                             case "3":
                                 graphics.DrawImage(logoImage1,
                                     newImage.Width / 2 - intLogoWidth / 2 + intMarkOffsetX1,
-                                    image1_h + intMarkOffsetY,
+                                    image1_h + intMarkOffsetY1,
                                     intLogoWidth,
                                     intLogoHeight);
                                 break;
@@ -700,13 +950,13 @@ namespace PlayingCardsAutoDesigner
                                 // 左上部
                                 graphics.DrawImage(logoImage1,
                                     image1_w + intMarkOffsetX1 - intMarkOffsetX2,
-                                    image1_h + intMarkOffsetY,
+                                    image1_h + intMarkOffsetY1,
                                     intLogoWidth,
                                     intLogoHeight);
                                 // 右上部
                                 graphics.DrawImage(logoImage1,
                                     image2_w + intMarkOffsetX1 + intMarkOffsetX2,
-                                    image2_h + intMarkOffsetY,
+                                    image2_h + intMarkOffsetY1,
                                     intLogoWidth,
                                     intLogoHeight);
                                 break;
@@ -721,7 +971,7 @@ namespace PlayingCardsAutoDesigner
                             case "8":
                                 graphics.DrawImage(logoImage1,
                                     newImage.Width / 2 - intLogoWidth / 2 + intMarkOffsetX1,
-                                    image2_h + image2_h / 2 + intMarkOffsetY,
+                                    image2_h + image2_h / 2 + intMarkOffsetY1,
                                     intLogoWidth,
                                     intLogoHeight);
                                 break;
@@ -737,22 +987,22 @@ namespace PlayingCardsAutoDesigner
                             case "10":
                                 graphics.DrawImage(logoImage1,
                                     image1_w + intMarkOffsetX1 - intMarkOffsetX2,
-                                    image1_h + intMarkOffsetY,
+                                    image1_h + intMarkOffsetY1,
                                     intLogoWidth,
                                     intLogoHeight);
                                 graphics.DrawImage(logoImage1,
                                     image2_w + intMarkOffsetX1 + intMarkOffsetX2,
-                                    image2_h + intMarkOffsetY,
+                                    image2_h + intMarkOffsetY1,
                                     intLogoWidth,
                                     intLogoHeight);
                                 graphics.DrawImage(logoImage1,
                                     image1_w + intMarkOffsetX1 - intMarkOffsetX2,
-                                    image1_h + image1_h + intMarkOffsetY,
+                                    image1_h + image1_h + intMarkOffsetY1,
                                     intLogoWidth,
                                     intLogoHeight);
                                 graphics.DrawImage(logoImage1,
                                     image2_w + intMarkOffsetX1 + intMarkOffsetX2,
-                                    image2_h + image2_h + intMarkOffsetY,
+                                    image2_h + image2_h + intMarkOffsetY1,
                                     intLogoWidth,
                                     intLogoHeight);
                                 break;
@@ -767,7 +1017,7 @@ namespace PlayingCardsAutoDesigner
                             case "10":
                                 graphics.DrawImage(logoImage1,
                                     newImage.Width / 2 - intLogoWidth / 2 + intMarkOffsetX1,
-                                    image2_h + intLogoHeight / 2 + intMarkOffsetY,
+                                    image2_h + intLogoHeight / 2 + intMarkOffsetY1,
                                     intLogoWidth,
                                     intLogoHeight);
                                 break;
@@ -784,7 +1034,7 @@ namespace PlayingCardsAutoDesigner
                                 case "A":
                                     graphics.DrawImage(logoImage1,
                                         newImage.Width / 2 - intLogoWidth / 2 + intMarkOffsetX1,
-                                        newImage.Height / 2 - intLogoHeight / 2 + intMarkOffsetY,
+                                        newImage.Height / 2 - intLogoHeight / 2 + intMarkOffsetY1,
                                         intLogoWidth,
                                         intLogoHeight);
                                     break;
@@ -794,7 +1044,7 @@ namespace PlayingCardsAutoDesigner
                                 case "K":
                                     graphics.DrawImage(logoImage1,
                                         newImage.Width / 2 - intLogoWidth / 2 + intMarkOffsetX1,
-                                        newImage.Height / 2 - intLogoHeight / 2 + intMarkOffsetY,
+                                        newImage.Height / 2 - intLogoHeight / 2 + intMarkOffsetY1,
                                         intLogoWidth,
                                         intLogoHeight);
                                     break;
@@ -804,7 +1054,7 @@ namespace PlayingCardsAutoDesigner
                                 case "9":
                                     graphics.DrawImage(logoImage1,
                                         newImage.Width / 2 - intLogoWidth / 2 + intMarkOffsetX1,
-                                        newImage.Height / 2 - intLogoHeight / 2 + intMarkOffsetY,
+                                        newImage.Height / 2 - intLogoHeight / 2 + intMarkOffsetY1,
                                         intLogoWidth,
                                         intLogoHeight);
                                     break;
@@ -820,12 +1070,12 @@ namespace PlayingCardsAutoDesigner
                                 case "8":
                                     graphics.DrawImage(logoImage1,
                                         image1_w + intMarkOffsetX1 - intMarkOffsetX2,
-                                        newImage.Height / 2 - intLogoHeight / 2 + intMarkOffsetY, 
+                                        newImage.Height / 2 - intLogoHeight / 2 + intMarkOffsetY1, 
                                         intLogoWidth, 
                                         intLogoHeight);
                                     graphics.DrawImage(logoImage1,
                                         image2_w + intMarkOffsetX1 + intMarkOffsetX2,
-                                        newImage.Height / 2 - intLogoHeight / 2 + intMarkOffsetY, 
+                                        newImage.Height / 2 - intLogoHeight / 2 + intMarkOffsetY1, 
                                         intLogoWidth,
                                         intLogoHeight);
                                     break;
@@ -839,7 +1089,7 @@ namespace PlayingCardsAutoDesigner
                                 case "7":
                                     graphics.DrawImage(logoImage1,
                                         newImage.Width / 2 - intLogoWidth / 2 + intMarkOffsetX1,
-                                        image2_h + image2_h / 2 + intMarkOffsetY,
+                                        image2_h + image2_h / 2 + intMarkOffsetY1,
                                         intLogoWidth,
                                         intLogoHeight);
                                     break;
@@ -886,6 +1136,19 @@ namespace PlayingCardsAutoDesigner
         }
 
         /// <summary>
+        /// 再描画処理
+        /// </summary>
+        private void redraw()
+        {
+            if (pictureBox1.Image != null)
+            {
+                pictureBox1.Image.Dispose();
+            }
+            pictureBox1.Image = getImage(0);
+            pictureBox1.Refresh();
+        }
+
+        /// <summary>
         /// 絵柄選択ボタン押下時処理
         /// </summary>
         /// <param name="sender">絵柄選択ボタン</param>
@@ -897,13 +1160,8 @@ namespace PlayingCardsAutoDesigner
             {
                 case DialogResult.OK:
                     string strFilePath = openFileDialog1.FileName;
-                    m_strPicturePath = strFilePath;
-                    if (pictureBox1.Image != null)
-                    {
-                        pictureBox1.Image.Dispose();
-                    }
-                    pictureBox1.Image = getImage(0);
-                    pictureBox1.Refresh();
+                    m_picture.PicturePath = strFilePath;
+                    redraw();
                     break;
 
                 default:
@@ -924,12 +1182,7 @@ namespace PlayingCardsAutoDesigner
                 case DialogResult.OK:
                     string strFilePath = openFileDialog1.FileName;
                     m_strBackgroundPath = strFilePath;
-                    if (pictureBox1.Image != null)
-                    {
-                        pictureBox1.Image.Dispose();
-                    }
-                    pictureBox1.Image = getImage(0);
-                    pictureBox1.Refresh();
+                    redraw();
                     break;
 
                 default:
@@ -960,30 +1213,6 @@ namespace PlayingCardsAutoDesigner
         }
  
         /// <summary>
-        /// カードイメージ再描画処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void cardImageRedraw(object sender, EventArgs e)
-        {
-            if ( sender.GetType() == typeof(RadioButton) )
-            {
-                RadioButton radioButton = (RadioButton)sender;
-                if ( radioButton.Checked == false )
-                {
-                    return;
-                }
-            }
-
-            if (pictureBox1.Image != null)
-            {
-                pictureBox1.Image.Dispose();
-            }
-            pictureBox1.Image = getImage(0);
-            pictureBox1.Refresh();
-        }
-
-        /// <summary>
         /// フォント選択ボタン押下時処理
         /// </summary>
         /// <param name="sender"></param>
@@ -998,7 +1227,7 @@ namespace PlayingCardsAutoDesigner
             {
                 case DialogResult.OK:
                     rankFontName.Text = fontDialog1.Font.Name;
-                    cardImageRedraw(sender, e);
+                    redraw();
                     break;
                 default:
                     break;
@@ -1016,14 +1245,21 @@ namespace PlayingCardsAutoDesigner
             switch (result)
             {
                 case DialogResult.OK:
-                    rankFontColorR.Value = colorDialog1.Color.R;
-                    rankFontColorG.Value = colorDialog1.Color.G;
-                    rankFontColorB.Value = colorDialog1.Color.B;
-
-                    m_fontBrush.Dispose();
+                    if (m_fontBrush != null)
+                    {
+                        m_fontBrush.Dispose();
+                    }
                     m_fontBrush = new SolidBrush(colorDialog1.Color);
 
-                    cardImageRedraw(sender, e);
+                    rankFontColorRed.Value = colorDialog1.Color.R;
+                    rankFontColorGreen.Value = colorDialog1.Color.G;
+                    rankFontColorBlue.Value = colorDialog1.Color.B;
+
+                    m_rank.RankFontColorRed = colorDialog1.Color.R;
+                    m_rank.RankFontColorGreen = colorDialog1.Color.G;
+                    m_rank.RankFontColorBlue = colorDialog1.Color.B;
+
+                    redraw();
                     break;
                 default:
                     break;
@@ -1031,17 +1267,230 @@ namespace PlayingCardsAutoDesigner
         }
 
         /// <summary>
-        /// 値変更時処理
+        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void numericUpDown12_ValueChanged(object sender, EventArgs e)
+        private void comboBoxSuit_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Color color = Color.FromArgb((int)rankFontColorR.Value, (int)rankFontColorG.Value, (int)rankFontColorB.Value);
-            m_fontBrush.Dispose();
-            m_fontBrush = new SolidBrush(color);
+            Suit suit = (Suit)comboBoxSuit.SelectedItem;
+            m_suit.SuitType = suit.SuitType;
+            m_suit.SuitViewName = suit.SuitViewName;
+            m_suit.SuitFileName = suit.SuitFileName;
+            redraw();
+        }
 
-            cardImageRedraw(sender, e);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void suitSize_ValueChanged(object sender, EventArgs e)
+        {
+            m_suit.SuitSize = suitSize.Value;
+            redraw();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void suitLeftSpace_ValueChanged(object sender, EventArgs e)
+        {
+            m_suit.SuitLeftSpace = suitLeftSpace.Value;
+            redraw();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void suitTopSpace_ValueChanged(object sender, EventArgs e)
+        {
+            m_suit.SuitTopSpace = suitTopSpace.Value;
+            redraw();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void pictureSizeA_ValueChanged(object sender, EventArgs e)
+        {
+            m_picture.PictureSizeA = pictureSizeA.Value;
+            redraw();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void pictureSizeN_ValueChanged(object sender, EventArgs e)
+        {
+            m_picture.PictureSizeN = pictureSizeN.Value;
+            redraw();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void pictureSizeX_ValueChanged(object sender, EventArgs e)
+        {
+            m_picture.PictureSizeX = pictureSizeX.Value;
+            redraw();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void pictureOffsetX1_ValueChanged(object sender, EventArgs e)
+        {
+            m_picture.PictureOffsetX1 = pictureOffsetX1.Value;
+            redraw();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void pictureOffsetX2_ValueChanged(object sender, EventArgs e)
+        {
+            m_picture.PictureOffsetX2 = pictureOffsetX2.Value;
+            redraw();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void pictureOffsetY1_ValueChanged(object sender, EventArgs e)
+        {
+            m_picture.PictureOffsetY1 = pictureOffsetY1.Value;
+            redraw();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void pictureOffsetY2_ValueChanged(object sender, EventArgs e)
+        {
+            m_picture.PictureOffsetY2 = pictureOffsetY2.Value;
+            redraw();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void comboBoxRank_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Rank rank = (Rank)comboBoxRank.SelectedItem;
+            m_rank.RankType = rank.RankType;
+            m_rank.RankViewName = rank.RankViewName;
+            redraw();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void rankFontSize_ValueChanged(object sender, EventArgs e)
+        {
+            m_rank.RankFontSize = rankFontSize.Value;
+            redraw();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void rankLeftSpace1_ValueChanged(object sender, EventArgs e)
+        {
+            m_rank.RankLeftSpace1 = rankLeftSpace1.Value;
+            redraw();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void rankLeftSpace2_ValueChanged(object sender, EventArgs e)
+        {
+            m_rank.RankLeftSpace2 = rankLeftSpace2.Value;
+            redraw();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void rankLeftSpace3_ValueChanged(object sender, EventArgs e)
+        {
+            m_rank.RankLeftSpace3 = rankLeftSpace3.Value;
+            redraw();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void rankTopSpace_ValueChanged(object sender, EventArgs e)
+        {
+            m_rank.RankTopSpace = rankTopSpace.Value;
+            redraw();
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void rankFontColorRed_ValueChanged(object sender, EventArgs e)
+        {
+            m_rank.RankFontColorRed = (int)rankFontColorRed.Value;
+            makeSolidBrush();
+            redraw();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void rankFontColorG_ValueChanged(object sender, EventArgs e)
+        {
+            m_rank.RankFontColorGreen = (int)rankFontColorGreen.Value;
+            makeSolidBrush();
+            redraw();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void rankFontColorB_ValueChanged(object sender, EventArgs e)
+        {
+            m_rank.RankFontColorBlue = (int)rankFontColorBlue.Value;
+            makeSolidBrush();
+            redraw();
         }
     }
 }
