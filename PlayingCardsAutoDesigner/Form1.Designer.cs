@@ -67,8 +67,12 @@ namespace PlayingCardsAutoDesigner
             this.groupBox_Picture = new System.Windows.Forms.GroupBox();
             this.selectPictureButton = new System.Windows.Forms.Button();
             this.label_pictureSizeA = new System.Windows.Forms.Label();
+            this.label_pictureOffsetY4 = new System.Windows.Forms.Label();
+            this.label_pictureOffsetY3 = new System.Windows.Forms.Label();
             this.label_pictureOffsetY2 = new System.Windows.Forms.Label();
+            this.pictureOffsetY4 = new System.Windows.Forms.NumericUpDown();
             this.label_pictureOffsetY1 = new System.Windows.Forms.Label();
+            this.pictureOffsetY3 = new System.Windows.Forms.NumericUpDown();
             this.pictureSizeX = new System.Windows.Forms.NumericUpDown();
             this.pictureOffsetY2 = new System.Windows.Forms.NumericUpDown();
             this.label_pictureOffsetX1 = new System.Windows.Forms.Label();
@@ -82,6 +86,14 @@ namespace PlayingCardsAutoDesigner
             this.label_pictureOffsetX2 = new System.Windows.Forms.Label();
             this.groupBox_background = new System.Windows.Forms.GroupBox();
             this.selectBackgroundImageButton = new System.Windows.Forms.Button();
+            this.label_backgroundColor = new System.Windows.Forms.Label();
+            this.selectBackGroundColorButton = new System.Windows.Forms.Button();
+            this.backgroundColorBlue = new System.Windows.Forms.NumericUpDown();
+            this.label_backgroundColorBlue = new System.Windows.Forms.Label();
+            this.backgroundColorGreen = new System.Windows.Forms.NumericUpDown();
+            this.label_backgroundColorGreen = new System.Windows.Forms.Label();
+            this.backgroundColorRed = new System.Windows.Forms.NumericUpDown();
+            this.label_backgroundColorRed = new System.Windows.Forms.Label();
             this.groupBox_save = new System.Windows.Forms.GroupBox();
             this.saveCardImage = new System.Windows.Forms.Button();
             this.fontDialog1 = new System.Windows.Forms.FontDialog();
@@ -109,6 +121,8 @@ namespace PlayingCardsAutoDesigner
             ((System.ComponentModel.ISupportInitialize)(this.rankFontColorGreen)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rankFontColorBlue)).BeginInit();
             this.groupBox_Picture.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureOffsetY4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureOffsetY3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureSizeX)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureOffsetY2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureOffsetY1)).BeginInit();
@@ -117,6 +131,9 @@ namespace PlayingCardsAutoDesigner
             ((System.ComponentModel.ISupportInitialize)(this.pictureOffsetX1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureOffsetX2)).BeginInit();
             this.groupBox_background.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.backgroundColorBlue)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.backgroundColorGreen)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.backgroundColorRed)).BeginInit();
             this.groupBox_save.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -124,20 +141,21 @@ namespace PlayingCardsAutoDesigner
             // 
             this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Location = new System.Drawing.Point(10, 10);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(586, 941);
+            this.pictureBox1.Size = new System.Drawing.Size(589, 921);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
             // 
             // panel_left
             // 
-            this.panel_left.Controls.Add(this.splitContainer1);
+            this.panel_left.Controls.Add(this.pictureBox1);
             this.panel_left.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel_left.Location = new System.Drawing.Point(0, 0);
             this.panel_left.Name = "panel_left";
-            this.panel_left.Size = new System.Drawing.Size(814, 941);
+            this.panel_left.Padding = new System.Windows.Forms.Padding(10);
+            this.panel_left.Size = new System.Drawing.Size(609, 941);
             this.panel_left.TabIndex = 16;
             // 
             // splitContainer1
@@ -151,14 +169,14 @@ namespace PlayingCardsAutoDesigner
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.pictureBox1);
+            this.splitContainer1.Panel1.Controls.Add(this.panel_left);
             // 
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.panel_right);
             this.splitContainer1.Panel2MinSize = 160;
-            this.splitContainer1.Size = new System.Drawing.Size(814, 941);
-            this.splitContainer1.SplitterDistance = 586;
+            this.splitContainer1.Size = new System.Drawing.Size(834, 941);
+            this.splitContainer1.SplitterDistance = 609;
             this.splitContainer1.SplitterWidth = 1;
             this.splitContainer1.TabIndex = 11;
             // 
@@ -173,7 +191,7 @@ namespace PlayingCardsAutoDesigner
             this.panel_right.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel_right.Location = new System.Drawing.Point(0, 0);
             this.panel_right.Name = "panel_right";
-            this.panel_right.Size = new System.Drawing.Size(227, 941);
+            this.panel_right.Size = new System.Drawing.Size(224, 941);
             this.panel_right.TabIndex = 0;
             // 
             // groupBox_suit
@@ -319,7 +337,7 @@ namespace PlayingCardsAutoDesigner
             this.groupBox_Rank.Controls.Add(this.selectFontColorButton);
             this.groupBox_Rank.Location = new System.Drawing.Point(114, 3);
             this.groupBox_Rank.Name = "groupBox_Rank";
-            this.groupBox_Rank.Size = new System.Drawing.Size(100, 523);
+            this.groupBox_Rank.Size = new System.Drawing.Size(100, 471);
             this.groupBox_Rank.TabIndex = 30;
             this.groupBox_Rank.TabStop = false;
             this.groupBox_Rank.Text = "数字/文字";
@@ -520,21 +538,21 @@ namespace PlayingCardsAutoDesigner
             // 
             // rankFontColorRed
             // 
-            this.rankFontColorRed.Location = new System.Drawing.Point(7, 377);
+            this.rankFontColorRed.Location = new System.Drawing.Point(34, 355);
             this.rankFontColorRed.Maximum = new decimal(new int[] {
             255,
             0,
             0,
             0});
             this.rankFontColorRed.Name = "rankFontColorRed";
-            this.rankFontColorRed.Size = new System.Drawing.Size(80, 23);
+            this.rankFontColorRed.Size = new System.Drawing.Size(60, 23);
             this.rankFontColorRed.TabIndex = 28;
             this.rankFontColorRed.ValueChanged += new System.EventHandler(this.rankFontColorRed_ValueChanged);
             // 
             // label_rankFontColorG
             // 
             this.label_rankFontColorG.AutoSize = true;
-            this.label_rankFontColorG.Location = new System.Drawing.Point(7, 403);
+            this.label_rankFontColorG.Location = new System.Drawing.Point(7, 388);
             this.label_rankFontColorG.Name = "label_rankFontColorG";
             this.label_rankFontColorG.Size = new System.Drawing.Size(15, 15);
             this.label_rankFontColorG.TabIndex = 27;
@@ -542,21 +560,21 @@ namespace PlayingCardsAutoDesigner
             // 
             // rankFontColorGreen
             // 
-            this.rankFontColorGreen.Location = new System.Drawing.Point(7, 421);
+            this.rankFontColorGreen.Location = new System.Drawing.Point(34, 384);
             this.rankFontColorGreen.Maximum = new decimal(new int[] {
             255,
             0,
             0,
             0});
             this.rankFontColorGreen.Name = "rankFontColorGreen";
-            this.rankFontColorGreen.Size = new System.Drawing.Size(80, 23);
+            this.rankFontColorGreen.Size = new System.Drawing.Size(60, 23);
             this.rankFontColorGreen.TabIndex = 28;
             this.rankFontColorGreen.ValueChanged += new System.EventHandler(this.rankFontColorG_ValueChanged);
             // 
             // label_rankFontColorB
             // 
             this.label_rankFontColorB.AutoSize = true;
-            this.label_rankFontColorB.Location = new System.Drawing.Point(7, 447);
+            this.label_rankFontColorB.Location = new System.Drawing.Point(7, 417);
             this.label_rankFontColorB.Name = "label_rankFontColorB";
             this.label_rankFontColorB.Size = new System.Drawing.Size(14, 15);
             this.label_rankFontColorB.TabIndex = 27;
@@ -564,20 +582,20 @@ namespace PlayingCardsAutoDesigner
             // 
             // rankFontColorBlue
             // 
-            this.rankFontColorBlue.Location = new System.Drawing.Point(7, 465);
+            this.rankFontColorBlue.Location = new System.Drawing.Point(34, 413);
             this.rankFontColorBlue.Maximum = new decimal(new int[] {
             255,
             0,
             0,
             0});
             this.rankFontColorBlue.Name = "rankFontColorBlue";
-            this.rankFontColorBlue.Size = new System.Drawing.Size(80, 23);
+            this.rankFontColorBlue.Size = new System.Drawing.Size(60, 23);
             this.rankFontColorBlue.TabIndex = 28;
             this.rankFontColorBlue.ValueChanged += new System.EventHandler(this.rankFontColorB_ValueChanged);
             // 
             // selectFontColorButton
             // 
-            this.selectFontColorButton.Location = new System.Drawing.Point(42, 494);
+            this.selectFontColorButton.Location = new System.Drawing.Point(41, 442);
             this.selectFontColorButton.Name = "selectFontColorButton";
             this.selectFontColorButton.Size = new System.Drawing.Size(45, 23);
             this.selectFontColorButton.TabIndex = 29;
@@ -589,8 +607,12 @@ namespace PlayingCardsAutoDesigner
             // 
             this.groupBox_Picture.Controls.Add(this.selectPictureButton);
             this.groupBox_Picture.Controls.Add(this.label_pictureSizeA);
+            this.groupBox_Picture.Controls.Add(this.label_pictureOffsetY4);
+            this.groupBox_Picture.Controls.Add(this.label_pictureOffsetY3);
             this.groupBox_Picture.Controls.Add(this.label_pictureOffsetY2);
+            this.groupBox_Picture.Controls.Add(this.pictureOffsetY4);
             this.groupBox_Picture.Controls.Add(this.label_pictureOffsetY1);
+            this.groupBox_Picture.Controls.Add(this.pictureOffsetY3);
             this.groupBox_Picture.Controls.Add(this.pictureSizeX);
             this.groupBox_Picture.Controls.Add(this.pictureOffsetY2);
             this.groupBox_Picture.Controls.Add(this.label_pictureOffsetX1);
@@ -604,7 +626,7 @@ namespace PlayingCardsAutoDesigner
             this.groupBox_Picture.Controls.Add(this.label_pictureOffsetX2);
             this.groupBox_Picture.Location = new System.Drawing.Point(5, 203);
             this.groupBox_Picture.Name = "groupBox_Picture";
-            this.groupBox_Picture.Size = new System.Drawing.Size(100, 369);
+            this.groupBox_Picture.Size = new System.Drawing.Size(100, 461);
             this.groupBox_Picture.TabIndex = 12;
             this.groupBox_Picture.TabStop = false;
             this.groupBox_Picture.Text = "絵柄";
@@ -628,6 +650,24 @@ namespace PlayingCardsAutoDesigner
             this.label_pictureSizeA.TabIndex = 0;
             this.label_pictureSizeA.Text = "サイズ(A)";
             // 
+            // label_pictureOffsetY4
+            // 
+            this.label_pictureOffsetY4.AutoSize = true;
+            this.label_pictureOffsetY4.Location = new System.Drawing.Point(6, 407);
+            this.label_pictureOffsetY4.Name = "label_pictureOffsetY4";
+            this.label_pictureOffsetY4.Size = new System.Drawing.Size(75, 15);
+            this.label_pictureOffsetY4.TabIndex = 11;
+            this.label_pictureOffsetY4.Text = "縦位置(中央)";
+            // 
+            // label_pictureOffsetY3
+            // 
+            this.label_pictureOffsetY3.AutoSize = true;
+            this.label_pictureOffsetY3.Location = new System.Drawing.Point(6, 363);
+            this.label_pictureOffsetY3.Name = "label_pictureOffsetY3";
+            this.label_pictureOffsetY3.Size = new System.Drawing.Size(63, 15);
+            this.label_pictureOffsetY3.TabIndex = 11;
+            this.label_pictureOffsetY3.Text = "縦位置(内)";
+            // 
             // label_pictureOffsetY2
             // 
             this.label_pictureOffsetY2.AutoSize = true;
@@ -637,6 +677,24 @@ namespace PlayingCardsAutoDesigner
             this.label_pictureOffsetY2.TabIndex = 11;
             this.label_pictureOffsetY2.Text = "縦位置(外)";
             // 
+            // pictureOffsetY4
+            // 
+            this.pictureOffsetY4.Location = new System.Drawing.Point(6, 425);
+            this.pictureOffsetY4.Maximum = new decimal(new int[] {
+            500,
+            0,
+            0,
+            0});
+            this.pictureOffsetY4.Minimum = new decimal(new int[] {
+            500,
+            0,
+            0,
+            -2147483648});
+            this.pictureOffsetY4.Name = "pictureOffsetY4";
+            this.pictureOffsetY4.Size = new System.Drawing.Size(80, 23);
+            this.pictureOffsetY4.TabIndex = 10;
+            this.pictureOffsetY4.ValueChanged += new System.EventHandler(this.pictureOffsetY4_ValueChanged);
+            // 
             // label_pictureOffsetY1
             // 
             this.label_pictureOffsetY1.AutoSize = true;
@@ -645,6 +703,24 @@ namespace PlayingCardsAutoDesigner
             this.label_pictureOffsetY1.Size = new System.Drawing.Size(63, 15);
             this.label_pictureOffsetY1.TabIndex = 11;
             this.label_pictureOffsetY1.Text = "縦位置(全)";
+            // 
+            // pictureOffsetY3
+            // 
+            this.pictureOffsetY3.Location = new System.Drawing.Point(6, 381);
+            this.pictureOffsetY3.Maximum = new decimal(new int[] {
+            500,
+            0,
+            0,
+            0});
+            this.pictureOffsetY3.Minimum = new decimal(new int[] {
+            500,
+            0,
+            0,
+            -2147483648});
+            this.pictureOffsetY3.Name = "pictureOffsetY3";
+            this.pictureOffsetY3.Size = new System.Drawing.Size(80, 23);
+            this.pictureOffsetY3.TabIndex = 10;
+            this.pictureOffsetY3.ValueChanged += new System.EventHandler(this.pictureOffsetY3_ValueChanged);
             // 
             // pictureSizeX
             // 
@@ -829,9 +905,17 @@ namespace PlayingCardsAutoDesigner
             // groupBox_background
             // 
             this.groupBox_background.Controls.Add(this.selectBackgroundImageButton);
-            this.groupBox_background.Location = new System.Drawing.Point(5, 587);
+            this.groupBox_background.Controls.Add(this.label_backgroundColor);
+            this.groupBox_background.Controls.Add(this.selectBackGroundColorButton);
+            this.groupBox_background.Controls.Add(this.backgroundColorBlue);
+            this.groupBox_background.Controls.Add(this.label_backgroundColorBlue);
+            this.groupBox_background.Controls.Add(this.backgroundColorGreen);
+            this.groupBox_background.Controls.Add(this.label_backgroundColorGreen);
+            this.groupBox_background.Controls.Add(this.backgroundColorRed);
+            this.groupBox_background.Controls.Add(this.label_backgroundColorRed);
+            this.groupBox_background.Location = new System.Drawing.Point(114, 478);
             this.groupBox_background.Name = "groupBox_background";
-            this.groupBox_background.Size = new System.Drawing.Size(100, 60);
+            this.groupBox_background.Size = new System.Drawing.Size(100, 186);
             this.groupBox_background.TabIndex = 31;
             this.groupBox_background.TabStop = false;
             this.groupBox_background.Text = "背景";
@@ -846,10 +930,110 @@ namespace PlayingCardsAutoDesigner
             this.selectBackgroundImageButton.UseVisualStyleBackColor = true;
             this.selectBackgroundImageButton.Click += new System.EventHandler(this.selectBackgroundImageButton_Click);
             // 
+            // label_backgroundColor
+            // 
+            this.label_backgroundColor.AutoSize = true;
+            this.label_backgroundColor.Location = new System.Drawing.Point(6, 48);
+            this.label_backgroundColor.Name = "label_backgroundColor";
+            this.label_backgroundColor.Size = new System.Drawing.Size(79, 15);
+            this.label_backgroundColor.TabIndex = 27;
+            this.label_backgroundColor.Text = "背景色(R,G,B)";
+            // 
+            // selectBackGroundColorButton
+            // 
+            this.selectBackGroundColorButton.Location = new System.Drawing.Point(40, 153);
+            this.selectBackGroundColorButton.Name = "selectBackGroundColorButton";
+            this.selectBackGroundColorButton.Size = new System.Drawing.Size(45, 23);
+            this.selectBackGroundColorButton.TabIndex = 29;
+            this.selectBackGroundColorButton.Text = "選択";
+            this.selectBackGroundColorButton.UseVisualStyleBackColor = true;
+            this.selectBackGroundColorButton.Click += new System.EventHandler(this.selectBackGroundColorButton_Click);
+            // 
+            // backgroundColorBlue
+            // 
+            this.backgroundColorBlue.Location = new System.Drawing.Point(34, 124);
+            this.backgroundColorBlue.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.backgroundColorBlue.Name = "backgroundColorBlue";
+            this.backgroundColorBlue.Size = new System.Drawing.Size(60, 23);
+            this.backgroundColorBlue.TabIndex = 28;
+            this.backgroundColorBlue.Value = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.backgroundColorBlue.ValueChanged += new System.EventHandler(this.backgroundColorBlue_ValueChanged);
+            // 
+            // label_backgroundColorBlue
+            // 
+            this.label_backgroundColorBlue.AutoSize = true;
+            this.label_backgroundColorBlue.Location = new System.Drawing.Point(6, 127);
+            this.label_backgroundColorBlue.Name = "label_backgroundColorBlue";
+            this.label_backgroundColorBlue.Size = new System.Drawing.Size(14, 15);
+            this.label_backgroundColorBlue.TabIndex = 27;
+            this.label_backgroundColorBlue.Text = "B";
+            // 
+            // backgroundColorGreen
+            // 
+            this.backgroundColorGreen.Location = new System.Drawing.Point(34, 95);
+            this.backgroundColorGreen.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.backgroundColorGreen.Name = "backgroundColorGreen";
+            this.backgroundColorGreen.Size = new System.Drawing.Size(60, 23);
+            this.backgroundColorGreen.TabIndex = 28;
+            this.backgroundColorGreen.Value = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.backgroundColorGreen.ValueChanged += new System.EventHandler(this.backgroundColorGreen_ValueChanged);
+            // 
+            // label_backgroundColorGreen
+            // 
+            this.label_backgroundColorGreen.AutoSize = true;
+            this.label_backgroundColorGreen.Location = new System.Drawing.Point(6, 98);
+            this.label_backgroundColorGreen.Name = "label_backgroundColorGreen";
+            this.label_backgroundColorGreen.Size = new System.Drawing.Size(15, 15);
+            this.label_backgroundColorGreen.TabIndex = 27;
+            this.label_backgroundColorGreen.Text = "G";
+            // 
+            // backgroundColorRed
+            // 
+            this.backgroundColorRed.Location = new System.Drawing.Point(34, 66);
+            this.backgroundColorRed.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.backgroundColorRed.Name = "backgroundColorRed";
+            this.backgroundColorRed.Size = new System.Drawing.Size(60, 23);
+            this.backgroundColorRed.TabIndex = 28;
+            this.backgroundColorRed.Value = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.backgroundColorRed.ValueChanged += new System.EventHandler(this.backgroundColorRed_ValueChanged);
+            // 
+            // label_backgroundColorRed
+            // 
+            this.label_backgroundColorRed.AutoSize = true;
+            this.label_backgroundColorRed.Location = new System.Drawing.Point(6, 69);
+            this.label_backgroundColorRed.Name = "label_backgroundColorRed";
+            this.label_backgroundColorRed.Size = new System.Drawing.Size(14, 15);
+            this.label_backgroundColorRed.TabIndex = 27;
+            this.label_backgroundColorRed.Text = "R";
+            // 
             // groupBox_save
             // 
             this.groupBox_save.Controls.Add(this.saveCardImage);
-            this.groupBox_save.Location = new System.Drawing.Point(114, 587);
+            this.groupBox_save.Location = new System.Drawing.Point(5, 670);
             this.groupBox_save.Name = "groupBox_save";
             this.groupBox_save.Size = new System.Drawing.Size(100, 60);
             this.groupBox_save.TabIndex = 32;
@@ -879,8 +1063,8 @@ namespace PlayingCardsAutoDesigner
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(814, 941);
-            this.Controls.Add(this.panel_left);
+            this.ClientSize = new System.Drawing.Size(834, 941);
+            this.Controls.Add(this.splitContainer1);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Playing Cards Auto Designer";
@@ -909,6 +1093,8 @@ namespace PlayingCardsAutoDesigner
             ((System.ComponentModel.ISupportInitialize)(this.rankFontColorBlue)).EndInit();
             this.groupBox_Picture.ResumeLayout(false);
             this.groupBox_Picture.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureOffsetY4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureOffsetY3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureSizeX)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureOffsetY2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureOffsetY1)).EndInit();
@@ -917,6 +1103,10 @@ namespace PlayingCardsAutoDesigner
             ((System.ComponentModel.ISupportInitialize)(this.pictureOffsetX1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureOffsetX2)).EndInit();
             this.groupBox_background.ResumeLayout(false);
+            this.groupBox_background.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.backgroundColorBlue)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.backgroundColorGreen)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.backgroundColorRed)).EndInit();
             this.groupBox_save.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -989,6 +1179,18 @@ namespace PlayingCardsAutoDesigner
 
         private System.Windows.Forms.Panel panel_right;
         private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.Label label_backgroundColor;
+        private System.Windows.Forms.Button selectBackGroundColorButton;
+        private System.Windows.Forms.NumericUpDown backgroundColorBlue;
+        private System.Windows.Forms.Label label_backgroundColorBlue;
+        private System.Windows.Forms.NumericUpDown backgroundColorGreen;
+        private System.Windows.Forms.Label label_backgroundColorGreen;
+        private System.Windows.Forms.NumericUpDown backgroundColorRed;
+        private System.Windows.Forms.Label label_backgroundColorRed;
+        private System.Windows.Forms.Label label_pictureOffsetY3;
+        private System.Windows.Forms.NumericUpDown pictureOffsetY3;
+        private System.Windows.Forms.Label label_pictureOffsetY4;
+        private System.Windows.Forms.NumericUpDown pictureOffsetY4;
     }
 }
 

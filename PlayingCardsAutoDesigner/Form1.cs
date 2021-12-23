@@ -27,6 +27,11 @@ namespace PlayingCardsAutoDesigner
         private Brush m_fontBrush;
 
         /// <summary>
+        /// 背景用ブラシ
+        /// </summary>
+        private Brush m_backgroundBrush;
+
+        /// <summary>
         /// マーク
         /// </summary>
         public class Suit
@@ -269,12 +274,40 @@ namespace PlayingCardsAutoDesigner
             private Decimal m_decPictureOffsetY2;
 
             /// <summary>
-            /// 絵柄位置調整(上下全体)取得/設定
+            /// 絵柄位置調整(上下外側)取得/設定
             /// </summary>
             public Decimal PictureOffsetY2
             {
                 get { return m_decPictureOffsetY2; }
                 set { m_decPictureOffsetY2 = value; }
+            }
+
+            /// <summary>
+            /// 絵柄位置調整(上下内側)
+            /// </summary>
+            private Decimal m_decPictureOffsetY3;
+
+            /// <summary>
+            /// 絵柄位置調整(上下内側)取得/設定
+            /// </summary>
+            public Decimal PictureOffsetY3
+            {
+                get { return m_decPictureOffsetY3; }
+                set { m_decPictureOffsetY3 = value; }
+            }
+
+            /// <summary>
+            /// 絵柄位置調整(上下中央)
+            /// </summary>
+            private Decimal m_decPictureOffsetY4;
+
+            /// <summary>
+            /// 絵柄位置調整(上下中央)取得/設定
+            /// </summary>
+            public Decimal PictureOffsetY4
+            {
+                get { return m_decPictureOffsetY4; }
+                set { m_decPictureOffsetY4 = value; }
             }
         }
 
@@ -481,6 +514,59 @@ namespace PlayingCardsAutoDesigner
             }
         }
 
+        public class BackGround
+        {
+            /// <summary>
+            /// コンストラクタ
+            /// </summary>
+            public BackGround()
+            {
+
+            }
+
+            /// <summary>
+            /// 背景色文字色赤
+            /// </summary>
+            private int intBackGroundColorRed;
+
+            /// <summary>
+            /// 背景色文字色赤取得/設定
+            /// </summary>
+            public int BackGroundColorRed
+            {
+                get { return intBackGroundColorRed; }
+                set { intBackGroundColorRed = value; }
+            }
+
+            /// <summary>
+            /// 背景色文字色緑
+            /// </summary>
+            private int intBackGroundColorGreen;
+
+            /// <summary>
+            /// 背景色文字色緑取得/設定
+            /// </summary>
+            public int BackGroundColorGreen
+            {
+                get { return intBackGroundColorGreen; }
+                set { intBackGroundColorGreen = value; }
+            }
+
+            /// <summary>
+            /// 背景色文字色青
+            /// </summary>
+            private int intBackGroundColorBlue;
+
+            /// <summary>
+            /// 背景色文字色青取得/設定
+            /// </summary>
+            public int BackGroundColorBlue
+            {
+                get { return intBackGroundColorBlue; }
+                set { intBackGroundColorBlue = value; }
+            }
+        }
+
         /// <summary>
         /// Suitクラスオブジェクト
         /// </summary>
@@ -497,14 +583,16 @@ namespace PlayingCardsAutoDesigner
         Rank m_rank;
 
         /// <summary>
+        /// BackGroundクラスオブジェクト
+        /// </summary>
+        BackGround m_background;
+
+        /// <summary>
         /// コンストラクタ
         /// </summary>
         public Form1()
         {
             InitializeComponent();
-
-            // 画像表示領域初期設定
-            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
 
             // マーク初期設定
             initSuit();
@@ -515,6 +603,8 @@ namespace PlayingCardsAutoDesigner
             // ランク初期設定
             initRank();
 
+            // 背景初期設定
+            iniBackGround();
         }
 
         /// <summary>
@@ -605,8 +695,10 @@ namespace PlayingCardsAutoDesigner
             m_picture.PictureSizeX = pictureSizeX.Value;
             m_picture.PictureOffsetX1 = pictureOffsetX1.Value;
             m_picture.PictureOffsetX2 = pictureOffsetX2.Value;
-            m_picture.PictureOffsetY1 = pictureOffsetX1.Value;
-            m_picture.PictureOffsetY2 = pictureOffsetX2.Value;
+            m_picture.PictureOffsetY1 = pictureOffsetY1.Value;
+            m_picture.PictureOffsetY2 = pictureOffsetY2.Value;
+            m_picture.PictureOffsetY3 = pictureOffsetY3.Value;
+            m_picture.PictureOffsetY4 = pictureOffsetY4.Value;
         }
 
         /// <summary>
@@ -697,13 +789,33 @@ namespace PlayingCardsAutoDesigner
         }
 
         /// <summary>
+        /// 背景初期設定
+        /// </summary>
+        private void iniBackGround()
+        {
+            // 画像表示領域初期設定
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+
+            // BackGroundクラスオブジェクト生成
+            m_background = new BackGround();
+            m_background.BackGroundColorRed = (int)backgroundColorRed.Value;
+            m_background.BackGroundColorGreen = (int)backgroundColorGreen.Value;
+            m_background.BackGroundColorBlue = (int)backgroundColorBlue.Value;
+        }
+
+        /// <summary>
         /// メイン画面起動時処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void Form1_Load(object sender, EventArgs e)
         {
-            makeSolidBrush();
+            //ランク描画用ブラシ生成
+            makeRankSolidBrush();
+
+            //背景描画用ブラシ生成
+            makeBackGroundSolidBrush();
+
             pictureBox1.Image = getImage(0);
             pictureBox1.Refresh();
         }
@@ -711,7 +823,7 @@ namespace PlayingCardsAutoDesigner
         /// <summary>
         /// ランク描画用ブラシ生成
         /// </summary>
-        private void makeSolidBrush()
+        private void makeRankSolidBrush()
         {
             if (m_fontBrush == null)
             {
@@ -722,6 +834,23 @@ namespace PlayingCardsAutoDesigner
                 m_fontBrush.Dispose();
                 Color colorSolidBrush = Color.FromArgb(m_rank.RankFontColorRed, m_rank.RankFontColorRed, m_rank.RankFontColorRed);
                 m_fontBrush = new SolidBrush(colorSolidBrush);
+            }
+        }
+
+        /// <summary>
+        /// 背景描画用ブラシ生成
+        /// </summary>
+        private void makeBackGroundSolidBrush()
+        {
+            if (m_backgroundBrush == null)
+            {
+                m_backgroundBrush = Brushes.White;
+            }
+            else
+            {
+                m_backgroundBrush.Dispose();
+                Color colorSolidBrush = Color.FromArgb(m_background.BackGroundColorRed, m_background.BackGroundColorGreen, m_background.BackGroundColorBlue);
+                m_backgroundBrush = new SolidBrush(colorSolidBrush);
             }
         }
 
@@ -785,7 +914,7 @@ namespace PlayingCardsAutoDesigner
                 newImage = new Bitmap(intCardWidth, intCardHeight);
 
                 graphics = Graphics.FromImage(newImage);
-                graphics.FillRectangle(Brushes.White, graphics.VisibleClipBounds);
+                graphics.FillRectangle(m_backgroundBrush, graphics.VisibleClipBounds);
                 graphics.DrawRectangle(Pens.Black, 0, 0, intCardWidth-1, intCardHeight-1);
 
                 // 背景取得
@@ -901,6 +1030,8 @@ namespace PlayingCardsAutoDesigner
                         int intMarkOffsetX2 = (int)m_picture.PictureOffsetX2 * 10;
                         int intMarkOffsetY1 = (int)m_picture.PictureOffsetY1 * 10;
                         int intMarkOffsetY2 = (int)m_picture.PictureOffsetY2 * 10;
+                        int intMarkOffsetY3 = (int)m_picture.PictureOffsetY3 * 10;
+                        int intMarkOffsetY4 = (int)m_picture.PictureOffsetY4 * 10;
 
                         if (mode == 0)
                         {
@@ -908,6 +1039,8 @@ namespace PlayingCardsAutoDesigner
                             intMarkOffsetX2 = intMarkOffsetX2 / intModeScale;
                             intMarkOffsetY1 = intMarkOffsetY1 / intModeScale;
                             intMarkOffsetY2 = intMarkOffsetY2 / intModeScale;
+                            intMarkOffsetY3 = intMarkOffsetY3 / intModeScale;
+                            intMarkOffsetY4 = intMarkOffsetY4 / intModeScale;
                         }
 
                         int image1_w = 0;
@@ -930,7 +1063,7 @@ namespace PlayingCardsAutoDesigner
                             case "3":
                                 graphics.DrawImage(logoImage1,
                                     newImage.Width / 2 - intLogoWidth / 2 + intMarkOffsetX1,
-                                    image1_h + intMarkOffsetY1,
+                                    image1_h - intMarkOffsetY1 - intMarkOffsetY2 - intMarkOffsetY4,
                                     intLogoWidth,
                                     intLogoHeight);
                                 break;
@@ -950,13 +1083,13 @@ namespace PlayingCardsAutoDesigner
                                 // 左上部
                                 graphics.DrawImage(logoImage1,
                                     image1_w + intMarkOffsetX1 - intMarkOffsetX2,
-                                    image1_h + intMarkOffsetY1,
+                                    image1_h - intMarkOffsetY1 - intMarkOffsetY2,
                                     intLogoWidth,
                                     intLogoHeight);
                                 // 右上部
                                 graphics.DrawImage(logoImage1,
                                     image2_w + intMarkOffsetX1 + intMarkOffsetX2,
-                                    image2_h + intMarkOffsetY1,
+                                    image2_h - intMarkOffsetY1 - intMarkOffsetY2,
                                     intLogoWidth,
                                     intLogoHeight);
                                 break;
@@ -971,7 +1104,7 @@ namespace PlayingCardsAutoDesigner
                             case "8":
                                 graphics.DrawImage(logoImage1,
                                     newImage.Width / 2 - intLogoWidth / 2 + intMarkOffsetX1,
-                                    image2_h + image2_h / 2 + intMarkOffsetY1,
+                                    image2_h + image2_h / 2 - intMarkOffsetY1 - intMarkOffsetY4,
                                     intLogoWidth,
                                     intLogoHeight);
                                 break;
@@ -987,22 +1120,22 @@ namespace PlayingCardsAutoDesigner
                             case "10":
                                 graphics.DrawImage(logoImage1,
                                     image1_w + intMarkOffsetX1 - intMarkOffsetX2,
-                                    image1_h + intMarkOffsetY1,
+                                    image1_h - intMarkOffsetY1 - intMarkOffsetY2,
                                     intLogoWidth,
                                     intLogoHeight);
                                 graphics.DrawImage(logoImage1,
                                     image2_w + intMarkOffsetX1 + intMarkOffsetX2,
-                                    image2_h + intMarkOffsetY1,
+                                    image2_h - intMarkOffsetY1 - intMarkOffsetY2,
                                     intLogoWidth,
                                     intLogoHeight);
                                 graphics.DrawImage(logoImage1,
                                     image1_w + intMarkOffsetX1 - intMarkOffsetX2,
-                                    image1_h + image1_h + intMarkOffsetY1,
+                                    image1_h + image1_h - intMarkOffsetY1 - intMarkOffsetY3,
                                     intLogoWidth,
                                     intLogoHeight);
                                 graphics.DrawImage(logoImage1,
                                     image2_w + intMarkOffsetX1 + intMarkOffsetX2,
-                                    image2_h + image2_h + intMarkOffsetY1,
+                                    image2_h + image2_h - intMarkOffsetY1 - intMarkOffsetY3,
                                     intLogoWidth,
                                     intLogoHeight);
                                 break;
@@ -1017,7 +1150,7 @@ namespace PlayingCardsAutoDesigner
                             case "10":
                                 graphics.DrawImage(logoImage1,
                                     newImage.Width / 2 - intLogoWidth / 2 + intMarkOffsetX1,
-                                    image2_h + intLogoHeight / 2 + intMarkOffsetY1,
+                                    image2_h + intLogoHeight / 2 - intMarkOffsetY1 - intMarkOffsetY4,
                                     intLogoWidth,
                                     intLogoHeight);
                                 break;
@@ -1034,7 +1167,7 @@ namespace PlayingCardsAutoDesigner
                                 case "A":
                                     graphics.DrawImage(logoImage1,
                                         newImage.Width / 2 - intLogoWidth / 2 + intMarkOffsetX1,
-                                        newImage.Height / 2 - intLogoHeight / 2 + intMarkOffsetY1,
+                                        newImage.Height / 2 - intLogoHeight / 2 - intMarkOffsetY1 - intMarkOffsetY4,
                                         intLogoWidth,
                                         intLogoHeight);
                                     break;
@@ -1044,17 +1177,24 @@ namespace PlayingCardsAutoDesigner
                                 case "K":
                                     graphics.DrawImage(logoImage1,
                                         newImage.Width / 2 - intLogoWidth / 2 + intMarkOffsetX1,
-                                        newImage.Height / 2 - intLogoHeight / 2 + intMarkOffsetY1,
+                                        newImage.Height / 2 - intLogoHeight / 2 - intMarkOffsetY1 - intMarkOffsetY4,
                                         intLogoWidth,
                                         intLogoHeight);
                                     break;
 
                                 case "3":
                                 case "5":
+                                    graphics.DrawImage(logoImage1,
+                                        newImage.Width / 2 - intLogoWidth / 2 + intMarkOffsetX1,
+                                        newImage.Height / 2 - intLogoHeight / 2 - intMarkOffsetY1 - intMarkOffsetY3 - intMarkOffsetY4,
+                                        intLogoWidth,
+                                        intLogoHeight);
+                                    break;
+
                                 case "9":
                                     graphics.DrawImage(logoImage1,
                                         newImage.Width / 2 - intLogoWidth / 2 + intMarkOffsetX1,
-                                        newImage.Height / 2 - intLogoHeight / 2 + intMarkOffsetY1,
+                                        newImage.Height / 2 - intLogoHeight / 2 - intMarkOffsetY1 - intMarkOffsetY4,
                                         intLogoWidth,
                                         intLogoHeight);
                                     break;
@@ -1070,12 +1210,12 @@ namespace PlayingCardsAutoDesigner
                                 case "8":
                                     graphics.DrawImage(logoImage1,
                                         image1_w + intMarkOffsetX1 - intMarkOffsetX2,
-                                        newImage.Height / 2 - intLogoHeight / 2 + intMarkOffsetY1, 
+                                        newImage.Height / 2 - intLogoHeight / 2 - intMarkOffsetY1 - intMarkOffsetY3, 
                                         intLogoWidth, 
                                         intLogoHeight);
                                     graphics.DrawImage(logoImage1,
                                         image2_w + intMarkOffsetX1 + intMarkOffsetX2,
-                                        newImage.Height / 2 - intLogoHeight / 2 + intMarkOffsetY1, 
+                                        newImage.Height / 2 - intLogoHeight / 2 - intMarkOffsetY1 - intMarkOffsetY3, 
                                         intLogoWidth,
                                         intLogoHeight);
                                     break;
@@ -1089,7 +1229,7 @@ namespace PlayingCardsAutoDesigner
                                 case "7":
                                     graphics.DrawImage(logoImage1,
                                         newImage.Width / 2 - intLogoWidth / 2 + intMarkOffsetX1,
-                                        image2_h + image2_h / 2 + intMarkOffsetY1,
+                                        image2_h + image2_h / 2 - intMarkOffsetY1 - intMarkOffsetY4,
                                         intLogoWidth,
                                         intLogoHeight);
                                     break;
@@ -1395,6 +1535,28 @@ namespace PlayingCardsAutoDesigner
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+        private void pictureOffsetY3_ValueChanged(object sender, EventArgs e)
+        {
+            m_picture.PictureOffsetY3 = pictureOffsetY3.Value;
+            redraw();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void pictureOffsetY4_ValueChanged(object sender, EventArgs e)
+        {
+            m_picture.PictureOffsetY4 = pictureOffsetY4.Value;
+            redraw();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void comboBoxRank_SelectedIndexChanged(object sender, EventArgs e)
         {
             Rank rank = (Rank)comboBoxRank.SelectedItem;
@@ -1465,7 +1627,7 @@ namespace PlayingCardsAutoDesigner
         private void rankFontColorRed_ValueChanged(object sender, EventArgs e)
         {
             m_rank.RankFontColorRed = (int)rankFontColorRed.Value;
-            makeSolidBrush();
+            makeRankSolidBrush();
             redraw();
         }
 
@@ -1477,7 +1639,7 @@ namespace PlayingCardsAutoDesigner
         private void rankFontColorG_ValueChanged(object sender, EventArgs e)
         {
             m_rank.RankFontColorGreen = (int)rankFontColorGreen.Value;
-            makeSolidBrush();
+            makeRankSolidBrush();
             redraw();
         }
 
@@ -1489,8 +1651,56 @@ namespace PlayingCardsAutoDesigner
         private void rankFontColorB_ValueChanged(object sender, EventArgs e)
         {
             m_rank.RankFontColorBlue = (int)rankFontColorBlue.Value;
-            makeSolidBrush();
+            makeRankSolidBrush();
             redraw();
+        }
+
+        private void backgroundColorRed_ValueChanged(object sender, EventArgs e)
+        {
+            m_background.BackGroundColorRed = (int)backgroundColorRed.Value;
+            makeBackGroundSolidBrush();
+            redraw();
+        }
+
+        private void backgroundColorGreen_ValueChanged(object sender, EventArgs e)
+        {
+            m_background.BackGroundColorGreen = (int)backgroundColorGreen.Value;
+            makeBackGroundSolidBrush();
+            redraw();
+        }
+
+        private void backgroundColorBlue_ValueChanged(object sender, EventArgs e)
+        {
+            m_background.BackGroundColorBlue = (int)backgroundColorBlue.Value;
+            makeBackGroundSolidBrush();
+            redraw();
+        }
+
+        private void selectBackGroundColorButton_Click(object sender, EventArgs e)
+        {
+            DialogResult result = colorDialog1.ShowDialog();
+            switch (result)
+            {
+                case DialogResult.OK:
+                    if (m_backgroundBrush != null)
+                    {
+                        m_backgroundBrush.Dispose();
+                    }
+                    m_backgroundBrush = new SolidBrush(colorDialog1.Color);
+
+                    backgroundColorRed.Value = colorDialog1.Color.R;
+                    backgroundColorGreen.Value = colorDialog1.Color.G;
+                    backgroundColorBlue.Value = colorDialog1.Color.B;
+
+                    m_background.BackGroundColorRed = colorDialog1.Color.R;
+                    m_background.BackGroundColorGreen = colorDialog1.Color.G;
+                    m_background.BackGroundColorBlue = colorDialog1.Color.B;
+
+                    redraw();
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }
