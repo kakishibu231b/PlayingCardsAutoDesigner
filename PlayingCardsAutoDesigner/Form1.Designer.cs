@@ -143,20 +143,21 @@ namespace PlayingCardsAutoDesigner
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox1.Location = new System.Drawing.Point(10, 10);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(589, 921);
+            this.pictureBox1.Size = new System.Drawing.Size(600, 921);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox1.TabIndex = 3;
+            this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
             // panel_left
             // 
             this.panel_left.Controls.Add(this.pictureBox1);
+            this.panel_left.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.panel_left.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel_left.Location = new System.Drawing.Point(0, 0);
             this.panel_left.Name = "panel_left";
             this.panel_left.Padding = new System.Windows.Forms.Padding(10);
-            this.panel_left.Size = new System.Drawing.Size(609, 941);
-            this.panel_left.TabIndex = 16;
+            this.panel_left.Size = new System.Drawing.Size(620, 941);
+            this.panel_left.TabIndex = 0;
             // 
             // splitContainer1
             // 
@@ -175,10 +176,10 @@ namespace PlayingCardsAutoDesigner
             // 
             this.splitContainer1.Panel2.Controls.Add(this.panel_right);
             this.splitContainer1.Panel2MinSize = 160;
-            this.splitContainer1.Size = new System.Drawing.Size(834, 941);
-            this.splitContainer1.SplitterDistance = 609;
+            this.splitContainer1.Size = new System.Drawing.Size(844, 941);
+            this.splitContainer1.SplitterDistance = 620;
             this.splitContainer1.SplitterWidth = 1;
-            this.splitContainer1.TabIndex = 11;
+            this.splitContainer1.TabIndex = 0;
             // 
             // panel_right
             // 
@@ -191,7 +192,7 @@ namespace PlayingCardsAutoDesigner
             this.panel_right.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel_right.Location = new System.Drawing.Point(0, 0);
             this.panel_right.Name = "panel_right";
-            this.panel_right.Size = new System.Drawing.Size(224, 941);
+            this.panel_right.Size = new System.Drawing.Size(223, 941);
             this.panel_right.TabIndex = 0;
             // 
             // groupBox_suit
@@ -206,7 +207,7 @@ namespace PlayingCardsAutoDesigner
             this.groupBox_suit.Location = new System.Drawing.Point(5, 3);
             this.groupBox_suit.Name = "groupBox_suit";
             this.groupBox_suit.Size = new System.Drawing.Size(100, 194);
-            this.groupBox_suit.TabIndex = 12;
+            this.groupBox_suit.TabIndex = 0;
             this.groupBox_suit.TabStop = false;
             this.groupBox_suit.Text = "マーク";
             // 
@@ -216,7 +217,7 @@ namespace PlayingCardsAutoDesigner
             this.comboBoxSuit.Location = new System.Drawing.Point(6, 22);
             this.comboBoxSuit.Name = "comboBoxSuit";
             this.comboBoxSuit.Size = new System.Drawing.Size(80, 23);
-            this.comboBoxSuit.TabIndex = 12;
+            this.comboBoxSuit.TabIndex = 100;
             this.comboBoxSuit.SelectedIndexChanged += new System.EventHandler(this.comboBoxSuit_SelectedIndexChanged);
             // 
             // label_suitSize
@@ -225,7 +226,7 @@ namespace PlayingCardsAutoDesigner
             this.label_suitSize.Location = new System.Drawing.Point(6, 48);
             this.label_suitSize.Name = "label_suitSize";
             this.label_suitSize.Size = new System.Drawing.Size(59, 15);
-            this.label_suitSize.TabIndex = 7;
+            this.label_suitSize.TabIndex = 101;
             this.label_suitSize.Text = "サイズ倍率";
             // 
             // suitSize
@@ -249,7 +250,7 @@ namespace PlayingCardsAutoDesigner
             0});
             this.suitSize.Name = "suitSize";
             this.suitSize.Size = new System.Drawing.Size(80, 23);
-            this.suitSize.TabIndex = 6;
+            this.suitSize.TabIndex = 110;
             this.suitSize.Value = new decimal(new int[] {
             6,
             0,
@@ -263,7 +264,7 @@ namespace PlayingCardsAutoDesigner
             this.label_suitLeftSpace.Location = new System.Drawing.Point(6, 92);
             this.label_suitLeftSpace.Name = "label_suitLeftSpace";
             this.label_suitLeftSpace.Size = new System.Drawing.Size(43, 15);
-            this.label_suitLeftSpace.TabIndex = 8;
+            this.label_suitLeftSpace.TabIndex = 111;
             this.label_suitLeftSpace.Text = "左余白";
             // 
             // suitLeftSpace
@@ -276,7 +277,7 @@ namespace PlayingCardsAutoDesigner
             0});
             this.suitLeftSpace.Name = "suitLeftSpace";
             this.suitLeftSpace.Size = new System.Drawing.Size(80, 23);
-            this.suitLeftSpace.TabIndex = 9;
+            this.suitLeftSpace.TabIndex = 120;
             this.suitLeftSpace.Value = new decimal(new int[] {
             55,
             0,
@@ -290,7 +291,7 @@ namespace PlayingCardsAutoDesigner
             this.label_suitTopSpace.Location = new System.Drawing.Point(6, 138);
             this.label_suitTopSpace.Name = "label_suitTopSpace";
             this.label_suitTopSpace.Size = new System.Drawing.Size(43, 15);
-            this.label_suitTopSpace.TabIndex = 10;
+            this.label_suitTopSpace.TabIndex = 121;
             this.label_suitTopSpace.Text = "上余白";
             // 
             // suitTopSpace
@@ -303,7 +304,7 @@ namespace PlayingCardsAutoDesigner
             0});
             this.suitTopSpace.Name = "suitTopSpace";
             this.suitTopSpace.Size = new System.Drawing.Size(80, 23);
-            this.suitTopSpace.TabIndex = 11;
+            this.suitTopSpace.TabIndex = 130;
             this.suitTopSpace.Value = new decimal(new int[] {
             150,
             0,
@@ -338,7 +339,7 @@ namespace PlayingCardsAutoDesigner
             this.groupBox_Rank.Location = new System.Drawing.Point(114, 3);
             this.groupBox_Rank.Name = "groupBox_Rank";
             this.groupBox_Rank.Size = new System.Drawing.Size(100, 471);
-            this.groupBox_Rank.TabIndex = 30;
+            this.groupBox_Rank.TabIndex = 2;
             this.groupBox_Rank.TabStop = false;
             this.groupBox_Rank.Text = "数字/文字";
             // 
@@ -348,7 +349,7 @@ namespace PlayingCardsAutoDesigner
             this.comboBoxRank.Location = new System.Drawing.Point(7, 22);
             this.comboBoxRank.Name = "comboBoxRank";
             this.comboBoxRank.Size = new System.Drawing.Size(80, 23);
-            this.comboBoxRank.TabIndex = 12;
+            this.comboBoxRank.TabIndex = 300;
             this.comboBoxRank.SelectedIndexChanged += new System.EventHandler(this.comboBoxRank_SelectedIndexChanged);
             // 
             // label_rankFontSize
@@ -357,7 +358,7 @@ namespace PlayingCardsAutoDesigner
             this.label_rankFontSize.Location = new System.Drawing.Point(7, 48);
             this.label_rankFontSize.Name = "label_rankFontSize";
             this.label_rankFontSize.Size = new System.Drawing.Size(35, 15);
-            this.label_rankFontSize.TabIndex = 14;
+            this.label_rankFontSize.TabIndex = 201;
             this.label_rankFontSize.Text = "サイズ";
             // 
             // rankFontSize
@@ -375,7 +376,7 @@ namespace PlayingCardsAutoDesigner
             0});
             this.rankFontSize.Name = "rankFontSize";
             this.rankFontSize.Size = new System.Drawing.Size(80, 23);
-            this.rankFontSize.TabIndex = 15;
+            this.rankFontSize.TabIndex = 310;
             this.rankFontSize.Value = new decimal(new int[] {
             90,
             0,
@@ -389,7 +390,7 @@ namespace PlayingCardsAutoDesigner
             this.label_rankLeftSpace1.Location = new System.Drawing.Point(7, 92);
             this.label_rankLeftSpace1.Name = "label_rankLeftSpace1";
             this.label_rankLeftSpace1.Size = new System.Drawing.Size(93, 15);
-            this.label_rankLeftSpace1.TabIndex = 16;
+            this.label_rankLeftSpace1.TabIndex = 211;
             this.label_rankLeftSpace1.Text = "左余白(数字1桁)";
             // 
             // rankLeftSpace1
@@ -400,9 +401,14 @@ namespace PlayingCardsAutoDesigner
             0,
             0,
             0});
+            this.rankLeftSpace1.Minimum = new decimal(new int[] {
+            500,
+            0,
+            0,
+            -2147483648});
             this.rankLeftSpace1.Name = "rankLeftSpace1";
             this.rankLeftSpace1.Size = new System.Drawing.Size(80, 23);
-            this.rankLeftSpace1.TabIndex = 17;
+            this.rankLeftSpace1.TabIndex = 320;
             this.rankLeftSpace1.Value = new decimal(new int[] {
             50,
             0,
@@ -416,7 +422,7 @@ namespace PlayingCardsAutoDesigner
             this.label_rankLeftSpace2.Location = new System.Drawing.Point(7, 136);
             this.label_rankLeftSpace2.Name = "label_rankLeftSpace2";
             this.label_rankLeftSpace2.Size = new System.Drawing.Size(93, 15);
-            this.label_rankLeftSpace2.TabIndex = 18;
+            this.label_rankLeftSpace2.TabIndex = 221;
             this.label_rankLeftSpace2.Text = "左余白(数字2桁)";
             // 
             // rankLeftSpace2
@@ -427,9 +433,14 @@ namespace PlayingCardsAutoDesigner
             0,
             0,
             0});
+            this.rankLeftSpace2.Minimum = new decimal(new int[] {
+            500,
+            0,
+            0,
+            -2147483648});
             this.rankLeftSpace2.Name = "rankLeftSpace2";
             this.rankLeftSpace2.Size = new System.Drawing.Size(80, 23);
-            this.rankLeftSpace2.TabIndex = 19;
+            this.rankLeftSpace2.TabIndex = 330;
             this.rankLeftSpace2.Value = new decimal(new int[] {
             15,
             0,
@@ -443,7 +454,7 @@ namespace PlayingCardsAutoDesigner
             this.label_rankLeftSpace3.Location = new System.Drawing.Point(7, 179);
             this.label_rankLeftSpace3.Name = "label_rankLeftSpace3";
             this.label_rankLeftSpace3.Size = new System.Drawing.Size(75, 15);
-            this.label_rankLeftSpace3.TabIndex = 20;
+            this.label_rankLeftSpace3.TabIndex = 231;
             this.label_rankLeftSpace3.Text = "左余白(文字)";
             // 
             // rankLeftSpace3
@@ -454,9 +465,14 @@ namespace PlayingCardsAutoDesigner
             0,
             0,
             0});
+            this.rankLeftSpace3.Minimum = new decimal(new int[] {
+            500,
+            0,
+            0,
+            -2147483648});
             this.rankLeftSpace3.Name = "rankLeftSpace3";
             this.rankLeftSpace3.Size = new System.Drawing.Size(80, 23);
-            this.rankLeftSpace3.TabIndex = 21;
+            this.rankLeftSpace3.TabIndex = 340;
             this.rankLeftSpace3.Value = new decimal(new int[] {
             40,
             0,
@@ -470,7 +486,7 @@ namespace PlayingCardsAutoDesigner
             this.label_rankTopSpace.Location = new System.Drawing.Point(7, 224);
             this.label_rankTopSpace.Name = "label_rankTopSpace";
             this.label_rankTopSpace.Size = new System.Drawing.Size(43, 15);
-            this.label_rankTopSpace.TabIndex = 22;
+            this.label_rankTopSpace.TabIndex = 241;
             this.label_rankTopSpace.Text = "上余白";
             // 
             // rankTopSpace
@@ -481,9 +497,14 @@ namespace PlayingCardsAutoDesigner
             0,
             0,
             0});
+            this.rankTopSpace.Minimum = new decimal(new int[] {
+            500,
+            0,
+            0,
+            -2147483648});
             this.rankTopSpace.Name = "rankTopSpace";
             this.rankTopSpace.Size = new System.Drawing.Size(80, 23);
-            this.rankTopSpace.TabIndex = 23;
+            this.rankTopSpace.TabIndex = 350;
             this.rankTopSpace.Value = new decimal(new int[] {
             40,
             0,
@@ -497,15 +518,17 @@ namespace PlayingCardsAutoDesigner
             this.label_rankFontName.Location = new System.Drawing.Point(7, 269);
             this.label_rankFontName.Name = "label_rankFontName";
             this.label_rankFontName.Size = new System.Drawing.Size(40, 15);
-            this.label_rankFontName.TabIndex = 24;
+            this.label_rankFontName.TabIndex = 251;
             this.label_rankFontName.Text = "フォント";
             // 
             // rankFontName
             // 
+            this.rankFontName.Enabled = false;
             this.rankFontName.Location = new System.Drawing.Point(7, 287);
             this.rankFontName.Name = "rankFontName";
+            this.rankFontName.ReadOnly = true;
             this.rankFontName.Size = new System.Drawing.Size(80, 23);
-            this.rankFontName.TabIndex = 26;
+            this.rankFontName.TabIndex = 0;
             this.rankFontName.Text = "MS UI Gothic";
             // 
             // selectFontButton
@@ -513,7 +536,7 @@ namespace PlayingCardsAutoDesigner
             this.selectFontButton.Location = new System.Drawing.Point(42, 312);
             this.selectFontButton.Name = "selectFontButton";
             this.selectFontButton.Size = new System.Drawing.Size(45, 23);
-            this.selectFontButton.TabIndex = 25;
+            this.selectFontButton.TabIndex = 360;
             this.selectFontButton.Text = "選択";
             this.selectFontButton.UseVisualStyleBackColor = true;
             this.selectFontButton.Click += new System.EventHandler(this.selectFontButton_Click);
@@ -524,7 +547,7 @@ namespace PlayingCardsAutoDesigner
             this.label_rankFontColor.Location = new System.Drawing.Point(7, 338);
             this.label_rankFontColor.Name = "label_rankFontColor";
             this.label_rankFontColor.Size = new System.Drawing.Size(79, 15);
-            this.label_rankFontColor.TabIndex = 27;
+            this.label_rankFontColor.TabIndex = 261;
             this.label_rankFontColor.Text = "文字色(R,G,B)";
             // 
             // label_rankFontColorR
@@ -533,7 +556,7 @@ namespace PlayingCardsAutoDesigner
             this.label_rankFontColorR.Location = new System.Drawing.Point(7, 359);
             this.label_rankFontColorR.Name = "label_rankFontColorR";
             this.label_rankFontColorR.Size = new System.Drawing.Size(14, 15);
-            this.label_rankFontColorR.TabIndex = 27;
+            this.label_rankFontColorR.TabIndex = 262;
             this.label_rankFontColorR.Text = "R";
             // 
             // rankFontColorRed
@@ -546,7 +569,7 @@ namespace PlayingCardsAutoDesigner
             0});
             this.rankFontColorRed.Name = "rankFontColorRed";
             this.rankFontColorRed.Size = new System.Drawing.Size(60, 23);
-            this.rankFontColorRed.TabIndex = 28;
+            this.rankFontColorRed.TabIndex = 370;
             this.rankFontColorRed.ValueChanged += new System.EventHandler(this.rankFontColorRed_ValueChanged);
             // 
             // label_rankFontColorG
@@ -555,7 +578,7 @@ namespace PlayingCardsAutoDesigner
             this.label_rankFontColorG.Location = new System.Drawing.Point(7, 388);
             this.label_rankFontColorG.Name = "label_rankFontColorG";
             this.label_rankFontColorG.Size = new System.Drawing.Size(15, 15);
-            this.label_rankFontColorG.TabIndex = 27;
+            this.label_rankFontColorG.TabIndex = 271;
             this.label_rankFontColorG.Text = "G";
             // 
             // rankFontColorGreen
@@ -568,7 +591,7 @@ namespace PlayingCardsAutoDesigner
             0});
             this.rankFontColorGreen.Name = "rankFontColorGreen";
             this.rankFontColorGreen.Size = new System.Drawing.Size(60, 23);
-            this.rankFontColorGreen.TabIndex = 28;
+            this.rankFontColorGreen.TabIndex = 380;
             this.rankFontColorGreen.ValueChanged += new System.EventHandler(this.rankFontColorG_ValueChanged);
             // 
             // label_rankFontColorB
@@ -577,7 +600,7 @@ namespace PlayingCardsAutoDesigner
             this.label_rankFontColorB.Location = new System.Drawing.Point(7, 417);
             this.label_rankFontColorB.Name = "label_rankFontColorB";
             this.label_rankFontColorB.Size = new System.Drawing.Size(14, 15);
-            this.label_rankFontColorB.TabIndex = 27;
+            this.label_rankFontColorB.TabIndex = 290;
             this.label_rankFontColorB.Text = "B";
             // 
             // rankFontColorBlue
@@ -590,7 +613,7 @@ namespace PlayingCardsAutoDesigner
             0});
             this.rankFontColorBlue.Name = "rankFontColorBlue";
             this.rankFontColorBlue.Size = new System.Drawing.Size(60, 23);
-            this.rankFontColorBlue.TabIndex = 28;
+            this.rankFontColorBlue.TabIndex = 390;
             this.rankFontColorBlue.ValueChanged += new System.EventHandler(this.rankFontColorB_ValueChanged);
             // 
             // selectFontColorButton
@@ -598,7 +621,7 @@ namespace PlayingCardsAutoDesigner
             this.selectFontColorButton.Location = new System.Drawing.Point(41, 442);
             this.selectFontColorButton.Name = "selectFontColorButton";
             this.selectFontColorButton.Size = new System.Drawing.Size(45, 23);
-            this.selectFontColorButton.TabIndex = 29;
+            this.selectFontColorButton.TabIndex = 400;
             this.selectFontColorButton.Text = "選択";
             this.selectFontColorButton.UseVisualStyleBackColor = true;
             this.selectFontColorButton.Click += new System.EventHandler(this.selectFontColorButton_Click);
@@ -627,7 +650,7 @@ namespace PlayingCardsAutoDesigner
             this.groupBox_Picture.Location = new System.Drawing.Point(5, 203);
             this.groupBox_Picture.Name = "groupBox_Picture";
             this.groupBox_Picture.Size = new System.Drawing.Size(100, 461);
-            this.groupBox_Picture.TabIndex = 12;
+            this.groupBox_Picture.TabIndex = 1;
             this.groupBox_Picture.TabStop = false;
             this.groupBox_Picture.Text = "絵柄";
             // 
@@ -636,7 +659,7 @@ namespace PlayingCardsAutoDesigner
             this.selectPictureButton.Location = new System.Drawing.Point(41, 20);
             this.selectPictureButton.Name = "selectPictureButton";
             this.selectPictureButton.Size = new System.Drawing.Size(45, 23);
-            this.selectPictureButton.TabIndex = 25;
+            this.selectPictureButton.TabIndex = 200;
             this.selectPictureButton.Text = "選択";
             this.selectPictureButton.UseVisualStyleBackColor = true;
             this.selectPictureButton.Click += new System.EventHandler(this.selectPictureButton_Click);
@@ -647,7 +670,7 @@ namespace PlayingCardsAutoDesigner
             this.label_pictureSizeA.Location = new System.Drawing.Point(6, 43);
             this.label_pictureSizeA.Name = "label_pictureSizeA";
             this.label_pictureSizeA.Size = new System.Drawing.Size(51, 15);
-            this.label_pictureSizeA.TabIndex = 0;
+            this.label_pictureSizeA.TabIndex = 401;
             this.label_pictureSizeA.Text = "サイズ(A)";
             // 
             // label_pictureOffsetY4
@@ -656,7 +679,7 @@ namespace PlayingCardsAutoDesigner
             this.label_pictureOffsetY4.Location = new System.Drawing.Point(6, 407);
             this.label_pictureOffsetY4.Name = "label_pictureOffsetY4";
             this.label_pictureOffsetY4.Size = new System.Drawing.Size(75, 15);
-            this.label_pictureOffsetY4.TabIndex = 11;
+            this.label_pictureOffsetY4.TabIndex = 402;
             this.label_pictureOffsetY4.Text = "縦位置(中央)";
             // 
             // label_pictureOffsetY3
@@ -665,7 +688,7 @@ namespace PlayingCardsAutoDesigner
             this.label_pictureOffsetY3.Location = new System.Drawing.Point(6, 363);
             this.label_pictureOffsetY3.Name = "label_pictureOffsetY3";
             this.label_pictureOffsetY3.Size = new System.Drawing.Size(63, 15);
-            this.label_pictureOffsetY3.TabIndex = 11;
+            this.label_pictureOffsetY3.TabIndex = 403;
             this.label_pictureOffsetY3.Text = "縦位置(内)";
             // 
             // label_pictureOffsetY2
@@ -674,7 +697,7 @@ namespace PlayingCardsAutoDesigner
             this.label_pictureOffsetY2.Location = new System.Drawing.Point(6, 319);
             this.label_pictureOffsetY2.Name = "label_pictureOffsetY2";
             this.label_pictureOffsetY2.Size = new System.Drawing.Size(63, 15);
-            this.label_pictureOffsetY2.TabIndex = 11;
+            this.label_pictureOffsetY2.TabIndex = 404;
             this.label_pictureOffsetY2.Text = "縦位置(外)";
             // 
             // pictureOffsetY4
@@ -692,7 +715,7 @@ namespace PlayingCardsAutoDesigner
             -2147483648});
             this.pictureOffsetY4.Name = "pictureOffsetY4";
             this.pictureOffsetY4.Size = new System.Drawing.Size(80, 23);
-            this.pictureOffsetY4.TabIndex = 10;
+            this.pictureOffsetY4.TabIndex = 290;
             this.pictureOffsetY4.ValueChanged += new System.EventHandler(this.pictureOffsetY4_ValueChanged);
             // 
             // label_pictureOffsetY1
@@ -701,7 +724,7 @@ namespace PlayingCardsAutoDesigner
             this.label_pictureOffsetY1.Location = new System.Drawing.Point(6, 275);
             this.label_pictureOffsetY1.Name = "label_pictureOffsetY1";
             this.label_pictureOffsetY1.Size = new System.Drawing.Size(63, 15);
-            this.label_pictureOffsetY1.TabIndex = 11;
+            this.label_pictureOffsetY1.TabIndex = 405;
             this.label_pictureOffsetY1.Text = "縦位置(全)";
             // 
             // pictureOffsetY3
@@ -719,7 +742,7 @@ namespace PlayingCardsAutoDesigner
             -2147483648});
             this.pictureOffsetY3.Name = "pictureOffsetY3";
             this.pictureOffsetY3.Size = new System.Drawing.Size(80, 23);
-            this.pictureOffsetY3.TabIndex = 10;
+            this.pictureOffsetY3.TabIndex = 280;
             this.pictureOffsetY3.ValueChanged += new System.EventHandler(this.pictureOffsetY3_ValueChanged);
             // 
             // pictureSizeX
@@ -738,7 +761,7 @@ namespace PlayingCardsAutoDesigner
             0});
             this.pictureSizeX.Name = "pictureSizeX";
             this.pictureSizeX.Size = new System.Drawing.Size(80, 23);
-            this.pictureSizeX.TabIndex = 8;
+            this.pictureSizeX.TabIndex = 230;
             this.pictureSizeX.Value = new decimal(new int[] {
             12,
             0,
@@ -761,7 +784,7 @@ namespace PlayingCardsAutoDesigner
             -2147483648});
             this.pictureOffsetY2.Name = "pictureOffsetY2";
             this.pictureOffsetY2.Size = new System.Drawing.Size(80, 23);
-            this.pictureOffsetY2.TabIndex = 10;
+            this.pictureOffsetY2.TabIndex = 270;
             this.pictureOffsetY2.ValueChanged += new System.EventHandler(this.pictureOffsetY2_ValueChanged);
             // 
             // label_pictureOffsetX1
@@ -788,7 +811,7 @@ namespace PlayingCardsAutoDesigner
             -2147483648});
             this.pictureOffsetY1.Name = "pictureOffsetY1";
             this.pictureOffsetY1.Size = new System.Drawing.Size(80, 23);
-            this.pictureOffsetY1.TabIndex = 10;
+            this.pictureOffsetY1.TabIndex = 260;
             this.pictureOffsetY1.ValueChanged += new System.EventHandler(this.pictureOffsetY1_ValueChanged);
             // 
             // pictureSizeN
@@ -807,7 +830,7 @@ namespace PlayingCardsAutoDesigner
             0});
             this.pictureSizeN.Name = "pictureSizeN";
             this.pictureSizeN.Size = new System.Drawing.Size(80, 23);
-            this.pictureSizeN.TabIndex = 3;
+            this.pictureSizeN.TabIndex = 220;
             this.pictureSizeN.Value = new decimal(new int[] {
             4,
             0,
@@ -831,7 +854,7 @@ namespace PlayingCardsAutoDesigner
             0});
             this.pictureSizeA.Name = "pictureSizeA";
             this.pictureSizeA.Size = new System.Drawing.Size(80, 23);
-            this.pictureSizeA.TabIndex = 1;
+            this.pictureSizeA.TabIndex = 210;
             this.pictureSizeA.Value = new decimal(new int[] {
             8,
             0,
@@ -854,7 +877,7 @@ namespace PlayingCardsAutoDesigner
             -2147483648});
             this.pictureOffsetX1.Name = "pictureOffsetX1";
             this.pictureOffsetX1.Size = new System.Drawing.Size(80, 23);
-            this.pictureOffsetX1.TabIndex = 10;
+            this.pictureOffsetX1.TabIndex = 240;
             this.pictureOffsetX1.ValueChanged += new System.EventHandler(this.pictureOffsetX1_ValueChanged);
             // 
             // pictureOffsetX2
@@ -872,7 +895,7 @@ namespace PlayingCardsAutoDesigner
             -2147483648});
             this.pictureOffsetX2.Name = "pictureOffsetX2";
             this.pictureOffsetX2.Size = new System.Drawing.Size(80, 23);
-            this.pictureOffsetX2.TabIndex = 10;
+            this.pictureOffsetX2.TabIndex = 250;
             this.pictureOffsetX2.ValueChanged += new System.EventHandler(this.pictureOffsetX2_ValueChanged);
             // 
             // label_pictureSizeX
@@ -916,7 +939,7 @@ namespace PlayingCardsAutoDesigner
             this.groupBox_background.Location = new System.Drawing.Point(114, 478);
             this.groupBox_background.Name = "groupBox_background";
             this.groupBox_background.Size = new System.Drawing.Size(100, 186);
-            this.groupBox_background.TabIndex = 31;
+            this.groupBox_background.TabIndex = 4;
             this.groupBox_background.TabStop = false;
             this.groupBox_background.Text = "背景";
             // 
@@ -925,7 +948,7 @@ namespace PlayingCardsAutoDesigner
             this.selectBackgroundImageButton.Location = new System.Drawing.Point(41, 22);
             this.selectBackgroundImageButton.Name = "selectBackgroundImageButton";
             this.selectBackgroundImageButton.Size = new System.Drawing.Size(45, 23);
-            this.selectBackgroundImageButton.TabIndex = 25;
+            this.selectBackgroundImageButton.TabIndex = 500;
             this.selectBackgroundImageButton.Text = "選択";
             this.selectBackgroundImageButton.UseVisualStyleBackColor = true;
             this.selectBackgroundImageButton.Click += new System.EventHandler(this.selectBackgroundImageButton_Click);
@@ -944,7 +967,7 @@ namespace PlayingCardsAutoDesigner
             this.selectBackGroundColorButton.Location = new System.Drawing.Point(40, 153);
             this.selectBackGroundColorButton.Name = "selectBackGroundColorButton";
             this.selectBackGroundColorButton.Size = new System.Drawing.Size(45, 23);
-            this.selectBackGroundColorButton.TabIndex = 29;
+            this.selectBackGroundColorButton.TabIndex = 540;
             this.selectBackGroundColorButton.Text = "選択";
             this.selectBackGroundColorButton.UseVisualStyleBackColor = true;
             this.selectBackGroundColorButton.Click += new System.EventHandler(this.selectBackGroundColorButton_Click);
@@ -959,7 +982,7 @@ namespace PlayingCardsAutoDesigner
             0});
             this.backgroundColorBlue.Name = "backgroundColorBlue";
             this.backgroundColorBlue.Size = new System.Drawing.Size(60, 23);
-            this.backgroundColorBlue.TabIndex = 28;
+            this.backgroundColorBlue.TabIndex = 530;
             this.backgroundColorBlue.Value = new decimal(new int[] {
             255,
             0,
@@ -986,7 +1009,7 @@ namespace PlayingCardsAutoDesigner
             0});
             this.backgroundColorGreen.Name = "backgroundColorGreen";
             this.backgroundColorGreen.Size = new System.Drawing.Size(60, 23);
-            this.backgroundColorGreen.TabIndex = 28;
+            this.backgroundColorGreen.TabIndex = 520;
             this.backgroundColorGreen.Value = new decimal(new int[] {
             255,
             0,
@@ -1013,7 +1036,7 @@ namespace PlayingCardsAutoDesigner
             0});
             this.backgroundColorRed.Name = "backgroundColorRed";
             this.backgroundColorRed.Size = new System.Drawing.Size(60, 23);
-            this.backgroundColorRed.TabIndex = 28;
+            this.backgroundColorRed.TabIndex = 510;
             this.backgroundColorRed.Value = new decimal(new int[] {
             255,
             0,
@@ -1045,7 +1068,7 @@ namespace PlayingCardsAutoDesigner
             this.saveCardImage.Location = new System.Drawing.Point(41, 22);
             this.saveCardImage.Name = "saveCardImage";
             this.saveCardImage.Size = new System.Drawing.Size(45, 23);
-            this.saveCardImage.TabIndex = 25;
+            this.saveCardImage.TabIndex = 600;
             this.saveCardImage.Text = "保存";
             this.saveCardImage.UseVisualStyleBackColor = true;
             this.saveCardImage.Click += new System.EventHandler(this.saveCardImage_Click);
@@ -1063,11 +1086,12 @@ namespace PlayingCardsAutoDesigner
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(834, 941);
+            this.ClientSize = new System.Drawing.Size(844, 941);
             this.Controls.Add(this.splitContainer1);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Playing Cards Auto Designer";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel_left.ResumeLayout(false);

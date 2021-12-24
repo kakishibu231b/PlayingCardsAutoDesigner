@@ -65,7 +65,7 @@ namespace PlayingCardsAutoDesigner
             /// <param name="strSuitViewName">マーク表示名称</param>
             /// <param name="strSuitFileName">マークファイル名</param>
             /// <param name="intSuitType">マーク種類</param>
-            public Suit(string strSuitViewName, string strSuitFileName, ENUM_SUIT_TYPE intSuitType)
+            public Suit(string strSuitViewName, string strSuitFileName, int intSuitType)
             {
                 m_strSuitViewName = strSuitViewName;
                 m_strSuitFileName = strSuitFileName;
@@ -103,12 +103,12 @@ namespace PlayingCardsAutoDesigner
             /// <summary>
             /// マーク種類
             /// </summary>
-            private ENUM_SUIT_TYPE m_intSuitType;
+            private int m_intSuitType;
 
             /// <summary>
             /// マーク表示名称取得/設定
             /// </summary>
-            public ENUM_SUIT_TYPE SuitType
+            public int SuitType
             {
                 get { return m_intSuitType; }
                 set { m_intSuitType = value; }
@@ -353,7 +353,7 @@ namespace PlayingCardsAutoDesigner
             /// </summary>
             /// <param name="strRankViewName">番号表示名称</param>
             /// <param name="intRankType">番号種類</param>
-            public Rank(string strRankViewName, ENUM_RANK_TYPE intRankType)
+            public Rank(string strRankViewName, int intRankType)
             {
                 m_strRankViewName = strRankViewName;
                 m_intRankType = intRankType;
@@ -376,12 +376,12 @@ namespace PlayingCardsAutoDesigner
             /// <summary>
             /// 番号種類
             /// </summary>
-            private ENUM_RANK_TYPE m_intRankType;
+            private int m_intRankType;
 
             /// <summary>
             /// 番号表示名称取得/設定
             /// </summary>
-            public ENUM_RANK_TYPE RankType
+            public int RankType
             {
                 get { return m_intRankType; }
                 set { m_intRankType = value; }
@@ -605,6 +605,130 @@ namespace PlayingCardsAutoDesigner
 
             // 背景初期設定
             iniBackGround();
+
+            System.IO.StreamReader sr1 = null;
+            System.IO.StreamReader sr2 = null;
+            System.IO.StreamReader sr3 = null;
+            System.IO.StreamReader sr4 = null;
+            try
+            {
+                System.Xml.Serialization.XmlSerializer serializer1 = new System.Xml.Serialization.XmlSerializer(typeof(Suit));
+                System.Xml.Serialization.XmlSerializer serializer2 = new System.Xml.Serialization.XmlSerializer(typeof(Picture));
+                System.Xml.Serialization.XmlSerializer serializer3 = new System.Xml.Serialization.XmlSerializer(typeof(Rank));
+                System.Xml.Serialization.XmlSerializer serializer4 = new System.Xml.Serialization.XmlSerializer(typeof(BackGround));
+                sr1 = new System.IO.StreamReader("settings1.config", new System.Text.UTF8Encoding(false));
+                sr2 = new System.IO.StreamReader("settings2.config", new System.Text.UTF8Encoding(false));
+                sr3 = new System.IO.StreamReader("settings3.config", new System.Text.UTF8Encoding(false));
+                sr4 = new System.IO.StreamReader("settings4.config", new System.Text.UTF8Encoding(false));
+                m_suit = (Suit)serializer1.Deserialize(sr1);
+                m_picture = (Picture)serializer2.Deserialize(sr2);
+                m_rank = (Rank)serializer3.Deserialize(sr3);
+                m_background = (BackGround)serializer4.Deserialize(sr4);
+
+                comboBoxSuit.SelectedIndex = m_suit.SuitType;
+                suitSize.Value = m_suit.SuitSize;
+                suitLeftSpace.Value = m_suit.SuitLeftSpace;
+                suitTopSpace.Value = m_suit.SuitTopSpace;
+
+                pictureSizeA.Value = m_picture.PictureSizeA;
+                pictureSizeN.Value = m_picture.PictureSizeN;
+                pictureSizeX.Value = m_picture.PictureSizeX;
+                pictureOffsetX1.Value = m_picture.PictureOffsetX1;
+                pictureOffsetX2.Value = m_picture.PictureOffsetX2;
+                pictureOffsetY1.Value = m_picture.PictureOffsetY1;
+                pictureOffsetY2.Value = m_picture.PictureOffsetY2;
+                pictureOffsetY3.Value = m_picture.PictureOffsetY3;
+                pictureOffsetY4.Value = m_picture.PictureOffsetY4;
+
+                comboBoxRank.SelectedIndex = m_rank.RankType;
+                rankFontSize.Value = m_rank.RankFontSize;
+                rankLeftSpace1.Value = m_rank.RankLeftSpace1;
+                rankLeftSpace2.Value = m_rank.RankLeftSpace2;
+                rankLeftSpace3.Value = m_rank.RankLeftSpace3;
+                rankTopSpace.Value = m_rank.RankTopSpace;
+                rankFontName.Text = m_rank.RankFontName;
+                rankFontColorRed.Value = m_rank.RankFontColorRed;
+                rankFontColorGreen.Value = m_rank.RankFontColorGreen;
+                rankFontColorBlue.Value = m_rank.RankFontColorBlue;
+
+                backgroundColorRed.Value = m_background.BackGroundColorRed;
+                backgroundColorGreen.Value = m_background.BackGroundColorGreen;
+                backgroundColorBlue.Value = m_background.BackGroundColorBlue;
+            }
+            catch
+            {
+
+            }
+            finally
+            {
+                if (sr1 != null)
+                {
+                    sr1.Close();
+                }
+                if (sr2 != null)
+                {
+                    sr2.Close();
+                }
+                if (sr3 != null)
+                {
+                    sr3.Close();
+                }
+                if (sr4 != null)
+                {
+                    sr4.Close();
+                }
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            System.IO.StreamWriter sw1 = null;
+            System.IO.StreamWriter sw2 = null;
+            System.IO.StreamWriter sw3 = null;
+            System.IO.StreamWriter sw4 = null;
+            try
+            {
+                sw1 = new System.IO.StreamWriter("settings1.config", false, new System.Text.UTF8Encoding(false));
+                sw2 = new System.IO.StreamWriter("settings2.config", false, new System.Text.UTF8Encoding(false));
+                sw3 = new System.IO.StreamWriter("settings3.config", false, new System.Text.UTF8Encoding(false));
+                sw4 = new System.IO.StreamWriter("settings4.config", false, new System.Text.UTF8Encoding(false));
+                System.Xml.Serialization.XmlSerializer serializer1 = new System.Xml.Serialization.XmlSerializer(typeof(Suit));
+                System.Xml.Serialization.XmlSerializer serializer2 = new System.Xml.Serialization.XmlSerializer(typeof(Picture));
+                System.Xml.Serialization.XmlSerializer serializer3 = new System.Xml.Serialization.XmlSerializer(typeof(Rank));
+                System.Xml.Serialization.XmlSerializer serializer4 = new System.Xml.Serialization.XmlSerializer(typeof(BackGround));
+                serializer1.Serialize(sw1, m_suit);
+                serializer2.Serialize(sw2, m_picture);
+                serializer3.Serialize(sw3, m_rank);
+                serializer4.Serialize(sw4, m_background);
+            }
+            catch
+            {
+
+            }
+            finally
+            {
+                if (sw1 != null)
+                {
+                    sw1.Close();
+                }
+                if (sw2 != null)
+                {
+                    sw2.Close();
+                }
+                if (sw3 != null)
+                {
+                    sw3.Close();
+                }
+                if (sw4 != null)
+                {
+                    sw4.Close();
+                }
+            }
         }
 
         /// <summary>
@@ -678,7 +802,7 @@ namespace PlayingCardsAutoDesigner
                     strSuitFileName = "";
                 }
 
-                comboBoxSuit.Items.Add(new Suit(strSuitViewName, strSuitFileName, ii));
+                comboBoxSuit.Items.Add(new Suit(strSuitViewName, strSuitFileName, (int)ii));
             }
             comboBoxSuit.DisplayMember = "SuitViewName";
         }
@@ -783,7 +907,7 @@ namespace PlayingCardsAutoDesigner
                 {
                     strRankName = ConfigurationManager.AppSettings[strRankKey];
                 }
-                comboBoxRank.Items.Add(new Rank(strRankName, ii));
+                comboBoxRank.Items.Add(new Rank(strRankName, (int)ii));
             }
             comboBoxRank.DisplayMember = "RankViewName";
         }
@@ -969,6 +1093,7 @@ namespace PlayingCardsAutoDesigner
                         break;
 
                     default:
+                        intLogoScale = (double)m_picture.PictureSizeA;
                         break;
                 }
 
@@ -1014,11 +1139,25 @@ namespace PlayingCardsAutoDesigner
                             case "9":
                                 graphics.DrawString(strCardNumber, fnt, m_fontBrush, intCardNumberOffsetX1 / intModeScale, intCardNumberOffsetY / intModeScale);
                                 break;
+
                             case "10":
                                 graphics.DrawString(strCardNumber, fnt, m_fontBrush, intCardNumberOffsetX2 / intModeScale, intCardNumberOffsetY / intModeScale);
                                 break;
-                            default:
+
+                            case "A":
+                            case "J":
+                            case "Q":
+                            case "K":
                                 graphics.DrawString(strCardNumber, fnt, m_fontBrush, intCardNumberOffsetX3 / intModeScale, intCardNumberOffsetY / intModeScale);
+                                break;
+
+                            default:
+                                StringFormat sf = new StringFormat();
+                                if (!string.IsNullOrEmpty(m_rank.RankFontName) && m_rank.RankFontName[0] == '@')
+                                {
+                                    sf.FormatFlags = StringFormatFlags.DirectionVertical;
+                                }
+                                graphics.DrawString(strCardNumber, fnt, m_fontBrush, intCardNumberOffsetX3 / intModeScale, intCardNumberOffsetY / intModeScale, sf);
                                 break;
                         }
                     }
@@ -1198,7 +1337,13 @@ namespace PlayingCardsAutoDesigner
                                         intLogoWidth,
                                         intLogoHeight);
                                     break;
+
                                 default:
+                                    graphics.DrawImage(logoImage1,
+                                        newImage.Width / 2 - intLogoWidth / 2 + intMarkOffsetX1,
+                                        newImage.Height / 2 - intLogoHeight / 2 - intMarkOffsetY1 - intMarkOffsetY4,
+                                        intLogoWidth,
+                                        intLogoHeight);
                                     break;
                             }
 
@@ -1299,6 +1444,7 @@ namespace PlayingCardsAutoDesigner
             switch (result)
             {
                 case DialogResult.OK:
+
                     string strFilePath = openFileDialog1.FileName;
                     m_picture.PicturePath = strFilePath;
                     redraw();
@@ -1320,6 +1466,7 @@ namespace PlayingCardsAutoDesigner
             switch (result)
             {
                 case DialogResult.OK:
+
                     string strFilePath = openFileDialog1.FileName;
                     m_strBackgroundPath = strFilePath;
                     redraw();
@@ -1339,16 +1486,22 @@ namespace PlayingCardsAutoDesigner
         private void saveCardImage_Click(object sender, EventArgs e)
         {
             DialogResult result = saveFileDialog1.ShowDialog();
-            if (result == DialogResult.OK)
+            switch (result)
             {
-                string strSavePath = saveFileDialog1.FileName;
-                if (pictureBox1.Image != null)
-                {
-                    pictureBox1.Image.Dispose();
-                }
-                Bitmap newImage = getImage(1);
-                newImage.Save(strSavePath, System.Drawing.Imaging.ImageFormat.Png);
-                newImage.Dispose();
+                case DialogResult.OK:
+
+                    string strSavePath = saveFileDialog1.FileName;
+                    if (pictureBox1.Image != null)
+                    {
+                        pictureBox1.Image.Dispose();
+                    }
+                    Bitmap newImage = getImage(1);
+                    newImage.Save(strSavePath, System.Drawing.Imaging.ImageFormat.Png);
+                    newImage.Dispose();
+                    break;
+
+                default:
+                    break;
             }
         }
  
@@ -1366,9 +1519,20 @@ namespace PlayingCardsAutoDesigner
             switch (result)
             {
                 case DialogResult.OK:
-                    rankFontName.Text = fontDialog1.Font.Name;
+
+                    if ( fontDialog1.Font.GdiVerticalFont )
+                    {
+                        m_rank.RankFontName = "@";
+                    }
+                    else
+                    {
+                        m_rank.RankFontName = "";
+                    }
+                    m_rank.RankFontName += fontDialog1.Font.Name;
+                    rankFontName.Text = m_rank.RankFontName;
                     redraw();
                     break;
+
                 default:
                     break;
             }
@@ -1385,6 +1549,7 @@ namespace PlayingCardsAutoDesigner
             switch (result)
             {
                 case DialogResult.OK:
+
                     if (m_fontBrush != null)
                     {
                         m_fontBrush.Dispose();
@@ -1401,6 +1566,7 @@ namespace PlayingCardsAutoDesigner
 
                     redraw();
                     break;
+
                 default:
                     break;
             }
@@ -1414,6 +1580,20 @@ namespace PlayingCardsAutoDesigner
         private void comboBoxSuit_SelectedIndexChanged(object sender, EventArgs e)
         {
             Suit suit = (Suit)comboBoxSuit.SelectedItem;
+            if (suit.SuitType == (int)Suit.ENUM_SUIT_TYPE .ENUM_SUIT_TYPE_JOKER )
+            {
+                if (comboBoxRank.SelectedIndex != (int)Rank.ENUM_RANK_TYPE.ENUM_RANK_TYPE_JOKER)
+                {
+                    comboBoxRank.SelectedIndex = (int)Rank.ENUM_RANK_TYPE.ENUM_RANK_TYPE_JOKER;
+                }
+            }
+            else
+            {
+                if (comboBoxRank.SelectedIndex == (int)Rank.ENUM_RANK_TYPE.ENUM_RANK_TYPE_JOKER)
+                {
+                    comboBoxRank.SelectedIndex = (int)Rank.ENUM_RANK_TYPE.ENUM_RANK_TYPE_START;
+                }
+            }
             m_suit.SuitType = suit.SuitType;
             m_suit.SuitViewName = suit.SuitViewName;
             m_suit.SuitFileName = suit.SuitFileName;
@@ -1560,6 +1740,20 @@ namespace PlayingCardsAutoDesigner
         private void comboBoxRank_SelectedIndexChanged(object sender, EventArgs e)
         {
             Rank rank = (Rank)comboBoxRank.SelectedItem;
+            if (rank.RankType == (int)Rank.ENUM_RANK_TYPE.ENUM_RANK_TYPE_JOKER)
+            {
+                if (comboBoxSuit.SelectedIndex != (int)Suit.ENUM_SUIT_TYPE.ENUM_SUIT_TYPE_JOKER)
+                {
+                    comboBoxSuit.SelectedIndex = (int)Suit.ENUM_SUIT_TYPE.ENUM_SUIT_TYPE_JOKER;
+                }
+            }
+            else
+            {
+                if (comboBoxSuit.SelectedIndex == (int)Suit.ENUM_SUIT_TYPE.ENUM_SUIT_TYPE_JOKER)
+                {
+                    comboBoxSuit.SelectedIndex = (int)Suit.ENUM_SUIT_TYPE.ENUM_SUIT_TYPE_START;
+                }
+            }
             m_rank.RankType = rank.RankType;
             m_rank.RankViewName = rank.RankViewName;
             redraw();
@@ -1655,6 +1849,11 @@ namespace PlayingCardsAutoDesigner
             redraw();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void backgroundColorRed_ValueChanged(object sender, EventArgs e)
         {
             m_background.BackGroundColorRed = (int)backgroundColorRed.Value;
@@ -1662,6 +1861,11 @@ namespace PlayingCardsAutoDesigner
             redraw();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void backgroundColorGreen_ValueChanged(object sender, EventArgs e)
         {
             m_background.BackGroundColorGreen = (int)backgroundColorGreen.Value;
@@ -1669,6 +1873,11 @@ namespace PlayingCardsAutoDesigner
             redraw();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void backgroundColorBlue_ValueChanged(object sender, EventArgs e)
         {
             m_background.BackGroundColorBlue = (int)backgroundColorBlue.Value;
@@ -1676,12 +1885,18 @@ namespace PlayingCardsAutoDesigner
             redraw();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void selectBackGroundColorButton_Click(object sender, EventArgs e)
         {
             DialogResult result = colorDialog1.ShowDialog();
             switch (result)
             {
                 case DialogResult.OK:
+
                     if (m_backgroundBrush != null)
                     {
                         m_backgroundBrush.Dispose();
@@ -1698,6 +1913,7 @@ namespace PlayingCardsAutoDesigner
 
                     redraw();
                     break;
+
                 default:
                     break;
             }
