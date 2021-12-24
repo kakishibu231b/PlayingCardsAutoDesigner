@@ -14,7 +14,7 @@ namespace PlayingCardsAutoDesigner
     /// <summary>
     /// 
     /// </summary>
-    public partial class Form1 : Form
+    public partial class PlayingCardsAutoDesignerForm : Form
     {
         /// <summary>
         /// 背景ファイルフルパス
@@ -590,7 +590,7 @@ namespace PlayingCardsAutoDesigner
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        public Form1()
+        public PlayingCardsAutoDesignerForm()
         {
             InitializeComponent();
 

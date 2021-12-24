@@ -1,7 +1,7 @@
 ﻿
 namespace PlayingCardsAutoDesigner
 {
-    partial class Form1
+    partial class PlayingCardsAutoDesignerForm
     {
         /// <summary>
         ///  Required designer variable.
