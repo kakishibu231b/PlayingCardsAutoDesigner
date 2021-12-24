@@ -4,7 +4,19 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net5.0-windows</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
-    <Authors>Kakishibu D</Authors>
+    <Authors>KakishibuD</Authors>
+    <ApplicationIcon>PlayingCardsAutoDesigner.ico</ApplicationIcon>
+    <Version>0.0.1</Version>
+    <Company>KakishibuD</Company>
+    <PackageId>Playing Cards Auto Designer</PackageId>
+    <Product>Playing Cards Auto Designer</Product>
+    <Description>This application is for playing card design.</Description>
+    <Copyright>KakishibuD</Copyright>
+    <RepositoryUrl>https://github.com/kakishibu231b/PlayingCardsAutoDesigner</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/kakishibu231b/PlayingCardsAutoDesigner</PackageProjectUrl>
+    <RepositoryType>GitHub</RepositoryType>
+    <PackageReleaseNotes>Traial Version.</PackageReleaseNotes>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
 
   <ItemGroup>
