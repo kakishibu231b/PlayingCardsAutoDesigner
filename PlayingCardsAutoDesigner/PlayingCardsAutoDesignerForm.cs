@@ -17,11 +17,6 @@ namespace PlayingCardsAutoDesigner
     public partial class PlayingCardsAutoDesignerForm : Form
     {
         /// <summary>
-        /// 背景ファイルフルパス
-        /// </summary>
-        private string m_strBackgroundPath;
-
-        /// <summary>
         /// 文字用ブラシ
         /// </summary>
         private Brush m_fontBrush;
@@ -522,6 +517,20 @@ namespace PlayingCardsAutoDesigner
             public BackGround()
             {
 
+            }
+
+            /// <summary>
+            /// 背景ファイルフルパス
+            /// </summary>
+            private string m_strBackgroundPath;
+
+            /// <summary>
+            /// 背景色文字色赤取得/設定
+            /// </summary>
+            public string BackgroundPath
+            {
+                get { return m_strBackgroundPath; }
+                set { m_strBackgroundPath = value; }
             }
 
             /// <summary>
@@ -1042,7 +1051,7 @@ namespace PlayingCardsAutoDesigner
                 graphics.DrawRectangle(Pens.Black, 0, 0, intCardWidth-1, intCardHeight-1);
 
                 // 背景取得
-                string strBackGroundImagePath = m_strBackgroundPath;
+                string strBackGroundImagePath = m_background.BackgroundPath;
                 if (!string.IsNullOrEmpty(strBackGroundImagePath))
                 {
                     logoImage3 = new Bitmap(strBackGroundImagePath);
@@ -1468,7 +1477,7 @@ namespace PlayingCardsAutoDesigner
                 case DialogResult.OK:
 
                     string strFilePath = openFileDialog1.FileName;
-                    m_strBackgroundPath = strFilePath;
+                    m_background.BackgroundPath = strFilePath;
                     redraw();
                     break;
 
