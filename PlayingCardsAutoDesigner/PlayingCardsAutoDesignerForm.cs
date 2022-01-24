@@ -965,7 +965,7 @@ namespace PlayingCardsAutoDesigner
             else
             {
                 m_fontBrush.Dispose();
-                Color colorSolidBrush = Color.FromArgb(m_rank.RankFontColorRed, m_rank.RankFontColorRed, m_rank.RankFontColorRed);
+                Color colorSolidBrush = Color.FromArgb(m_rank.RankFontColorRed, m_rank.RankFontColorGreen, m_rank.RankFontColorBlue);
                 m_fontBrush = new SolidBrush(colorSolidBrush);
             }
         }
@@ -1567,12 +1567,6 @@ namespace PlayingCardsAutoDesigner
             {
                 case DialogResult.OK:
 
-                    if (m_fontBrush != null)
-                    {
-                        m_fontBrush.Dispose();
-                    }
-                    m_fontBrush = new SolidBrush(colorDialog1.Color);
-
                     rankFontColorRed.Value = colorDialog1.Color.R;
                     rankFontColorGreen.Value = colorDialog1.Color.G;
                     rankFontColorBlue.Value = colorDialog1.Color.B;
@@ -1581,6 +1575,7 @@ namespace PlayingCardsAutoDesigner
                     m_rank.RankFontColorGreen = colorDialog1.Color.G;
                     m_rank.RankFontColorBlue = colorDialog1.Color.B;
 
+                    makeRankSolidBrush();
                     redraw();
                     break;
 
