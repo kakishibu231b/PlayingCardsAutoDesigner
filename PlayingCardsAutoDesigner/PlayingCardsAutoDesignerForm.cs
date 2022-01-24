@@ -1347,6 +1347,14 @@ namespace PlayingCardsAutoDesigner
                                         intLogoHeight);
                                     break;
 
+                                case "2":
+                                case "4":
+                                case "6":
+                                case "7":
+                                case "8":
+                                case "10":
+                                    break;
+
                                 default:
                                     graphics.DrawImage(logoImage1,
                                         newImage.Width / 2 - intLogoWidth / 2 + intMarkOffsetX1,
