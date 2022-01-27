@@ -14,10 +14,17 @@ namespace PlayingCardsAutoDesigner
         [STAThread]
         static void Main()
         {
-            Application.SetHighDpiMode(HighDpiMode.SystemAware);
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new PlayingCardsAutoDesignerForm());
+            try
+            {
+                Application.SetHighDpiMode(HighDpiMode.SystemAware);
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+                Application.Run(new PlayingCardsAutoDesignerForm());
+            }
+            catch
+            {
+                MessageBox.Show("予期せぬエラーが発生しました。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
