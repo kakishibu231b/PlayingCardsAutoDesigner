@@ -1508,10 +1508,6 @@ namespace PlayingCardsAutoDesigner
                 case DialogResult.OK:
 
                     string strSavePath = saveFileDialog1.FileName;
-                    if (pictureBox1.Image != null)
-                    {
-                        pictureBox1.Image.Dispose();
-                    }
                     Bitmap newImage = getImage(1);
                     newImage.Save(strSavePath, System.Drawing.Imaging.ImageFormat.Png);
                     newImage.Dispose();
