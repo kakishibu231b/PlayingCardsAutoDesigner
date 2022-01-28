@@ -86,6 +86,7 @@ namespace PlayingCardsAutoDesigner
             this.label_pictureSizeN = new System.Windows.Forms.Label();
             this.label_pictureOffsetX2 = new System.Windows.Forms.Label();
             this.groupBox_background = new System.Windows.Forms.GroupBox();
+            this.clearBackgroundImageButton = new System.Windows.Forms.Button();
             this.selectBackgroundImageButton = new System.Windows.Forms.Button();
             this.label_backgroundColor = new System.Windows.Forms.Label();
             this.selectBackGroundColorButton = new System.Windows.Forms.Button();
@@ -144,8 +145,8 @@ namespace PlayingCardsAutoDesigner
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox1.Location = new System.Drawing.Point(10, 10);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(606, 921);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox1.Size = new System.Drawing.Size(580, 921);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
@@ -157,7 +158,7 @@ namespace PlayingCardsAutoDesigner
             this.panel_left.Location = new System.Drawing.Point(0, 0);
             this.panel_left.Name = "panel_left";
             this.panel_left.Padding = new System.Windows.Forms.Padding(10);
-            this.panel_left.Size = new System.Drawing.Size(626, 941);
+            this.panel_left.Size = new System.Drawing.Size(600, 941);
             this.panel_left.TabIndex = 0;
             // 
             // splitContainer1
@@ -176,9 +177,10 @@ namespace PlayingCardsAutoDesigner
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.panel_right);
+            this.splitContainer1.Panel2.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.splitContainer1.Panel2MinSize = 160;
-            this.splitContainer1.Size = new System.Drawing.Size(844, 941);
-            this.splitContainer1.SplitterDistance = 626;
+            this.splitContainer1.Size = new System.Drawing.Size(824, 941);
+            this.splitContainer1.SplitterDistance = 600;
             this.splitContainer1.SplitterWidth = 1;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -193,7 +195,7 @@ namespace PlayingCardsAutoDesigner
             this.panel_right.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel_right.Location = new System.Drawing.Point(0, 0);
             this.panel_right.Name = "panel_right";
-            this.panel_right.Size = new System.Drawing.Size(217, 941);
+            this.panel_right.Size = new System.Drawing.Size(223, 941);
             this.panel_right.TabIndex = 0;
             // 
             // groupBox_suit
@@ -928,6 +930,7 @@ namespace PlayingCardsAutoDesigner
             // 
             // groupBox_background
             // 
+            this.groupBox_background.Controls.Add(this.clearBackgroundImageButton);
             this.groupBox_background.Controls.Add(this.selectBackgroundImageButton);
             this.groupBox_background.Controls.Add(this.label_backgroundColor);
             this.groupBox_background.Controls.Add(this.selectBackGroundColorButton);
@@ -944,9 +947,19 @@ namespace PlayingCardsAutoDesigner
             this.groupBox_background.TabStop = false;
             this.groupBox_background.Text = "背景";
             // 
+            // clearBackgroundImageButton
+            // 
+            this.clearBackgroundImageButton.Location = new System.Drawing.Point(64, 18);
+            this.clearBackgroundImageButton.Name = "clearBackgroundImageButton";
+            this.clearBackgroundImageButton.Size = new System.Drawing.Size(30, 23);
+            this.clearBackgroundImageButton.TabIndex = 500;
+            this.clearBackgroundImageButton.Text = "消";
+            this.clearBackgroundImageButton.UseVisualStyleBackColor = true;
+            this.clearBackgroundImageButton.Click += new System.EventHandler(this.clearBackgroundImageButton_Click);
+            // 
             // selectBackgroundImageButton
             // 
-            this.selectBackgroundImageButton.Location = new System.Drawing.Point(41, 22);
+            this.selectBackgroundImageButton.Location = new System.Drawing.Point(13, 18);
             this.selectBackgroundImageButton.Name = "selectBackgroundImageButton";
             this.selectBackgroundImageButton.Size = new System.Drawing.Size(45, 23);
             this.selectBackgroundImageButton.TabIndex = 500;
@@ -1087,7 +1100,7 @@ namespace PlayingCardsAutoDesigner
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(844, 941);
+            this.ClientSize = new System.Drawing.Size(824, 941);
             this.Controls.Add(this.splitContainer1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "PlayingCardsAutoDesignerForm";
@@ -1097,6 +1110,7 @@ namespace PlayingCardsAutoDesigner
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel_left.ResumeLayout(false);
+            this.panel_left.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
@@ -1217,6 +1231,7 @@ namespace PlayingCardsAutoDesigner
         private System.Windows.Forms.NumericUpDown pictureOffsetY3;
         private System.Windows.Forms.Label label_pictureOffsetY4;
         private System.Windows.Forms.NumericUpDown pictureOffsetY4;
+        private System.Windows.Forms.Button clearBackgroundImageButton;
     }
 }
 

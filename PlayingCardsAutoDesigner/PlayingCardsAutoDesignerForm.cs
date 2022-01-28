@@ -1516,7 +1516,17 @@ namespace PlayingCardsAutoDesigner
             }
         }
 
-        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void clearBackgroundImageButton_Click(object sender, EventArgs e)
+        {
+            m_background.BackgroundPath = "";
+            redraw();
+        }
+
         /// <summary>
         /// カードイメージ保存ボタン押下時処理
         /// </summary>
