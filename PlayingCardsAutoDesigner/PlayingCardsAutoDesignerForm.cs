@@ -1488,13 +1488,6 @@ namespace PlayingCardsAutoDesigner
 
 
             // ダイアログ編集可否制御
-            rankLeftSpace1.Enabled = false;
-            rankLeftSpace2.Enabled = false;
-            rankLeftSpace3.Enabled = false;
-            pictureSizeA.Enabled = false;
-            pictureSizeN.Enabled = false;
-            pictureSizeX.Enabled = false;
-
             switch (m_rank.RankType)
             {
                 case (int)Rank.ENUM_RANK_TYPE.ENUM_RANK_TYPE_R2:
@@ -1506,21 +1499,37 @@ namespace PlayingCardsAutoDesigner
                 case (int)Rank.ENUM_RANK_TYPE.ENUM_RANK_TYPE_R8:
                 case (int)Rank.ENUM_RANK_TYPE.ENUM_RANK_TYPE_R9:
                     rankLeftSpace1.Enabled = true;
+                    rankLeftSpace2.Enabled = false;
+                    rankLeftSpace3.Enabled = false;
+                    pictureSizeA.Enabled = false;
                     pictureSizeN.Enabled = true;
+                    pictureSizeX.Enabled = false;
                     break;
                 case (int)Rank.ENUM_RANK_TYPE.ENUM_RANK_TYPE_R10:
+                    rankLeftSpace1.Enabled = false;
                     rankLeftSpace2.Enabled = true;
+                    rankLeftSpace3.Enabled = false;
+                    pictureSizeA.Enabled = false;
                     pictureSizeN.Enabled = true;
+                    pictureSizeX.Enabled = false;
                     break;
                 case (int)Rank.ENUM_RANK_TYPE.ENUM_RANK_TYPE_ACE:
                 case (int)Rank.ENUM_RANK_TYPE.ENUM_RANK_TYPE_JOKER:
+                    rankLeftSpace1.Enabled = false;
+                    rankLeftSpace2.Enabled = false;
                     rankLeftSpace3.Enabled = true;
                     pictureSizeA.Enabled = true;
+                    pictureSizeN.Enabled = false;
+                    pictureSizeX.Enabled = false;
                     break;
                 case (int)Rank.ENUM_RANK_TYPE.ENUM_RANK_TYPE_JACK:
                 case (int)Rank.ENUM_RANK_TYPE.ENUM_RANK_TYPE_QUEEN:
                 case (int)Rank.ENUM_RANK_TYPE.ENUM_RANK_TYPE_KING:
+                    rankLeftSpace1.Enabled = false;
+                    rankLeftSpace2.Enabled = false;
                     rankLeftSpace3.Enabled = true;
+                    pictureSizeA.Enabled = false;
+                    pictureSizeN.Enabled = false;
                     pictureSizeX.Enabled = true;
                     break;
                 default:
@@ -1566,6 +1575,17 @@ namespace PlayingCardsAutoDesigner
             {
                 openFileDialog.Dispose();
             }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void clearPictureButton_Click(object sender, EventArgs e)
+        {
+            m_picture.PicturePath = "";
+            redraw();
         }
 
         /// <summary>

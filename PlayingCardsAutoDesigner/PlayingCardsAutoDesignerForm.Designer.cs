@@ -101,6 +101,7 @@ namespace PlayingCardsAutoDesigner
             this.fontDialog1 = new System.Windows.Forms.FontDialog();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.clearPictureButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel_left.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -144,7 +145,7 @@ namespace PlayingCardsAutoDesigner
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox1.Location = new System.Drawing.Point(10, 10);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(609, 921);
+            this.pictureBox1.Size = new System.Drawing.Size(612, 921);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
@@ -157,7 +158,7 @@ namespace PlayingCardsAutoDesigner
             this.panel_left.Location = new System.Drawing.Point(0, 0);
             this.panel_left.Name = "panel_left";
             this.panel_left.Padding = new System.Windows.Forms.Padding(10);
-            this.panel_left.Size = new System.Drawing.Size(629, 941);
+            this.panel_left.Size = new System.Drawing.Size(632, 941);
             this.panel_left.TabIndex = 0;
             // 
             // splitContainer1
@@ -179,7 +180,7 @@ namespace PlayingCardsAutoDesigner
             this.splitContainer1.Panel2.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.splitContainer1.Panel2MinSize = 160;
             this.splitContainer1.Size = new System.Drawing.Size(844, 941);
-            this.splitContainer1.SplitterDistance = 629;
+            this.splitContainer1.SplitterDistance = 632;
             this.splitContainer1.SplitterWidth = 1;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -194,7 +195,7 @@ namespace PlayingCardsAutoDesigner
             this.panel_right.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel_right.Location = new System.Drawing.Point(0, 0);
             this.panel_right.Name = "panel_right";
-            this.panel_right.Size = new System.Drawing.Size(214, 941);
+            this.panel_right.Size = new System.Drawing.Size(211, 941);
             this.panel_right.TabIndex = 0;
             // 
             // groupBox_suit
@@ -630,6 +631,7 @@ namespace PlayingCardsAutoDesigner
             // 
             // groupBox_Picture
             // 
+            this.groupBox_Picture.Controls.Add(this.clearPictureButton);
             this.groupBox_Picture.Controls.Add(this.selectPictureButton);
             this.groupBox_Picture.Controls.Add(this.label_pictureSizeA);
             this.groupBox_Picture.Controls.Add(this.label_pictureOffsetY4);
@@ -658,7 +660,7 @@ namespace PlayingCardsAutoDesigner
             // 
             // selectPictureButton
             // 
-            this.selectPictureButton.Location = new System.Drawing.Point(41, 20);
+            this.selectPictureButton.Location = new System.Drawing.Point(6, 20);
             this.selectPictureButton.Name = "selectPictureButton";
             this.selectPictureButton.Size = new System.Drawing.Size(45, 23);
             this.selectPictureButton.TabIndex = 200;
@@ -1091,6 +1093,16 @@ namespace PlayingCardsAutoDesigner
             this.saveFileDialog1.DefaultExt = "png";
             this.saveFileDialog1.Filter = "png|*.png";
             // 
+            // clearPictureButton
+            // 
+            this.clearPictureButton.Location = new System.Drawing.Point(56, 20);
+            this.clearPictureButton.Name = "clearPictureButton";
+            this.clearPictureButton.Size = new System.Drawing.Size(30, 23);
+            this.clearPictureButton.TabIndex = 200;
+            this.clearPictureButton.Text = "消";
+            this.clearPictureButton.UseVisualStyleBackColor = true;
+            this.clearPictureButton.Click += new System.EventHandler(this.clearPictureButton_Click);
+            // 
             // PlayingCardsAutoDesignerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -1226,6 +1238,7 @@ namespace PlayingCardsAutoDesigner
         private System.Windows.Forms.Label label_pictureOffsetY4;
         private System.Windows.Forms.NumericUpDown pictureOffsetY4;
         private System.Windows.Forms.Button clearBackgroundImageButton;
+        private System.Windows.Forms.Button clearPictureButton;
     }
 }
 
