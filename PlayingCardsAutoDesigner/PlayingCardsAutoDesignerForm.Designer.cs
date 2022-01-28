@@ -145,7 +145,7 @@ namespace PlayingCardsAutoDesigner
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox1.Location = new System.Drawing.Point(10, 10);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(580, 921);
+            this.pictureBox1.Size = new System.Drawing.Size(603, 921);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
@@ -158,7 +158,7 @@ namespace PlayingCardsAutoDesigner
             this.panel_left.Location = new System.Drawing.Point(0, 0);
             this.panel_left.Name = "panel_left";
             this.panel_left.Padding = new System.Windows.Forms.Padding(10);
-            this.panel_left.Size = new System.Drawing.Size(600, 941);
+            this.panel_left.Size = new System.Drawing.Size(623, 941);
             this.panel_left.TabIndex = 0;
             // 
             // splitContainer1
@@ -179,8 +179,8 @@ namespace PlayingCardsAutoDesigner
             this.splitContainer1.Panel2.Controls.Add(this.panel_right);
             this.splitContainer1.Panel2.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.splitContainer1.Panel2MinSize = 160;
-            this.splitContainer1.Size = new System.Drawing.Size(824, 941);
-            this.splitContainer1.SplitterDistance = 600;
+            this.splitContainer1.Size = new System.Drawing.Size(844, 941);
+            this.splitContainer1.SplitterDistance = 623;
             this.splitContainer1.SplitterWidth = 1;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -195,7 +195,7 @@ namespace PlayingCardsAutoDesigner
             this.panel_right.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel_right.Location = new System.Drawing.Point(0, 0);
             this.panel_right.Name = "panel_right";
-            this.panel_right.Size = new System.Drawing.Size(223, 941);
+            this.panel_right.Size = new System.Drawing.Size(220, 941);
             this.panel_right.TabIndex = 0;
             // 
             // groupBox_suit
@@ -1100,7 +1100,7 @@ namespace PlayingCardsAutoDesigner
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(824, 941);
+            this.ClientSize = new System.Drawing.Size(844, 941);
             this.Controls.Add(this.splitContainer1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "PlayingCardsAutoDesignerForm";
