@@ -374,7 +374,7 @@ namespace PlayingCardsAutoDesigner
             private int m_intRankType;
 
             /// <summary>
-            /// 番号表示名称取得/設定
+            /// 番号種類取得/設定
             /// </summary>
             public int RankType
             {
@@ -1470,6 +1470,47 @@ namespace PlayingCardsAutoDesigner
             }
             pictureBox1.Image = getImage(0);
             pictureBox1.Refresh();
+
+
+
+            rankLeftSpace1.Enabled = false;
+            rankLeftSpace2.Enabled = false;
+            rankLeftSpace3.Enabled = false;
+            pictureSizeA.Enabled = false;
+            pictureSizeN.Enabled = false;
+            pictureSizeX.Enabled = false;
+
+            switch (m_rank.RankType)
+            {
+                case (int)Rank.ENUM_RANK_TYPE.ENUM_RANK_TYPE_R2:
+                case (int)Rank.ENUM_RANK_TYPE.ENUM_RANK_TYPE_R3:
+                case (int)Rank.ENUM_RANK_TYPE.ENUM_RANK_TYPE_R4:
+                case (int)Rank.ENUM_RANK_TYPE.ENUM_RANK_TYPE_R5:
+                case (int)Rank.ENUM_RANK_TYPE.ENUM_RANK_TYPE_R6:
+                case (int)Rank.ENUM_RANK_TYPE.ENUM_RANK_TYPE_R7:
+                case (int)Rank.ENUM_RANK_TYPE.ENUM_RANK_TYPE_R8:
+                case (int)Rank.ENUM_RANK_TYPE.ENUM_RANK_TYPE_R9:
+                    rankLeftSpace1.Enabled = true;
+                    pictureSizeN.Enabled = true;
+                    break;
+                case (int)Rank.ENUM_RANK_TYPE.ENUM_RANK_TYPE_R10:
+                    rankLeftSpace2.Enabled = true;
+                    pictureSizeN.Enabled = true;
+                    break;
+                case (int)Rank.ENUM_RANK_TYPE.ENUM_RANK_TYPE_ACE:
+                case (int)Rank.ENUM_RANK_TYPE.ENUM_RANK_TYPE_JOKER:
+                    rankLeftSpace3.Enabled = true;
+                    pictureSizeA.Enabled = true;
+                    break;
+                case (int)Rank.ENUM_RANK_TYPE.ENUM_RANK_TYPE_JACK:
+                case (int)Rank.ENUM_RANK_TYPE.ENUM_RANK_TYPE_QUEEN:
+                case (int)Rank.ENUM_RANK_TYPE.ENUM_RANK_TYPE_KING:
+                    rankLeftSpace3.Enabled = true;
+                    pictureSizeX.Enabled = true;
+                    break;
+                default:
+                    break;
+            }
         }
 
         /// <summary>
