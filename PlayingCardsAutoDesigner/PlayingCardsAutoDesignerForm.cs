@@ -1666,6 +1666,8 @@ namespace PlayingCardsAutoDesigner
         /// <param name="e"></param>
         private void selectFontColorButton_Click(object sender, EventArgs e)
         {
+            Color color = Color.FromArgb(m_rank.RankFontColorRed, m_rank.RankFontColorGreen, m_rank.RankFontColorBlue);
+            colorDialog1.Color = color;
             DialogResult result = colorDialog1.ShowDialog();
             switch (result)
             {
@@ -2002,12 +2004,14 @@ namespace PlayingCardsAutoDesigner
         }
 
         /// <summary>
-        /// 
+        /// 背景色選択ダイアログ表示
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void selectBackGroundColorButton_Click(object sender, EventArgs e)
         {
+            Color color = Color.FromArgb(m_background.BackGroundColorRed, m_background.BackGroundColorGreen, m_background.BackGroundColorBlue);
+            colorDialog1.Color = color;
             DialogResult result = colorDialog1.ShowDialog();
             switch (result)
             {
