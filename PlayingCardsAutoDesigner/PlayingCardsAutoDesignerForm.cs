@@ -467,6 +467,20 @@ namespace PlayingCardsAutoDesigner
             }
 
             /// <summary>
+            /// カード番号フォントスタイル
+            /// </summary>
+            private string strRankFontStyle;
+
+            /// <summary>
+            /// カード番号フォントスタイル
+            /// </summary>
+            public string RankFontStyle
+            {
+                get { return strRankFontStyle; }
+                set { strRankFontStyle = value; }
+            }
+
+            /// <summary>
             /// カード番号文字色赤
             /// </summary>
             private int intRankFontColorRed;
@@ -1030,7 +1044,8 @@ namespace PlayingCardsAutoDesigner
                 if (!string.IsNullOrEmpty(strCardNumber))
                 {
                     string strFontName = m_rank.RankFontName;
-                    fnt = new Font(strFontName, intFontSize / intModeScale);
+                    int intFontStyle = int.Parse(m_rank.RankFontStyle);
+                    fnt = new Font(strFontName, intFontSize / intModeScale, (FontStyle)intFontStyle);
                 }
 
                 // キャンバス作成
@@ -1472,7 +1487,7 @@ namespace PlayingCardsAutoDesigner
             pictureBox1.Refresh();
 
 
-
+            // ダイアログ編集可否制御
             rankLeftSpace1.Enabled = false;
             rankLeftSpace2.Enabled = false;
             rankLeftSpace3.Enabled = false;
@@ -1598,7 +1613,8 @@ namespace PlayingCardsAutoDesigner
         /// <param name="e"></param>
         private void selectFontButton_Click(object sender, EventArgs e)
         {
-            fontDialog1.Font = new Font(rankFontName.Text, (int)rankFontSize.Value);
+            int intFontStyle = int.Parse(m_rank.RankFontStyle);
+            fontDialog1.Font = new Font(rankFontName.Text, (int)rankFontSize.Value, (FontStyle)intFontStyle);
             fontDialog1.MaxSize = 1000;
 
             DialogResult result = fontDialog1.ShowDialog();
@@ -1615,6 +1631,25 @@ namespace PlayingCardsAutoDesigner
                         m_rank.RankFontName = "";
                     }
                     m_rank.RankFontName += fontDialog1.Font.Name;
+
+                    intFontStyle = 0;
+                    if (fontDialog1.Font.Bold)
+                    {
+                        intFontStyle += 1;
+                    }
+                    if (fontDialog1.Font.Italic)
+                    {
+                        intFontStyle += 2;
+                    }
+                    if (fontDialog1.Font.Underline)
+                    {
+                        intFontStyle += 4;
+                    }
+                    if (fontDialog1.Font.Strikeout)
+                    {
+                        intFontStyle += 8;
+                    }
+                    m_rank.RankFontStyle = intFontStyle.ToString();
                     rankFontName.Text = m_rank.RankFontName;
                     redraw();
                     break;
