@@ -1535,18 +1535,36 @@ namespace PlayingCardsAutoDesigner
         /// <param name="e"></param>
         private void selectPictureButton_Click(object sender, EventArgs e)
         {
-            DialogResult result = openFileDialog1.ShowDialog();
-            switch (result)
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            try
             {
-                case DialogResult.OK:
+                if (m_picture.PicturePath != "")
+                {
+                    openFileDialog.InitialDirectory = System.IO.Path.GetDirectoryName(m_picture.PicturePath);
+                    openFileDialog.FileName = System.IO.Path.GetFileName(m_picture.PicturePath);
+                }
 
-                    string strFilePath = openFileDialog1.FileName;
-                    m_picture.PicturePath = strFilePath;
-                    redraw();
-                    break;
+                DialogResult result = openFileDialog.ShowDialog();
+                switch (result)
+                {
+                    case DialogResult.OK:
 
-                default:
-                    break;
+                        string strFilePath = openFileDialog.FileName;
+                        m_picture.PicturePath = strFilePath;
+                        redraw();
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+            catch
+            {
+
+            }
+            finally
+            {
+                openFileDialog.Dispose();
             }
         }
 
@@ -1557,18 +1575,36 @@ namespace PlayingCardsAutoDesigner
         /// <param name="e"></param>
         private void selectBackgroundImageButton_Click(object sender, EventArgs e)
         {
-            DialogResult result = openFileDialog1.ShowDialog();
-            switch (result)
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            try
             {
-                case DialogResult.OK:
+                if (m_background.BackgroundPath != "")
+                {
+                    openFileDialog.InitialDirectory = System.IO.Path.GetDirectoryName(m_background.BackgroundPath);
+                    openFileDialog.FileName = System.IO.Path.GetFileName(m_background.BackgroundPath);
+                }
 
-                    string strFilePath = openFileDialog1.FileName;
-                    m_background.BackgroundPath = strFilePath;
-                    redraw();
-                    break;
+                DialogResult result = openFileDialog.ShowDialog();
+                switch (result)
+                {
+                    case DialogResult.OK:
 
-                default:
-                    break;
+                        string strFilePath = openFileDialog.FileName;
+                        m_background.BackgroundPath = strFilePath;
+                        redraw();
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+            catch
+            {
+
+            }
+            finally
+            {
+                openFileDialog.Dispose();
             }
         }
 
@@ -1590,6 +1626,7 @@ namespace PlayingCardsAutoDesigner
         /// <param name="e"></param>
         private void saveCardImage_Click(object sender, EventArgs e)
         {
+            saveFileDialog1.FileName = "";
             DialogResult result = saveFileDialog1.ShowDialog();
             switch (result)
             {
