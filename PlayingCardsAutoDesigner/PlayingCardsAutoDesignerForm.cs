@@ -1047,6 +1047,8 @@ namespace PlayingCardsAutoDesigner
                 newImage = new Bitmap(intCardWidth, intCardHeight);
 
                 graphics = Graphics.FromImage(newImage);
+
+                // 枠描画
                 graphics.FillRectangle(m_backgroundBrush, graphics.VisibleClipBounds);
                 graphics.DrawRectangle(Pens.Black, 0, 0, intCardWidth-1, intCardHeight-1);
 
@@ -1061,6 +1063,26 @@ namespace PlayingCardsAutoDesigner
                         int intBackGroundWidth = logoImage3.Width / intModeScale;
                         int intBackGroundHeight = logoImage3.Height / intModeScale;
                         graphics.DrawImage(logoImage3, 0, 0, intCardWidth, intCardHeight);
+                    }
+                }
+
+                // ガイドライン描画
+                if (mode == 0)
+                {
+                    // ガイドライン縦
+                    for (int ii = 0; ii < 8; ++ii)
+                    {
+                        Point point_vertical_start = new Point(ii * intCardWidth / 8, 0);
+                        Point point_vertical_end = new Point(ii * intCardWidth / 8, intCardHeight);
+                        graphics.DrawLine(Pens.LightGray, point_vertical_start, point_vertical_end);
+                    }
+
+                    // ガイドライン横
+                    for (int ii = 0; ii < 8; ++ii)
+                    {
+                        Point point_horizontal_line_start = new Point(0, ii * intCardHeight / 8);
+                        Point point_horizontal_line_end = new Point(intCardWidth, ii * intCardHeight / 8);
+                        graphics.DrawLine(Pens.LightGray, point_horizontal_line_start, point_horizontal_line_end);
                     }
                 }
 
