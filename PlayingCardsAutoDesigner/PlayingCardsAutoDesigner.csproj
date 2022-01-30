@@ -6,7 +6,7 @@
     <UseWindowsForms>true</UseWindowsForms>
     <Authors>KakishibuD</Authors>
     <ApplicationIcon>PlayingCardsAutoDesigner.ico</ApplicationIcon>
-    <Version>0.0.5</Version>
+    <Version>0.0.6</Version>
     <Company>KakishibuD</Company>
     <PackageId>Playing Cards Auto Designer</PackageId>
     <Product>Playing Cards Auto Designer</Product>
