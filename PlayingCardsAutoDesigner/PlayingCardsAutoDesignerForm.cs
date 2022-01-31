@@ -318,6 +318,7 @@ namespace PlayingCardsAutoDesigner
             {
                 m_strRankViewName = "";
                 m_intRankType = 0;
+                m_strRankFontStyle = "0";
             }
 
             /// <summary>
@@ -352,6 +353,7 @@ namespace PlayingCardsAutoDesigner
             {
                 m_strRankViewName = strRankViewName;
                 m_intRankType = intRankType;
+                m_strRankFontStyle = "0";
             }
 
             /// <summary>
@@ -469,15 +471,15 @@ namespace PlayingCardsAutoDesigner
             /// <summary>
             /// カード番号フォントスタイル
             /// </summary>
-            private string strRankFontStyle;
+            private string m_strRankFontStyle;
 
             /// <summary>
             /// カード番号フォントスタイル
             /// </summary>
             public string RankFontStyle
             {
-                get { return strRankFontStyle; }
-                set { strRankFontStyle = value; }
+                get { return m_strRankFontStyle; }
+                set { m_strRankFontStyle = value; }
             }
 
             /// <summary>
@@ -1486,8 +1488,7 @@ namespace PlayingCardsAutoDesigner
             pictureBox1.Image = getImage(0);
             pictureBox1.Refresh();
 
-
-            // ダイアログ編集可否制御
+            // ダイアログ編集可否制御0
             switch (m_rank.RankType)
             {
                 case (int)Rank.ENUM_RANK_TYPE.ENUM_RANK_TYPE_R2:
